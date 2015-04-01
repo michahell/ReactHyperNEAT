@@ -13,7 +13,7 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/HyperNEAT_Docs
 HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 
 # ignore any /build directory
-**/build
+# **/build
 
 # ignore any CPPN directory
 **/CPPNarchive
