@@ -5,4 +5,11 @@ CPPNarchive/**
 controllers/**/*.log
 
 # ignore HyperNEAT /out folders
-/**/out/**/
+HyperNEAT/Board/out
+HyperNEAT/boost_1_57_0/out
+HyperNEAT/fuego-0.4/out
+HyperNEAT/JGTL/out
+HyperNEAT/NE/HyperNEAT/build
+HyperNEAT/NE/HyperNEAT/out
+HyperNEAT/tinyxmldll/out
+HyperNEAT/zlib/out
