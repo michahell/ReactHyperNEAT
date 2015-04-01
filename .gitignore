@@ -1,0 +1,8 @@
+# ignore CPPN directory
+CPPNarchive/**
+
+# ignore controller logs
+controllers/**/*.log
+
+# ignore HyperNEAT /out folders
+/**/out/**/
