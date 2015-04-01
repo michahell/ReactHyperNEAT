@@ -1,0 +1,1428 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Simulation of the YAMOR modular robot (BIRG)."
+    "The YAMOR robot goes through a sequence of module deconnections and reconnections while demonstrating two different types of locomotion."
+    "Author: Yvan Bourquin"
+    "Biologically Inspired Robotics Group (BIRG)"
+    "Swiss Federal Institute of Technology (EPFL), Lausanne"
+    "Date: 29 June 2006"
+    ""
+    "Publication:"
+    "R. Moeckel, C. Jaquier, K. Drapel, E. Dittrich, A. Upegui, and A.J. Ijspeert."
+    "Exploring adaptive locomotion with YaMoR, a novel autonomous modular robot with Bluetooth interface."
+    "Industrial Robot, 33(4):285-290, 2006."
+  ]
+  title "Modular Robot"
+  basicTimeStep 8
+  displayRefresh 4
+  runRealTime TRUE
+}
+Viewpoint {
+  orientation -0.098049 0.955311 0.278869 2.49602
+  position 4.60228 4.70042 -5.49902
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+DirectionalLight {
+  direction 1.2 -0.7 -0.5
+  intensity 1.31
+  castShadows TRUE
+}
+DirectionalLight {
+  ambientIntensity 0.7
+  direction -1.2 0.7 0.5
+  intensity 0.2
+}
+Supervisor {
+  children [
+    DEF RECEIVER Receiver {
+    }
+  ]
+  name "mod_supervisor7"
+  controller "mod_supervisor7"
+}
+DEF GROUND Solid {
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.301961 0.301961 0.301961
+        }
+        texture ImageTexture {
+          url [
+            "textures/texture_grid.png"
+          ]
+        }
+      }
+      geometry DEF GROUND_FACE_SET IndexedFaceSet {
+        coord Coordinate {
+          point [
+            50 0 50
+            -50 0 50
+            -50 0 -50
+            50 0 -50
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            12 12
+            12 -12
+            -12 -12
+            -12 12
+          ]
+        }
+        coordIndex [
+          3, 2, 1, 0
+        ]
+        texCoordIndex [
+          0, 1, 2, 3
+        ]
+      }
+    }
+  ]
+  boundingObject Transform {
+    translation 0 -1 0
+    children [
+      Box {
+        size 100 2 100
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF OBSTACLE3 Solid {
+  translation -0.717955 0.12 0.575741
+  rotation 0 1 0 1.59173
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.501961 0.501961 0.501961
+        }
+      }
+      geometry DEF BOX3 Box {
+        size 6 0.25 0.05
+      }
+    }
+  ]
+  name "red box"
+  boundingObject USE BOX3
+}
+DEF OBSTACLE4 Solid {
+  translation 0.371396 0.12 0.55177
+  rotation 0 1 0 1.59173
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.501961 0.501961 0.501961
+        }
+      }
+      geometry DEF BOX3 Box {
+        size 6 0.25 0.05
+      }
+    }
+  ]
+  name "red box"
+  boundingObject USE BOX3
+}
+DEF BALL1 Solid {
+  translation -0.0267798 0.0324215 -1.70881
+  rotation 0 -1 0 0.590918
+  children [
+    DEF BALL_SHAPE Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.0705882 0.403922
+          shininess 0.1
+          specularColor 0.329412 0.25098 0.278431
+        }
+        texture ImageTexture {
+          url [
+            "textures/texture_grid.png"
+          ]
+        }
+      }
+      geometry DEF BOX1 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  boundingObject USE BALL_SHAPE
+  physics DEF BALL_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF BALL2 Solid {
+  translation 0.145716 0.0324215 0.685911
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL3 Solid {
+  translation -0.46 0.0324215 0.46
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL4 Solid {
+  translation -0.0884993 0.0324215 1.60697
+  rotation 0 -1 0 4.35922
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL5 Solid {
+  translation -0.46 0.0324215 -0.46
+  rotation 0 1 0 5.11728
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL6 Solid {
+  translation -0.33736 0.0324215 -0.945015
+  rotation 0 1 0 3.90355
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL7 Solid {
+  translation 0 0.0324215 -0.46
+  rotation 0 -1 0 2.49897
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL8 Solid {
+  translation -0.46 0.0324215 0
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL9 Solid {
+  translation -0.145931 0.0324215 0.81677
+  rotation 0 1 0 4.17988
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL10 Solid {
+  translation -0.394332 0.0324215 0.221486
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL11 Solid {
+  translation -0.23 0.0324215 -0.23
+  rotation 0 1 0 2.61601
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL12 Solid {
+  translation -0.381424 0.0324215 -0.178721
+  rotation 0 1 0 1.28274
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL13 Solid {
+  translation 0.11783 0.0324215 -0.12126
+  rotation 0 1 0 3.66074
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL14 Solid {
+  translation 0.221461 0.0324215 0.501723
+  rotation 0 1 0 1.2723
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL15 Solid {
+  translation 0.23 0.0324215 0
+  rotation 0 1 0 1.75812
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL16 Solid {
+  translation 0.114544 0.0324215 -0.262664
+  rotation 0 1 0 0.322562
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL17 Solid {
+  translation -0.327422 0.0324215 -0.643189
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL18 Solid {
+  translation -0.595629 0.0324215 -0.187027
+  rotation 0 -1 0 5.36276
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL19 Solid {
+  translation -0.520714 0.0324215 0.145246
+  rotation 0 1 0 0.510313
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL20 Solid {
+  translation -0.403396 0.0324215 1.08338
+  rotation 0 -1 0 1.53094
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL21 Solid {
+  translation -0.0405554 0.0324215 -1.0724
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL22 Solid {
+  translation -0.0811147 0.0324215 2.83837
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL23 Solid {
+  translation -0.498566 0.0324215 1.27899
+  rotation 0 -1 0 1.20822
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL24 Solid {
+  translation 0.133663 0.0324215 2.88878
+  rotation 0 1 0 3.87932
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL25 Solid {
+  translation -0.299483 0.0324215 -1.48627
+  rotation 0 1 0 0.558285
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL26 Solid {
+  translation -0.293941 0.0324215 0.665363
+  rotation 0 -1 0 1.59772
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL27 Solid {
+  translation -0.192579 0.0324215 -1.01833
+  rotation 0 1 0 1.25279
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL28 Solid {
+  translation -0.0884049 0.0324215 -1.39223
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL29 Solid {
+  translation -0.319865 0.0324215 1.44537
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL30 Solid {
+  translation -0.35479 0.132421 1.76736
+  rotation -0.180088 0.124801 0.975701 4.33069
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL31 Solid {
+  translation 0.150684 0.0324215 1.63328
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL32 Solid {
+  translation -0.376476 0.0324215 -1.63648
+  rotation 0 -1 0 1.96581
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL33 Solid {
+  translation -0.272271 0.0324215 2.90377
+  rotation 0 1 0 2.09116
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL34 Solid {
+  translation -0.468426 0.0324215 -1.26283
+  rotation 0 1 0 5.24604
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL35 Solid {
+  translation -0.0584414 0.0324215 -0.829796
+  rotation 0 -1 0 1.96707
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL36 Solid {
+  translation 0.0610119 0.0324215 -0.761797
+  rotation 0 1 0 1.1397
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL37 Solid {
+  translation -0.592633 0.0324215 -1.0947
+  rotation 0 1 0 3.80387
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL37 Solid {
+  translation -0.556288 0.0324215 0.322214
+  rotation 0 -1 0 3.98231
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL38 Solid {
+  translation 0.173316 0.0324215 -0.575745
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL39 Solid {
+  translation -0.0815657 0.0324215 0.814783
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL40 Solid {
+  translation -0.207228 0.0324215 -0.70998
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL41 Solid {
+  translation -0.330086 0.232422 -1.55917
+  rotation 0 1 0 0.53936
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL42 Solid {
+  translation -0.0626216 0.232422 1.48902
+  rotation 0.180307 0.114831 -0.976884 4.25468
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL43 Solid {
+  translation 0.209779 0.0324215 0.975022
+  rotation 0 -1 0 1.69391
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL44 Solid {
+  translation -0.388786 0.0324215 2.22132
+  rotation 0 -1 0 2.07515
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL45 Solid {
+  translation 0.0105977 0.0324215 1.23148
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL46 Solid {
+  translation -0.469452 0.0324215 0.810822
+  rotation 0 -1 0 1.73452
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL47 Solid {
+  translation -0.113358 0.0324215 2.34681
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL48 Solid {
+  translation -0.196622 0.0324215 1.23089
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL49 Solid {
+  translation 0.170869 0.0324215 1.38351
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL50 Solid {
+  translation 0.00962594 0.0324215 0.972526
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL51 Solid {
+  translation -0.115328 0.0324215 1.92976
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL52 Solid {
+  translation -0.263313 0.0324215 -1.2304
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL53 Solid {
+  translation -0.188692 0.0324215 -0.414265
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL54 Solid {
+  translation -0.119563 0.232422 1.44112
+  rotation -0.177658 -0.204842 0.962537 1.46679
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL55 Solid {
+  translation -0.544373 0.0324215 -0.700168
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL56 Solid {
+  translation 0.117113 0.0324215 2.43953
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL57 Solid {
+  translation -0.210829 0.232422 1.59386
+  rotation -0.446469 -0.790882 0.418535 1.86564
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL58 Solid {
+  translation -0.360042 0.0324215 2.56031
+  rotation 0 1 0 1.47541
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL59 Solid {
+  translation -0.000935827 0.0324215 -2.1214
+  rotation 0 -1 0 1.92718
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL60 Solid {
+  translation -0.270765 0.0324215 0.362715
+  rotation 0 1 0 1.23973
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL61 Solid {
+  translation -0.565899 0.0324215 -0.420977
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL62 Solid {
+  translation -0.26653 0.0324215 3.42598
+  rotation 0 -1 0 1.84746
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL63 Solid {
+  translation -0.161749 0.0324215 2.23862
+  rotation 0 -1 0 0.365038
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL64 Solid {
+  translation -0.488082 0.0324215 0.642573
+  rotation 0 -1 0 2.44522
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF BALL65 Solid {
+  translation -0.530985 0.0324215 -0.112619
+  rotation 0.099778 0.00269379 -0.995006 3.16144
+  children [
+    USE BALL_SHAPE
+  ]
+  boundingObject USE BALL_SHAPE
+  physics USE BALL_PHYSICS
+}
+DEF MODULE_1 Robot {
+  translation 0.0049967 0.0299988 -0.037
+  rotation 0.707107 0.707107 0 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 2
+    }
+    DEF GYRO Gyro {
+    }
+    DEF EMITTER Emitter {
+      channel 1
+    }
+    DEF SONAR0 DistanceSensor {
+      translation 0.027 0 0
+      children [
+        DEF SONAR Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.975691 0.981481 0.0252992
+                }
+              }
+              geometry Cylinder {
+                height 0.005
+                radius 0.003
+              }
+            }
+          ]
+        }
+      ]
+      name "sonar0"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR1 DistanceSensor {
+      translation 0 0 0.03
+      rotation 0 -1 0 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar1"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR2 DistanceSensor {
+      translation 0 -0.024 0
+      rotation 0 0 -1 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar2"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR3 DistanceSensor {
+      translation 0 0.024 0
+      rotation 0 0 1 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar3"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR4 DistanceSensor {
+      translation -0.027 0 0
+      rotation 0 1 0 3.1416
+      children [
+        USE SONAR
+      ]
+      name "sonar4"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF BODY_GROUP Group {
+      children [
+        DEF BOX_SHAPE Shape {
+          appearance DEF PLASTIC Appearance {
+            material Material {
+              diffuseColor 0 1 0
+            }
+          }
+          geometry Box {
+            size 0.054 0.0482 0.06
+          }
+        }
+        DEF CYLINDER_TRANS Transform {
+          translation 0 0 -0.03
+          children [
+            Shape {
+              appearance USE PLASTIC
+              geometry Cylinder {
+                height 0.0482
+                radius 0.027
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF BACK_CONNECTOR Connector {
+      translation 0 0 0.03
+      children [
+        DEF ROUND_SHAPE Transform {
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 1 1 1
+                }
+              }
+              geometry Cylinder {
+                height 0.003
+                radius 0.0075
+              }
+            }
+          ]
+        }
+      ]
+      name "back_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF TOP_CONNECTOR Connector {
+      translation 0.027 0 0
+      rotation 0 1 0 1.5708
+      children [
+        USE ROUND_SHAPE
+      ]
+      name "top_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF BOTTOM_CONNECTOR Connector {
+      translation -0.027 0 0
+      rotation 0 1 0 -1.5708
+      children [
+        USE ROUND_SHAPE
+      ]
+      name "bottom_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF SERVO Servo {
+      translation 0 0 -0.03
+      children [
+        DEF GREY_BOX_TRANS Transform {
+          translation 0 0 -0.0135
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.752941 0.752941 0.752941
+                }
+              }
+              geometry Box {
+                size 0.015 0.0612 0.047
+              }
+            }
+          ]
+        }
+        DEF FRONT_CONNECTOR Connector {
+          translation 0 0 -0.037
+          rotation 0 1 0 3.1416
+          children [
+            USE ROUND_SHAPE
+          ]
+          name "front_connector"
+          model "conn_model"
+          isLocked TRUE
+          autoLock TRUE
+          distanceTolerance 0.05
+          axisTolerance 0.75
+          rotationTolerance 0.75
+        }
+        DistanceSensor {
+          translation 0 0 -0.037
+          rotation 0 1 0 1.5708
+          children [
+            USE SONAR
+          ]
+          name "sonar5"
+          lookupTable [
+            0 1 0
+            0.005 1 0.1
+            0.08 0 0.1
+          ]
+          type "sonar"
+          aperture 0.001
+        }
+      ]
+      boundingObject USE GREY_BOX_TRANS
+      physics Physics {
+        density -1
+        mass 0.016
+        coulombFriction 0.5
+      }
+      maxVelocity 3.9667
+      maxForce 1.1
+      minPosition -1.5708
+      maxPosition 1.5708
+    }
+    DEF BUMPER TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_1"
+  boundingObject USE BODY_GROUP
+  physics DEF BODY_PHYSICS Physics {
+    density -1
+    mass 0.17
+    coulombFriction 0.5
+  }
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_2 Robot {
+  translation 0.00499718 0.0299995 0.06
+  rotation 0.707104 0.707109 -6.13286e-06 3.14159
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 3
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 1
+    }
+    DEF EMITTER Emitter {
+      channel 2
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_2"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_3 Robot {
+  translation 0.00499901 0.03 0.194
+  rotation 0 0 1 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 2
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 4
+    }
+    DEF EMITTER Emitter {
+      channel 3
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_3"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_4 Robot {
+  translation 0.0049999 0.03 0.251
+  rotation -3.6732e-06 1 3.67316e-06 1.57081
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 13
+    }
+    GPS {
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
+      channel 3
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 5
+    }
+    DEF EMITTER Emitter {
+      channel 4
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_4"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_5 Robot {
+  translation 0.0050014 0.03 0.308
+  rotation 0 1 0 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 6
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 4
+    }
+    DEF EMITTER Emitter {
+      channel 5
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_5"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_6 Robot {
+  translation 0.00500091 0.0299995 0.442
+  rotation 3.67321e-06 -3.6732e-06 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 5
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 7
+    }
+    DEF EMITTER Emitter {
+      channel 6
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_6"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_7 Robot {
+  translation 0.0050014 0.0299988 0.539
+  rotation 0 0 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 6
+    }
+    DEF EMITTER Emitter {
+      channel 7
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_7"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_10 Robot {
+  translation -0.129005 0.0299973 -0.0369982
+  rotation 0.707107 0.707107 -1.21792e-05 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 11
+    }
+    DEF EMITTER Emitter {
+      channel 10
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_10"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_11 Robot {
+  translation -0.129003 0.0299985 0.0600018
+  rotation 0.707107 0.707107 -9.58173e-06 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 12
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 10
+    }
+    DEF EMITTER Emitter {
+      channel 11
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_11"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_12 Robot {
+  translation -0.129001 0.029999 0.194002
+  rotation 0 1 0 1.24084e-05
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 11
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 13
+    }
+    DEF EMITTER Emitter {
+      channel 12
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_12"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_13 Robot {
+  translation -0.129 0.029999 0.251002
+  rotation 3.67326e-06 -1 3.67319e-06 1.57078
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 4
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
+      channel 12
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 14
+    }
+    DEF EMITTER Emitter {
+      channel 13
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_13"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_14 Robot {
+  translation -0.128999 0.029999 0.308002
+  rotation 1 3.67319e-06 -8.67322e-06 3.14159
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 15
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 13
+    }
+    DEF EMITTER Emitter {
+      channel 14
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_14"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_15 Robot {
+  translation -0.128997 0.0299985 0.442002
+  rotation 8.67322e-06 1.32678e-06 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 14
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 16
+    }
+    DEF EMITTER Emitter {
+      channel 15
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_15"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_16 Robot {
+  translation -0.128996 0.0299973 0.539002
+  rotation 1.23464e-05 -2.34639e-06 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 15
+    }
+    DEF EMITTER Emitter {
+      channel 16
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_16"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
