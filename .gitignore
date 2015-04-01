@@ -20,3 +20,7 @@ HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 
 # ignore controller logs
 controllers/**/*.log
+
+# temp ignore test experiments
+experiment_check
+experimentSuite_test
