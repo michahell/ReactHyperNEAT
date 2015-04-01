@@ -1,5 +1,5 @@
-# ignore CPPN directory
-CPPNarchive/**
+# ignore any CPPN directory
+**/CPPNarchive
 
 # ignore controller logs
 controllers/**/*.log
@@ -13,3 +13,7 @@ HyperNEAT/NE/HyperNEAT/build
 HyperNEAT/NE/HyperNEAT/out
 HyperNEAT/tinyxmldll/out
 HyperNEAT/zlib/out
+
+# ignore HyperNEAT documentation
+HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/HyperNEAT_Docs
+HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
