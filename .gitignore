@@ -1,9 +1,3 @@
-# ignore any CPPN directory
-**/CPPNarchive
-
-# ignore controller logs
-controllers/**/*.log
-
 # ignore HyperNEAT /out folders
 HyperNEAT/Board/out
 HyperNEAT/boost_1_57_0/out
@@ -17,3 +11,12 @@ HyperNEAT/zlib/out
 # ignore HyperNEAT documentation
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/HyperNEAT_Docs
 HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
+
+# ignore any /build directory
+**/build
+
+# ignore any CPPN directory
+**/CPPNarchive
+
+# ignore controller logs
+controllers/**/*.log
