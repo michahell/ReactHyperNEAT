@@ -54,6 +54,7 @@ INC_WEBOTS = -I/Applications/Webots6.3.0/include/controller/c
 # include boost source
 # INC_BOOST = -I/Users/michahell/Documents/SDKS/boost_1_57_0/boost/
 INC_BOOST = -I$(DIR_HYPERNEAT)/boost_1_57_0/boost/
+INC_BOOST_EVERT = -I/opt/local/include/boost/
 # include NEAT
 # INC_NEAT = -I/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/NE/HyperNEAT/NEAT/include
 INC_NEAT = -I$(DIR_HYPERNEAT)/NE/HyperNEAT/NEAT/include
@@ -68,7 +69,7 @@ INC_TXML = -I$(DIR_HYPERNEAT)/tinyxmldll/include
 INC_JGTL = -I$(DIR_HYPERNEAT)/JGTL/include
 # combine libs and include dirs into macro's
 
-HEADERPATH = $(INC_WEBOTS) $(INC_BOOST) $(INC_NEAT) $(INC_HYPERNEAT) $(INC_TXML) $(INC_JGTL)
+HEADERPATH = $(INC_WEBOTS) $(INC_BOOST) $(INC_BOOST_EVERT) $(INC_NEAT) $(INC_HYPERNEAT) $(INC_TXML) $(INC_JGTL)
 
 
 
