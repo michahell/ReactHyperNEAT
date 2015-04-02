@@ -80,6 +80,10 @@ HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 # ignore controller logs
 controllers/**/*.log
 
+# ignore experiment definition symlinks
+HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/include/Experiments/ExperimentDefinition.h
+HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
+
 # temp ignore test experiments
 experiment_check
 experimentSuite_test
