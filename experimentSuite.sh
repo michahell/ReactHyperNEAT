@@ -3,6 +3,9 @@
 # make sure we have the latest updates to personal bash aliases and functions
 source ~/.bashrc
 
+# fail on anything, apparently
+set -e
+
 
 # Author : Teddy Skarin
 # 1. Create ProgressBar function
@@ -49,15 +52,18 @@ function rebuildExperimentDefinition {
 
   echo 'invoking hyperneat buildAll script...'
   cd HyperNEAT && ./buildAll.sh
+  cd ../
 }
 
 
 function rebuildExperimentControllers {
   notifySingleLine 'rebuilding controllers...'
-  echo "cd ../${1}"
-  cd ../${1}
+  echo "cd into ${1}"
+  pwd
+  cd ${1}
+  export PATH=/Applications/Webots6.3.0:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
   make all
-  cd ../
+  pwd
 }
 
 
