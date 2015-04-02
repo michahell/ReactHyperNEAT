@@ -366,7 +366,7 @@ ADD_LIBRARY(
 	src/Experiments/HCUBE_ImageCompressionExperiment.cpp
 	src/Experiments/HCUBE_BinaryCompressionExperiment.cpp
 	src/Experiments/HCUBE_LogicBuilderExperiment.cpp
-	src/Experiments/ModNeatExperiment7.cpp
+	src/Experiments/ExperimentDefinition.cpp
 
 	include/HCUBE_Boost.h
 	include/HCUBE_Defines.h
@@ -419,7 +419,7 @@ ADD_LIBRARY(
 	include/Experiments/HCUBE_ImageCompressionExperiment.h
 	include/Experiments/HCUBE_BinaryCompressionExperiment.h
 	include/Experiments/HCUBE_LogicBuilderExperiment.h
-	include/Experiments/ModNeatExperiment7.h
+	include/Experiments/ExperimentDefinition.h
 	)
 
 use_precompiled_header(

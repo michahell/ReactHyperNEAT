@@ -39,6 +39,7 @@
 #include "Experiments/HCUBE_GoExperiment.h"
 #endif
 #include "Experiments/HCUBE_CheckersExperimentSubstrateGeom.h"
+#include "Experiments/ExperimentDefinition.h"
 
 #ifndef HCUBE_NOGUI
 #include "HCUBE_MainFrame.h"
@@ -182,6 +183,9 @@ namespace HCUBE
             case EXPERIMENT_CHECKERS_SUBSTRATE_GEOM:
                 experiments.push_back(shared_ptr<Experiment>(new CheckersExperimentSubstrateGeom("",a)));
                 break;
+            case EXPERIMENT_MODULAR_CONTROL:
+                experiments.push_back(shared_ptr<Experiment>(new ModNeatExperiment7("",a)));
+                break;  
             default:
                 cout << string("ERROR: Unknown Experiment Type!\n");
                 throw CREATE_LOCATEDEXCEPTION_INFO("ERROR: Unknown Experiment Type!");
