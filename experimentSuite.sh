@@ -61,6 +61,8 @@ function rebuildExperimentControllers {
   echo "cd into ${1}"
   pwd
   cd ${1}
+  # fix for Evert's laptop having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
+  # GCC used should be the default Xcode GCC
   export PATH=/Applications/Webots6.3.0:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
   make all
   pwd
