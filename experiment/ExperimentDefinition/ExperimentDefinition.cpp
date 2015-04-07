@@ -20,7 +20,7 @@
 #define screen cout << fixed
 
 // experiment folder path
-string pathToExperiment = "/Users/michahell/Documents/projects_c++/experiment";                 
+string pathToExperiment = "/Users/michahell/Documents/projects_c++/experimentSuite/experiment";                 
 // WEBOTS world file name
 string pathToWorldFile = pathToExperiment + "/worlds/exp7_world_FINAL_";
 // CPPN archive folder name

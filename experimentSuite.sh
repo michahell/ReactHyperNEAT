@@ -7,6 +7,23 @@ source ~/.bashrc
 set -e
 
 
+function notifyMsg () {
+  echo '\033[0;33m' "$1" '\033[0m'
+}
+
+
+function errorMsg () {
+  echo '\033[0;31m' "$1" '\033[0m'
+}
+
+
+if [ "$#" -ne 1 ]
+then
+  errorMsg "add experiment (folder) to make and execute as argument."
+  exit
+fi
+
+
 # Author : Teddy Skarin
 # 1. Create ProgressBar function
 # 1.1 Input is currentState($1) and totalState($2)
@@ -35,7 +52,8 @@ function checkRequirements {
 
 function rebuildExperimentDefinition {
   # rebuild HyperNEAT executables for selected experiment
-  notifySingleLine "rebuilding HyperNEAT for selected experiment '$EXPERIMENT_NAME' "
+  printf "\ec"
+  notifyMsg "rebuilding HyperNEAT for selected experiment '$EXPERIMENT_NAME' "
 
   # added to force rebuild of hyperneat executable, picking up changes in symlinked code
   echo 'removing hyperneat executables to force rebuild...'
@@ -57,15 +75,15 @@ function rebuildExperimentDefinition {
 
 
 function rebuildExperimentControllers {
-  notifySingleLine 'rebuilding controllers...'
+  printf "\ec"
+  notifyMsg 'rebuilding controllers...'
   echo "cd into ${1}"
-  pwd
   cd ${1}
   # fix for Evert's mac pro having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
   # the GCC version used should be the default Xcode GCC, currently 4.2.x
   export PATH=/Applications/Webots6.3.0:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
   make all
-  pwd
+  cd ../
   # remove fix for Evert's mac pro
   source ~/.bash_profile
 }
@@ -77,21 +95,17 @@ function runSimulations {
   PROGRESS=0
 
   # replace with echo, notifySingleLine is just colored output.
-  notifySingleLine "starting ${SIMULATIONS} experiments for experiment '$EXPERIMENT_NAME' "
+  printf "\ec"
+  notifyMsg "starting ${SIMULATIONS} experiments for experiment '$EXPERIMENT_NAME' "
   
-  # run simulation suite
   for number in $(seq ${PROGRESS} ${SIMULATIONS})
   do
     # run hyperneat binary and thus experiment
-    notifySingleLine "running experiment..."
+    printf "\ec"
+    notifyMsg "running experiment..."
     cd HyperNEAT/NE/HyperNEAT/out
     ./Hypercube_NEAT_d -R $EXPERIMENT_SEED -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION
     cd ../../../../
-
-    # update progress bar
-    sleep 0.1
-    let PROGRESS=PROGRESS+1
-    ProgressBar ${number} ${SIMULATIONS}
     growlnotify --appIcon Webots -t 'Experiment suite' -m "simulation complete. progress: ${number} / ${SIMULATIONS}"
   done
 
@@ -100,7 +114,8 @@ function runSimulations {
 
 
 function analyseResults {
-  notifySingleLine 'analysing results...'
+  printf "\ec"
+  notifyMsg 'analysing results...'
   growlnotify --appIcon Webots -t 'Experiment suite' -m "Starting analysis of data..."
   # ...TODO
   growlnotify --appIcon Webots -t 'Experiment suite' -m "Analysis of data complete."
@@ -121,12 +136,14 @@ ModNeatExperiment7 () {
 }
 
 
+# see if we can run this script
 checkRequirements
 
 # which experiment do we want to run?
 ModNeatExperiment7
 
-rebuildExperimentDefinition
-rebuildExperimentControllers ${1}
+# list of functions to go through
+# rebuildExperimentDefinition
+# rebuildExperimentControllers ${1}
 runSimulations
-# analyseResults
+analyseResults

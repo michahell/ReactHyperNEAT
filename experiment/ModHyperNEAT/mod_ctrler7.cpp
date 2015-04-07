@@ -397,7 +397,7 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-	NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experiment/HyperNEAT/ModNeatExperiment7/ModNeatExperiment7.dat");
+	NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment/ExperimentDefinition/ExperimentDefinitionParams.dat");
 	generateSubstrate();
 	boost::shared_ptr<GeneticIndividual> cppn = readCppnFromXml(xmlFileName);
 	populateSubstrate(cppn);
