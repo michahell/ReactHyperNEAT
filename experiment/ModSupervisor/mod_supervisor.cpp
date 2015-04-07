@@ -24,8 +24,7 @@
 using namespace std;
 
 #define CONTROL_STEP 256
-#define CONTROL_STEP 512
-// #define CONTROL_STEP 16
+// #define CONTROL_STEP 512
 
 /// !!!IMPORTANT! number of controllers (to wait for before quitting)
 #define N 14

@@ -52,8 +52,7 @@ using namespace HCUBE;
 #define WEIGHT_TRESHOLD 0.3 // treshold a weight has to be over to be considered
 
 #define CONTROL_STEP 256
-#define CONTROL_STEP 512
-// #define CONTROL_STEP 16
+// #define CONTROL_STEP 512
 
 #define W 0.95  // distance from origin is penalized exponentially with base W and power (distance_travelled/distance_from_origin) - 1
 #define FITNESS_RECORDER_ID 4 // id of module equiped with a gps device to measure distances
