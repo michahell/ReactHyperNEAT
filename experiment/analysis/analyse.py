@@ -1,18 +1,19 @@
-#!/usr/bin/env python
-
 import sys, os
 import numpy as np
-import matplotlib.pyplot as plt
 from lxml import etree
+import matplotlib.pyplot as plt
 from scipy.interpolate import spline
 
 # import settings and options
 print("running with lxml.etree")
 np.set_printoptions(threshold=np.nan, precision=3)
 
+
 # get the results folder we want to analyse
-experiment_path = str(sys.argv[1])
-experiment_folder = experiment_path.split("/")[2]
+experiment_path = ''
+experiment_folder = ''
+
+# default experiment settings
 fig_folder = 'plots/' + experiment_folder
 num_generations = 150
 num_individuals = 10
@@ -27,6 +28,32 @@ np_best_dist_from_generation = np.zeros(num_generations)
 np_fitness_avg = np.zeros(num_generations)
 np_distances_avg = np.zeros(num_generations)
 
+
+# some colored output functions
+def notify(text):
+  return '\033[0;34m' + text + '\033[0m'
+
+
+def warning(text):
+  return '\033[0;33m' + text + '\033[0m'
+
+
+def error(text):
+  return '\033[0;31m' + text + '\033[0m'
+
+
+def get_experiment_path():
+  global experiment_path, experiment_folder
+  experiment_path = str(sys.argv[1])
+  experiment_folder = experiment_path.split("/")[2]
+
+
+def set_experiment_path(folder_name, folder_path):
+  global experiment_path, experiment_folder
+  experiment_path = folder_path
+  experiment_folder = folder_name
+
+
 def generate_raw_stat_matrices():
   for fn in os.listdir(experiment_path):
     abspath = os.path.join(experiment_path, fn);
@@ -38,18 +65,17 @@ def generate_raw_stat_matrices():
     tree = etree.parse(abspath)
     root = tree.getroot()
 
-    # todo store values in two dimensional dict
     try:
       fitness = float(str(root.get("Fitness")))
       np_fitness[curr_generation][curr_individual] = fitness;
     except ValueError, e:
-      print 'error: ' + str(e);
+      print error('error: ' + str(e));
 
     try:
       distance = float(str(root.get("Distance")))
       np_distance[curr_generation][curr_individual] = distance;
     except ValueError, e:
-      print 'error: ' + str(e);
+      print error('error: ' + str(e));
 
 
 def generate_gen_best():
@@ -103,7 +129,7 @@ def print_generation_best():
     print str(num_gen) + " --> " + str(np_best_fitness_from_generation[num_gen]) + ", dist: " + str(np_best_dist_from_generation[num_gen]);
 
 
-def plot_stat_fitness(stat, description, point_type, file_name):
+def plot_stat_fitness(stat, description, point_type, file_name, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
@@ -111,10 +137,11 @@ def plot_stat_fitness(stat, description, point_type, file_name):
   plt.ylabel('fitness', fontsize=14)
   plt.plot(x_range, stat, point_type)
   plt.axis([0, num_generations, 0, y_axis_fitness])
-  plt.show()
+  if show_plot:
+    plt.show()
   fig.savefig(fig_folder + file_name)
 
-def plot_stat_distance(stat, description, point_type, file_name):
+def plot_stat_distance(stat, description, point_type, file_name, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
@@ -122,11 +149,12 @@ def plot_stat_distance(stat, description, point_type, file_name):
   plt.ylabel('distance', fontsize=14)
   plt.plot(x_range, stat, point_type)
   plt.axis([0, num_generations, 0, y_axis_distance])
-  plt.show()
+  if show_plot:
+    plt.show()
   fig.savefig(fig_folder + file_name)
 
 
-def plot_stat_distance_avg(stat, description, point_type, file_name):
+def plot_stat_distance_avg(stat, description, point_type, file_name, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
@@ -136,32 +164,10 @@ def plot_stat_distance_avg(stat, description, point_type, file_name):
   line_space = np.linspace(0, num_generations, num_generations*10)
   avg_smooth = spline(x_range, stat, line_space)
   plt.plot(x_range, stat, point_type, line_space, avg_smooth, 'b')
-  plt.show()
+  if show_plot:
+    plt.show()
   fig.savefig(fig_folder + file_name)
 
 
-
-
-
-# Generate raw numpy arrays from cppn xml files
-generate_raw_stat_matrices()
-
-# generate some stats
-generate_gen_best()
-
-# generate some stats
-generate_gen_avg()
-
-# print some stats
-print_best_individual()
-# print_generation_best()
-
-# plot some stats
-plot_stat_fitness(np_best_fitness_from_generation, 'generation best individuals', 'ro', '__plot_gen_best.jpg')
-plot_stat_fitness(np_fitness, 'all individual fitness', 'bo', '__plot_gen_all.jpg')
-plot_stat_fitness(np_fitness_avg, 'average generation fitness', 'go', '__plot_gen_avg.jpg')
-
-plot_stat_distance(np_best_dist_from_generation, 'generation best distances', 'mo', '__plot_gen_dist_best.jpg')
-plot_stat_distance(np_distance, 'all individual distances', 'co', '__plot_gen_dist_all.jpg')
-plot_stat_distance_avg(np_distances_avg, 'average generation distances', 'yo', '__plot_gen_dist_avg.jpg')
-
+if __name__ == "__main__":
+  print 'this is a support module and not meant to be executable.'

@@ -71,6 +71,12 @@ HyperNEAT/zlib/build/
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/HyperNEAT_Docs
 HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 
+# ignore analysis plots dir
+experiment/analysis/plots/
+
+# ignore any compiled python
+*.pyc
+
 # ignore any CPPN directory
 **/CPPNarchive
 
@@ -80,7 +86,3 @@ controllers/**/*.log
 # ignore experiment definition symlinks
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/include/Experiments/ExperimentDefinition.h
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
-
-# temp ignore test experiments
-experiment_check
-experimentSuite_test

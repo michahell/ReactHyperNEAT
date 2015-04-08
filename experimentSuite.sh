@@ -3,56 +3,56 @@
 # make sure we have the latest updates to personal bash aliases and functions
 source ~/.bashrc
 
-# fail on anything, apparently
+# exit on anything failing
 set -e
 
+# enable easier expressions? required for moving experiment folders into CPPNarchive/old
+shopt -s extglob
 
+# some colored output functions
 function notifyMsg () {
-  echo '\033[0;33m' "$1" '\033[0m'
+  echo '\033[0;34m'"$1"'\033[0m'
+}
+
+
+function warningMsg () {
+  echo '\033[0;33m'"$1"'\033[0m'
 }
 
 
 function errorMsg () {
-  echo '\033[0;31m' "$1" '\033[0m'
-}
-
-
-if [ "$#" -ne 1 ]
-then
-  errorMsg "add experiment (folder) to make and execute as argument."
-  exit
-fi
-
-
-# Author : Teddy Skarin
-# 1. Create ProgressBar function
-# 1.1 Input is currentState($1) and totalState($2)
-function ProgressBar {
-  # Process data
-  let _progress=(${1}*100/${2}*100)/100
-  let _done=(${_progress}*4)/10
-  let _left=40-$_done
-  # Build progressbar string lengths
-  _done=$(printf "%${_done}s")
-  _left=$(printf "%${_left}s")
-
-  # 1.2 Build progressbar strings and print the ProgressBar line
-  # 1.2.1 Output example:
-  # 1.2.1.1 Progress : [########################################] 100%
-  printf "\rProgress : [${_done// /#}${_left// /-}] ${_progress}%%"
+  echo '\033[0;31m'"$1"'\033[0m'
 }
 
 
 function checkRequirements {
-  # execute some which commands, parse the output to check if command exists
-  command -v cmake >/dev/null 2>&1 || { echo >&2 "I require cmake but it's not installed.  Aborting."; exit 1; }
-  command -v growlnotify >/dev/null 2>&1 || { echo >&2 "I require growlnotify but it's not installed.  Aborting."; exit 1; }
+  # check for experiment folder argument
+  if [ "$#" -ne 1 ]
+  then
+    errorMsg "add experiment (folder) to make and execute as argument."
+    exit
+  fi
+  # ERRORS (ABORT)
+  command -v cmake >/dev/null 2>&1 || { errorMsg >&2 "I require cmake but it's not installed.  Aborting."; exit 1; }
+  command -v growlnotify >/dev/null 2>&1 || { errorMsg >&2 "I require growlnotify but it's not installed.  Aborting."; exit 1; }
+  
+  # TODO check all required folders and permissions
+  # analysis
+  # CPPNfolder
+    # - old
+    # - samples
+
+  # WARNINGS
+  command -v python >/dev/null 2>&1 || { warningMsg >&2 "warning: python not found ?"; }
+  pip list | grep 'lxml' >/dev/null 2>&1 || { warningMsg >&2 "warning: lxml not installed ?"; }
+  pip list | grep 'numpy' >/dev/null 2>&1 || { warningMsg >&2 "warning: numpy not installed ?"; }
+  pip list | grep 'scipy' >/dev/null 2>&1 || { warningMsg >&2 "warning: scipy not installed ?"; }
+  pip list | grep 'matplotlib' >/dev/null 2>&1 || { warningMsg >&2 "warning: matplotlib not installed ?"; }
 }
 
 
 function rebuildExperimentDefinition {
   # rebuild HyperNEAT executables for selected experiment
-  printf "\ec"
   notifyMsg "rebuilding HyperNEAT for selected experiment '$EXPERIMENT_NAME' "
 
   # added to force rebuild of hyperneat executable, picking up changes in symlinked code
@@ -75,9 +75,7 @@ function rebuildExperimentDefinition {
 
 
 function rebuildExperimentControllers {
-  printf "\ec"
   notifyMsg 'rebuilding controllers...'
-  echo "cd into ${1}"
   cd ${1}
   # fix for Evert's mac pro having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
   # the GCC version used should be the default Xcode GCC, currently 4.2.x
@@ -89,20 +87,31 @@ function rebuildExperimentControllers {
 }
 
 
+function prepareExperimentFolder () {
+  # making sure no other experiment CPPN folders other than 'old' and 'samples' exist
+  # do this by checking the amount of folders is not greater than 2.
+  notifyMsg "checking for existing CPPN experiment folders and moving them to /old..."
+  cd ${1}/CPPNarchive/
+  mkdir removethisfolder
+  mv !(old|samples) old
+  cd old/
+  rm -rf removethisfolder
+  cd ../../../
+}
+
+
 function runSimulations {
   # experiment suite configuration
   SIMULATIONS=30
   PROGRESS=0
 
   # replace with echo, notifySingleLine is just colored output.
-  printf "\ec"
   notifyMsg "starting ${SIMULATIONS} experiments for experiment '$EXPERIMENT_NAME' "
   
   for number in $(seq ${PROGRESS} ${SIMULATIONS})
   do
     # run hyperneat binary and thus experiment
-    printf "\ec"
-    notifyMsg "running experiment..."
+    notifyMsg "running experiment ${number} ..."
     cd HyperNEAT/NE/HyperNEAT/out
     ./Hypercube_NEAT_d -R $EXPERIMENT_SEED -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION
     cd ../../../../
@@ -114,10 +123,11 @@ function runSimulations {
 
 
 function analyseResults {
-  printf "\ec"
   notifyMsg 'analysing results...'
   growlnotify --appIcon Webots -t 'Experiment suite' -m "Starting analysis of data..."
-  # ...TODO
+  cd ${1}/analysis/
+  chmod +x analyseOne.py analyseAll.py
+  ./analyseAll.py
   growlnotify --appIcon Webots -t 'Experiment suite' -m "Analysis of data complete."
 }
 
@@ -137,7 +147,7 @@ ModNeatExperiment7 () {
 
 
 # see if we can run this script
-checkRequirements
+checkRequirements ${1}
 
 # which experiment do we want to run?
 ModNeatExperiment7
@@ -145,5 +155,6 @@ ModNeatExperiment7
 # list of functions to go through
 # rebuildExperimentDefinition
 # rebuildExperimentControllers ${1}
-runSimulations
-analyseResults
+# prepareExperimentFolder ${1}
+# runSimulations
+analyseResults ${1}
