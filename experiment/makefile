@@ -53,8 +53,7 @@ LIBS = $(LIB_TINYXML) $(LIB_HYPERNEAT) $(LIB_BOOST) $(LIB_WEBOTS) $(LIB_ZLIB)
 INC_WEBOTS = -I/Applications/Webots6.3.0/include/controller/c
 # include boost source
 # INC_BOOST = -I/Users/michahell/Documents/SDKS/boost_1_57_0/boost/
-INC_BOOST = -I$(DIR_HYPERNEAT)/boost_1_57_0/boost/
-INC_BOOST_EVERT = -I/opt/local/include/boost/
+INC_BOOST = -I$(DIR_HYPERNEAT)/boost_1_57_0/
 # include NEAT
 # INC_NEAT = -I/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/NE/HyperNEAT/NEAT/include
 INC_NEAT = -I$(DIR_HYPERNEAT)/NE/HyperNEAT/NEAT/include

@@ -84,6 +84,7 @@ function rebuildExperimentControllers {
   cd ../
   # remove fix for Evert's mac pro
   source ~/.bash_profile
+  source ~/.bashrc
 }
 
 
