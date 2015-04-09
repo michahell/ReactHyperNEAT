@@ -72,8 +72,8 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/HyperNEAT_Docs
 HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 
 # ignore analysis plots dir
-experiment/analysis/plots/
-experiments/analysis/old/
+experiment/analysis/plots/**
+experiments/analysis/old/**
 
 
 # ignore any compiled python
