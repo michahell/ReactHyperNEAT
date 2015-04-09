@@ -71,18 +71,13 @@ HyperNEAT/zlib/build/
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/HyperNEAT_Docs
 HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 
-# ignore analysis plots dir
-experiment/analysis/plots/**
-experiments/analysis/old/**
+# analysis/plots, analysis/old, CPPNarchive/old, CPPNarchive/samples are being gitignored in their own directories. 
 
 # ignore any webots world project files
 *.project
 
 # ignore any compiled python
 *.pyc
-
-# ignore any CPPN directory
-**/CPPNarchive
 
 # ignore controller logs
 controllers/**/*.log

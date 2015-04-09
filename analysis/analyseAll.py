@@ -129,6 +129,6 @@ if __name__ == "__main__":
   plot_all_avg_fitness()
 
   #  generate average distance boxplot graph
-  # plot_all_avg_distance()  
+  plot_all_avg_distance()  
 
   print notify('plotted all results, done.')

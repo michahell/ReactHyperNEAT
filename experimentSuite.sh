@@ -36,18 +36,21 @@ function checkRequirements {
   command -v cmake >/dev/null 2>&1 || { errorMsg >&2 "I require cmake but it's not installed.  Aborting."; exit 1; }
   command -v growlnotify >/dev/null 2>&1 || { errorMsg >&2 "I require growlnotify but it's not installed.  Aborting."; exit 1; }
   
-  # TODO check all required folders and permissions
-  # analysis
-  # CPPNfolder
-    # - old
-    # - samples
-
   # WARNINGS
   command -v python >/dev/null 2>&1 || { warningMsg >&2 "warning: python not found ?"; }
   pip list | grep 'lxml' >/dev/null 2>&1 || { warningMsg >&2 "warning: lxml not installed ?"; }
   pip list | grep 'numpy' >/dev/null 2>&1 || { warningMsg >&2 "warning: numpy not installed ?"; }
   pip list | grep 'scipy' >/dev/null 2>&1 || { warningMsg >&2 "warning: scipy not installed ?"; }
   pip list | grep 'matplotlib' >/dev/null 2>&1 || { warningMsg >&2 "warning: matplotlib not installed ?"; }
+}
+
+
+function verifyExperimentFolders {
+  # check if all required folders are there. if not make them.
+  notifyMsg "verifying CPPNarchive and controllers folder exist..."
+  cd ${1}
+  mkdir -p controllers
+  mkdir -p CPPNarchive && mkdir -p CPPNarchive/old && mkdir -p CPPNarchive/samples
 }
 
 
@@ -103,7 +106,7 @@ function prepareExperimentFolder () {
 
 function runSimulations {
   # experiment suite configuration
-  SIMULATIONS=30
+  SIMULATIONS=5
   PROGRESS=0
 
   # replace with echo, notifySingleLine is just colored output.
@@ -154,8 +157,9 @@ checkRequirements ${1}
 ModNeatExperiment7
 
 # list of functions to go through
-# rebuildExperimentDefinition
-# rebuildExperimentControllers ${1}
-# prepareExperimentFolder ${1}
-# runSimulations
+verifyExperimentFolders ${1}
+rebuildExperimentDefinition
+rebuildExperimentControllers ${1}
+prepareExperimentFolder ${1}
+runSimulations
 analyseResults ${1}
