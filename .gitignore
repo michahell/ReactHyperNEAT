@@ -75,6 +75,8 @@ HyperNEAT/NE/HyperNEAT/NEAT/NEAT_docs
 experiment/analysis/plots/**
 experiments/analysis/old/**
 
+# ignore any webots world project files
+*.project
 
 # ignore any compiled python
 *.pyc
