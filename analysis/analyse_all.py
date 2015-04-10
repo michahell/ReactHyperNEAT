@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from analyseOne import *
+from analyse_one import *
 
 # config
 folder_paths = []

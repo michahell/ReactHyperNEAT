@@ -51,6 +51,7 @@ function verifyExperimentFolders {
   cd ${1}
   mkdir -p controllers
   mkdir -p CPPNarchive && mkdir -p CPPNarchive/old && mkdir -p CPPNarchive/samples
+  cd ../
 }
 
 
@@ -146,7 +147,18 @@ ModNeatExperiment7 () {
   # experiment definition for symlinking into HyperNEAT
   EXPERIMENT_DEF_HPP="${PWD}/experiment/ExperimentDefinition/ExperimentDefinition.h"
   EXPERIMENT_DEF_CPP="${PWD}/experiment/ExperimentDefinition/ExperimentDefinition.cpp"
-  # return $TRUE
+}
+
+# define experiment variables (callable functions)
+experiment_template () {
+  EXPERIMENT_NAME="experiment template"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_SEED="23"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_template/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
 
@@ -154,7 +166,8 @@ ModNeatExperiment7 () {
 checkRequirements ${1}
 
 # which experiment do we want to run?
-ModNeatExperiment7
+# ModNeatExperiment7
+experiment_template
 
 # list of functions to go through
 verifyExperimentFolders ${1}
