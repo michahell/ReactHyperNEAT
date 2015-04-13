@@ -4,6 +4,8 @@ from analyse import *
 from pylab import *
 import random
 
+
+# analyse one experiment
 def analyse_one_experiment(folder_name, folder_path):
   # store the experiment folder path
   set_experiment_path(folder_name, folder_path)

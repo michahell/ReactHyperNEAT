@@ -130,9 +130,9 @@ function runSimulations {
 function analyseResults {
   notifyMsg 'analysing results...'
   growlnotify --appIcon Webots -t 'Experiment suite' -m "Starting analysis of data..."
-  cd ${1}/analysis/
-  chmod +x analyseOne.py analyseAll.py
-  ./analyseAll.py
+  cd analysis
+  chmod +x analyse_one.py analyse_all.py
+  ./analyse_all.py ${1}
   growlnotify --appIcon Webots -t 'Experiment suite' -m "Analysis of data complete."
 }
 
@@ -170,9 +170,9 @@ checkRequirements ${1}
 experiment_template
 
 # list of functions to go through
-verifyExperimentFolders ${1}
-rebuildExperimentDefinition
-rebuildExperimentControllers ${1}
-prepareExperimentFolder ${1}
-runSimulations
+# verifyExperimentFolders ${1}
+# rebuildExperimentDefinition
+# rebuildExperimentControllers ${1}
+# prepareExperimentFolder ${1}
+# runSimulations
 analyseResults ${1}

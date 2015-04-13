@@ -8,14 +8,31 @@ folder_names = []
 all_experiment_data = []
 num_experiments = 0
 
+
 # get a list of all dirs without the 'old' and 'sample' dirs
 def get_cppn_experiment_folders():
-  global folder_paths, folder_names
-  for folder_name in os.listdir("../CPPNarchive/"):
-    folder_path = os.path.join(os.getcwd() + "/../CPPNarchive/", folder_name)
+  global folder_paths, folder_names, fig_folder, experiment_path, experiment_folder
+
+  experiment_path = str(sys.argv[1]) + "/CPPNarchive/"
+  experiment_folder = str(sys.argv[1])
+  fig_folder = 'plots/' + experiment_folder
+
+  # print experiment_path
+  path = os.path.abspath(os.path.dirname(__file__)) + '/../' + experiment_path
+  # print path
+  foldercount = 0
+
+  for folder_name in os.listdir(path):
+    folder_path = os.path.join(path, folder_name)
     if os.path.isdir(folder_path) and str(folder_name) not in ['old', 'samples']:
       folder_paths.append(folder_path)
       folder_names.append(folder_name)
+      foldercount = foldercount + 1
+
+  if foldercount == 0:
+    print warning('no CPPN experiment folders detected, exiting.')
+    sys.exit()
+
 
 
 def plot_all_avg_fitness():
