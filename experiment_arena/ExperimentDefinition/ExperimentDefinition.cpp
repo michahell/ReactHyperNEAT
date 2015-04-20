@@ -20,9 +20,9 @@
 #define screen cout << fixed
 
 // experiment folder path
-string pathToExperiment = "/Users/michahell/Documents/projects_c++/experimentSuite/experiment";                 
+string pathToExperiment = "/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena";                 
 // WEBOTS world file name
-string pathToWorldFile = pathToExperiment + "/worlds/exp7_world_FINAL_";
+string pathToWorldFile = pathToExperiment + "/worlds/arena_world_";
 // CPPN archive folder name
 string pathToArchive = "/CPPNarchive";
 // analysis folder name
@@ -249,8 +249,7 @@ namespace HCUBE {
         currIndividual++;
       }
 
-      screen << "processing generation " << currGeneration << endl;
-      screen << "processing individual " << i << endl;
+      screen << "processing generation: " << currGeneration << ", individual: " << currIndividual << ", on thread: " << i << endl;
       shared_ptr<NEAT::GeneticIndividual> individual = group[i];
       // avoid 0 fitness
       if (individual->getFitness() <= 0) individual->setFitness(0.000001);

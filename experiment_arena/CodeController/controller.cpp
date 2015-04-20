@@ -32,6 +32,8 @@
 
 #include "HCUBE_Defines.h"
 
+#include "../ExperimentDefinition/AdditionalSettings.h"
+
 using namespace std;
 using namespace NEAT;
 //using namespace boost;
@@ -63,7 +65,7 @@ fstream file;
 
 
 // Number of seconds until shutdown
-static float deadline = 20;
+// static float deadline = 20;
 
 bool heterogeneous_controller = true;
 char *thread_id;

@@ -4,7 +4,7 @@ from lxml import etree
 from scipy.interpolate import spline
 
 import matplotlib as mpl
-mpl.use('PDF')
+# mpl.use('PDF')
 import matplotlib.pyplot as plt
 plt.ioff()
 
@@ -21,7 +21,6 @@ fig_folder = 'plots/'
 # default experiment settings
 num_generations = 150
 num_individuals = 10
-y_axis_fitness = 25
 y_axis_distance = 5
 
 # numpy arrays to hold fitness, distance, bodyheight etc. values
@@ -49,7 +48,8 @@ def error(text):
 def get_experiment_path():
   global experiment_path, experiment_folder, fig_folder
   experiment_path = str(sys.argv[1])
-  experiment_folder = experiment_path.split("/")[2]
+  experiment_folder = experiment_path.split("/")[3]
+  print experiment_path, experiment_folder
   fig_folder = 'plots/' + experiment_folder
 
 
@@ -65,8 +65,9 @@ def generate_raw_stat_matrices():
     abspath = os.path.join(experiment_path, fn);
     # print "parsing " + abspath
 
+    # individuals range from 1 to 10, so we want to make this from 0...9
     curr_generation = int(fn.split("_")[1])
-    curr_individual = int(fn.split("_")[2].split(".")[0])
+    curr_individual = int(fn.split("_")[2].split(".")[0]) - 1
     
     tree = etree.parse(abspath)
     root = tree.getroot()
@@ -135,38 +136,38 @@ def print_generation_best():
     print str(num_gen) + " --> " + str(np_best_fitness_from_generation[num_gen]) + ", dist: " + str(np_best_dist_from_generation[num_gen]);
 
 
-def plot_stat_fitness(stat, description, point_type, file_name, show_plot):
+def plot_stat_fitness(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
-  plt.xlabel('generation', fontsize=14)
-  plt.ylabel('fitness', fontsize=14)
+  plt.xlabel(label_x, fontsize=14)
+  plt.ylabel(label_y, fontsize=14)
   plt.plot(x_range, stat, point_type)
-  plt.axis([0, num_generations, 0, y_axis_fitness])
+  plt.axis([0, num_generations, 0, y_axis_max])
   if show_plot:
     plt.show()
   fig.savefig(fig_folder + file_name)
 
-def plot_stat_distance(stat, description, point_type, file_name, show_plot):
+def plot_stat_distance(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
-  plt.xlabel('generation', fontsize=14)
-  plt.ylabel('distance', fontsize=14)
+  plt.xlabel(label_x, fontsize=14)
+  plt.ylabel(label_y, fontsize=14)
   plt.plot(x_range, stat, point_type)
-  plt.axis([0, num_generations, 0, y_axis_distance])
+  plt.axis([0, num_generations, 0, y_axis_max])
   if show_plot:
     plt.show()
   fig.savefig(fig_folder + file_name)
 
 
-def plot_stat_distance_avg(stat, description, point_type, file_name, show_plot):
+def plot_stat_distance_avg(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
-  plt.xlabel('generation', fontsize=14)
-  plt.ylabel('distance', fontsize=14)
-  plt.axis([0, num_generations, 0, y_axis_distance])
+  plt.xlabel(label_x, fontsize=14)
+  plt.ylabel(label_y, fontsize=14)
+  plt.axis([0, num_generations, 0, y_axis_max])
   line_space = np.linspace(0, num_generations, num_generations*10)
   avg_smooth = spline(x_range, stat, line_space)
   plt.plot(x_range, stat, point_type, line_space, avg_smooth, 'b')

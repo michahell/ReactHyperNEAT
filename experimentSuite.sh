@@ -25,6 +25,17 @@ function errorMsg () {
 }
 
 
+# trap ctrl-c and call cleanup_before_exit()
+trap cleanup_before_exit INT
+
+function cleanup_before_exit() {
+  echo ''
+  warningMsg "** Trapped CTRL-C, cleaning up then exiting..."
+  errorMsg "** Exiting..."
+  exit
+}
+
+
 function checkRequirements {
   # check for experiment folder argument
   if [ "$#" -ne 1 ]
@@ -83,9 +94,26 @@ function rebuildExperimentControllers {
   cd ${1}
   # fix for Evert's mac pro having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
   # the GCC version used should be the default Xcode GCC, currently 4.2.x
-  export PATH=/Applications/Webots6.3.0:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
+  export PATH=/Applications/Webots6.3.1:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
   make all
   cd ../
+  # remove fix for Evert's mac pro
+  source ~/.bash_profile
+  source ~/.bashrc
+}
+
+
+function rebuildExperimentPlugins {
+  notifyMsg 'rebuilding plugin(s)...'
+  cd ${1}
+  # fix for Evert's mac pro having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
+  # the GCC version used should be the default Xcode GCC, currently 4.2.x
+  export PATH=/Applications/Webots6.3.1:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
+  cd plugins/physics/collision_detector/
+  # IMPORTANT! REMOVE OLD DYLIB'S FIRST!
+  rm -rf collision_detector.d collision_detector.dylib collision_detector.o
+  make
+  cd ../../../../
   # remove fix for Evert's mac pro
   source ~/.bash_profile
   source ~/.bashrc
@@ -138,6 +166,18 @@ function analyseResults {
 
 
 # define experiment variables (callable functions)
+experiment_template () {
+  EXPERIMENT_NAME="experiment template"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_SEED="23"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_template/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
+# define experiment variables (callable functions)
 ModNeatExperiment7 () {
   EXPERIMENT_NAME="ModNeatExperiment7"
   # hyperneat CLI required flags
@@ -150,15 +190,15 @@ ModNeatExperiment7 () {
 }
 
 # define experiment variables (callable functions)
-experiment_template () {
-  EXPERIMENT_NAME="experiment template"
+experiment_arena () {
+  EXPERIMENT_NAME="experiment arena"
   # hyperneat CLI required flags
-  EXPERIMENT_LOCATION="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinitionParams.dat"
-  EXPERIMENT_SEED="23"
-  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_template/CPPNarchive/"
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_SEED="24"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena/CPPNarchive/"
   # experiment definition for symlinking into HyperNEAT
-  EXPERIMENT_DEF_HPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.h"
-  EXPERIMENT_DEF_CPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.cpp"
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
 
@@ -166,13 +206,15 @@ experiment_template () {
 checkRequirements ${1}
 
 # which experiment do we want to run?
+# experiment_template
 # ModNeatExperiment7
-experiment_template
+experiment_arena
 
 # list of functions to go through
-# verifyExperimentFolders ${1}
+verifyExperimentFolders ${1}
 # rebuildExperimentDefinition
 # rebuildExperimentControllers ${1}
-# prepareExperimentFolder ${1}
-# runSimulations
-analyseResults ${1}
+rebuildExperimentPlugins ${1}
+prepareExperimentFolder ${1}
+runSimulations
+# analyseResults ${1}
