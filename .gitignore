@@ -85,3 +85,16 @@ controllers/**/*.log
 # ignore experiment definition symlinks
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/include/Experiments/ExperimentDefinition.h
 HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
+
+# force add the following directories (are in the HyperNEAT /out folder by default)
+!HyperNEAT/NE/HyperNEAT/out/cake_db
+!HyperNEAT/NE/HyperNEAT/out/cake_db/*
+!HyperNEAT/NE/HyperNEAT/out/cake_engines
+!HyperNEAT/NE/HyperNEAT/out/cake_engines/*
+!HyperNEAT/NE/HyperNEAT/out/data
+!HyperNEAT/NE/HyperNEAT/out/data/*
+!HyperNEAT/NE/HyperNEAT/out/FuegoBook
+!HyperNEAT/NE/HyperNEAT/out/FuegoBook/*
+!HyperNEAT/NE/HyperNEAT/out/OpenCL
+!HyperNEAT/NE/HyperNEAT/out/OpenCL/*
+

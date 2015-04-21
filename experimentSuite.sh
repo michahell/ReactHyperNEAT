@@ -43,6 +43,9 @@ function checkRequirements {
     errorMsg "add experiment (folder) to make and execute as argument."
     exit
   fi
+  
+  notifyMsg "verifying if required software is installed..."
+
   # ERRORS (ABORT)
   command -v cmake >/dev/null 2>&1 || { errorMsg >&2 "I require cmake but it's not installed.  Aborting."; exit 1; }
   command -v growlnotify >/dev/null 2>&1 || { errorMsg >&2 "I require growlnotify but it's not installed.  Aborting."; exit 1; }
@@ -212,7 +215,7 @@ experiment_arena
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-# rebuildExperimentDefinition
+rebuildExperimentDefinition
 rebuildExperimentControllers ${1}
 rebuildExperimentPlugins ${1}
 prepareExperimentFolder ${1}
