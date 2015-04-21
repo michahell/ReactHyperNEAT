@@ -94,7 +94,7 @@ function rebuildExperimentControllers {
   cd ${1}
   # fix for Evert's mac pro having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
   # the GCC version used should be the default Xcode GCC, currently 4.2.x
-  export PATH=/Applications/Webots6.3.1:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
+  export PATH=/Applications/Webots6.3.0:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
   make all
   cd ../
   # remove fix for Evert's mac pro
@@ -108,7 +108,7 @@ function rebuildExperimentPlugins {
   cd ${1}
   # fix for Evert's mac pro having MacPorts GCC as default GCC. Comment out / remove if this is messing things up.
   # the GCC version used should be the default Xcode GCC, currently 4.2.x
-  export PATH=/Applications/Webots6.3.1:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
+  export PATH=/Applications/Webots6.3.0:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/usr/texbin:/usr/local/bin
   cd plugins/physics/collision_detector/
   # IMPORTANT! REMOVE OLD DYLIB'S FIRST!
   rm -rf collision_detector.d collision_detector.dylib collision_detector.o

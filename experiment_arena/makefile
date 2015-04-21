@@ -24,7 +24,7 @@ DIR_CURRENT = $(shell pwd)
 DIR_HYPERNEAT = $(DIR_CURRENT)/../HyperNEAT
 
 # webots
-WEBOTS_VERSION = Webots6.3.1
+WEBOTS_VERSION = Webots6.3.0
 
 
 # ================== LIBRARIES ==================
