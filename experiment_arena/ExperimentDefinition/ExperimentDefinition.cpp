@@ -18,11 +18,11 @@
 #define USE_BIASES
 
 #define screen cout << fixed
-
+  
 // experiment folder path
-string pathToExperiment = "/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena";                 
+string pathToExperiment = "experiment_arena";                 
 // WEBOTS world file name
-string pathToWorldFile = pathToExperiment + "/worlds/arena_world_";
+string pathToWorldFile = "/worlds/arena_world_";
 // CPPN archive folder name
 string pathToArchive = "/CPPNarchive";
 // analysis folder name
@@ -126,6 +126,11 @@ namespace HCUBE {
   	// generateSubstrate();
     // create experiment CPPN folder
     string experimentFolder = "/" + getDateTimeString();
+    // construct path to experiment
+    pathToExperiment = boost::filesystem::current_path().string() + "/../../../../" + pathToExperiment;
+    screen << "relative path to experiment : " << pathToExperiment << endl;
+    // construct path to worldfile
+    pathToWorldFile = pathToExperiment + pathToWorldFile;
     pathToCurrentCppnFolder = createSubFolder(pathToExperiment, pathToArchive, experimentFolder);
   }
 
