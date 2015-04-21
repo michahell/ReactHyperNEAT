@@ -33,32 +33,12 @@ using namespace std;
 /// !!!IMPORTANT! number of controllers (to wait for before quitting)
 #define N 14
 
-///// Number of seconds until shutdown
-// static float deadline = 20;
-
 /// how much time to wait after deadline for termination notifications
 static float termination_extra_time = 5;
 
 /* each module is equipped with a bunch of devices */
 static WbDeviceTag receiver;
 
-TiXmlElement* getIndividualXml(TiXmlDocument& cppn)
-{
-	cppn.LoadFile();
-
-	if (cppn.Error())
-	{
-		throw std::runtime_error("XML error");
-	}
-	TiXmlElement *root = cppn.FirstChildElement();
-
-	if (root == NULL)
-	{
-		throw std::runtime_error("XML root is NULL");
-	}
-
-	return root;
-}
 
 int main() {
 

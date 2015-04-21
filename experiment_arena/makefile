@@ -141,6 +141,7 @@ make-controllers:
 	mv controllers/controller_1.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/controller_1
 	mv controllers/controller_2.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/controller_2
 
+
 make-supervisor:
 	@echo ' '
 	@echo 'REMOVING EXISTING SUPERVISOR ...'
@@ -167,9 +168,11 @@ make-supervisor:
 	@echo ' '
 	mv controllers/supervisor.out /Applications/$(WEBOTS_VERSION)/resources/controllers/supervisor/supervisor
 
+
 make-plugins:
 	@echo $(DIR_CURRENT)
 	cd plugins/physics/collision_detector/ && ls && make
+
 
 # All Target
 all: cleanFirst make-controllers make-supervisor cleanAfter

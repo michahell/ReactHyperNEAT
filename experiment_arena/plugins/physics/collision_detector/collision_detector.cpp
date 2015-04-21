@@ -12,6 +12,9 @@
 #include <sstream>
 #include <iostream>
 #include <cstdio>
+#include <fstream>
+
+#include "../../../ExperimentDefinition/AdditionalSettings.h"
 
 // using namespace std;
 
@@ -44,9 +47,6 @@ dGeomID floorID;
 
 // amount of blocks to check for collision
 int num_blocks = 105;
-
-// flag for enabling collisions on each simulation step only
-bool canCollide = true;
 
 // webots node DEF names
 std::string webots_obstacle_base_name = "OBSTACLE_";
@@ -129,10 +129,6 @@ void webots_physics_step() {
    *   dBodyAddForce(body1, f[0], f[1], f[2]);
    *   ...
    */
-
-   // reset the collision enabling flag.
-   canCollide = true;
-   std::cout << "physics plugin :: canCollide flag reset." << std::endl;
 }
 
 void webots_physics_draw() {
@@ -175,11 +171,8 @@ int webots_physics_collide(dGeomID g1, dGeomID g2) {
       if(contactCount > 0) {
 
         // increment the collision counter for this block IFF no collisions have been made this simulation step
-        if(canCollide == true) {
-          collVector[i].collisions++;
-          totalCollisions++;
-          canCollide = false;
-        }
+        collVector[i].collisions++;
+        totalCollisions++;
         
         // notify of the collision if this is the first only! (massive spam otherwise.)
         if (collVector[i].collisions == 1) {
@@ -214,8 +207,19 @@ void webots_physics_cleanup() {
     }
   }
 
-  // TODO send the collision data to the supervisor?
+  // write collision data to a file located in : physics_logfile
+  std::cout << "physics plugin :: writing collision data... " << std::endl;
+  std::ofstream physics_log;
+  physics_log.open(physics_logfile, std::ofstream::out); // | std::ofstream::app
+  physics_log << totalCollisions << std::endl;
+  for(int i = 0; i < num_blocks - 1; i++) {
+    if(collVector[i].collisions > 0) {
+      physics_log << collVector[i].defNameString << " " << collVector[i].collisions << std::endl;
+    }
+  }
+  physics_log.close();
+  std::cout << "physics plugin :: collision data written. " << std::endl;
 
-
+  // exiting message
   std::cout << "physics plugin :: cleanup called. exiting... " << std::endl;
 }

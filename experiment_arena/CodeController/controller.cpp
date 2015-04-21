@@ -15,6 +15,7 @@
 #include <sstream>
 #include <cmath>
 #include <memory>
+#include <string>
 
 #include <webots/robot.h>
 #include <webots/servo.h>
@@ -40,7 +41,7 @@ using namespace NEAT;
 using namespace HCUBE;
 
 // comment to speed up controller
-// #define CTRLER_DEBUG
+#define CTRLER_DEBUG
 //#define CTRLER_DEBUG_WRITE_NETWORK
 //
 
@@ -64,9 +65,6 @@ string xmlFileName;
 fstream file;
 
 
-// Number of seconds until shutdown
-// static float deadline = 20;
-
 bool heterogeneous_controller = true;
 char *thread_id;
 
@@ -80,6 +78,9 @@ static int id = -1; /* this module's ID */
 static WbDeviceTag servo, back_connector, front_connector, top_connector,
 		bottom_connector, emitter, receiver_front, receiver_back, receiver_top,
 		receiver_bottom, gyro, gps, distance_sensors[6], bumper;
+
+// additional receiver for physics data
+static WbDeviceTag physics_data;
 
 NEAT::FastBiasNetwork<double> substrate;
 
@@ -129,6 +130,18 @@ void writeFitnessToXml(string xmlCompleteFileName, const double fitness, const d
 
 	cppn.SaveFile();
 	screen << "done" << endl;
+}
+
+void writeCollisionsToXml(string xmlCompleteFileName, const double totalCollisions)
+{
+  screen << "Writing collisions: " << totalCollisions << " to file: "  << xmlCompleteFileName << " ... ";
+  TiXmlDocument cppn(xmlCompleteFileName);
+  TiXmlElement *root = getIndividualXml(cppn);
+
+  root->SetDoubleAttribute("Collisions", totalCollisions);
+
+  cppn.SaveFile();
+  screen << "done" << endl;
 }
 
 boost::shared_ptr<NEAT::GeneticIndividual> readCppnFromXml(string xmlCompleteFileName) {
@@ -398,7 +411,7 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-	NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment/ExperimentDefinition/ExperimentDefinitionParams.dat");
+	NEAT::Globals::init(datfile);
 	generateSubstrate();
 	boost::shared_ptr<GeneticIndividual> cppn = readCppnFromXml(xmlFileName);
 	populateSubstrate(cppn);
@@ -696,10 +709,10 @@ int main()
       file << "Bumper: " << wb_touch_sensor_get_value(bumper) << endl;
 
       // to screen
-      screen << "robot " << id << " dists: ";
-      for (int i = 0; i < 6; i++) screen << wb_distance_sensor_get_value(distance_sensors[i]) << "  ";
+      // screen << "robot " << id << " dists: ";
+      // for (int i = 0; i < 6; i++) screen << wb_distance_sensor_get_value(distance_sensors[i]) << "  ";
       // screen << "Bumper: " << wb_touch_sensor_get_value(bumper) << endl;
-      screen << endl;
+      // screen << endl;
     #endif
 
 		const double *pos = NULL;
@@ -846,13 +859,13 @@ int main()
 				screen << "Error: empty bottom buffer." << endl;
 			}
 		}
-#ifdef CTRLER_DEBUG
-		file << "Self:" << endl << self << endl;
-		file << "Front:" << front_self << endl;
-		file << "Back:" << back_self << endl;
-		file << "Top:" << top_self << endl;
-		file << "Bottom:" << bottom_self << endl;
-#endif
+    #ifdef CTRLER_DEBUG
+    		file << "Self:" << endl << self << endl;
+    		file << "Front:" << front_self << endl;
+    		file << "Back:" << back_self << endl;
+    		file << "Top:" << top_self << endl;
+    		file << "Bottom:" << bottom_self << endl;
+    #endif
 
 		////// 	COMPUTE THE NEW ALPHA_SELF
 
@@ -892,22 +905,39 @@ int main()
 		/// set servo position
 		wb_servo_set_position(servo, target_angle);
 
-#ifdef CTRLER_DEBUG
-		file << "alpha: " << alpha << "; omega: " << omega << "; amplitude: "
-		<< amplitude <<"; phase: "<< phase << ": servo value: " << target_angle << /*" row: " << row <<*/ endl;
-#endif
+    #ifdef CTRLER_DEBUG
+    		file << "alpha: " << alpha << "; omega: " << omega << "; amplitude: "
+    		<< amplitude <<"; phase: "<< phase << ": servo value: " << target_angle << /*" row: " << row <<*/ endl;
+    #endif
 
 		/* computed elapsed time */
 		t += CONTROL_STEP / 1000.0;
 	} // end control's while loop
 
 
-	if (id == FITNESS_RECORDER_ID) {
-		// take the average in average_height (recordings start from iteration -1)
-		average_height /= (control_loop_iteration + 1);
-	}
+	// if (id == FITNESS_RECORDER_ID) {
+	// 	// take the average in average_height (recordings start from iteration -1)
+	// 	average_height /= (control_loop_iteration + 1);
+	// }
 
 	if (id == FITNESS_RECORDER_ID) {
+
+    // read in the collision data
+    std::ifstream physics_log;
+    physics_log.open (physics_logfile, std::ifstream::in);
+    // Reads one string from the file
+    std::string totalCollisions;
+    physics_log >> totalCollisions;
+    screen << "collisions: " << totalCollisions << endl;
+    physics_log.close();
+    
+
+    // // add collision info to xml file
+    writeCollisionsToXml(xmlFileName, atof(totalCollisions.c_str()) );
+
+    // take the average in average_height (recordings start from iteration -1)
+    average_height /= (control_loop_iteration + 1);
+
 		// write distance traveled
 		const double *pos = wb_gps_get_values(gps);
 
