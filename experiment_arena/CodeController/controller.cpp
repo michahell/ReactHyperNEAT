@@ -34,6 +34,7 @@
 #include "HCUBE_Defines.h"
 
 #include "../ExperimentDefinition/AdditionalSettings.h"
+#include <boost/filesystem.hpp>
 
 using namespace std;
 using namespace NEAT;
@@ -276,8 +277,7 @@ void generateSubstrate() {
 }
 
 void populateSubstrate(boost::shared_ptr<const NEAT::GeneticIndividual> individual) {
-	NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<
-			double> ();
+	NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<double> ();
 	// for all nodes in the source layer
 	for (int y1 = 0; y1 < numNodesY; y1++) {
 		for (int x1 = 0; x1 < numNodesX; x1++) {
@@ -411,7 +411,15 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-	NEAT::Globals::init(datfile);
+  // stringstream ss;
+  // char const * homedir = getenv("HOME");
+  // ss << homedir << "/" << datfile << endl;
+  // const char * paramsDat = ss.str().c_str();
+
+	// NEAT::Globals::init(paramsDat);
+  // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
+  NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
+
 	generateSubstrate();
 	boost::shared_ptr<GeneticIndividual> cppn = readCppnFromXml(xmlFileName);
 	populateSubstrate(cppn);

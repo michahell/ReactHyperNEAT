@@ -30,18 +30,14 @@ WEBOTS_VERSION = Webots6.3.0
 # ================== LIBRARIES ==================
 
 # include tinyXML lib(s)
-# LIB_TINYXML = -L/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/tinyxmldll/out
 LIB_TINYXML = -L$(DIR_HYPERNEAT)/tinyxmldll/out
 # include HyperNEAT lib(s)
-# LIB_HYPERNEAT = -L/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/NE/HyperNEAT/out
 LIB_HYPERNEAT = -L$(DIR_HYPERNEAT)/NE/HyperNEAT/out
 # include boost lib
-# LIB_BOOST = -L/Users/michahell/Documents/projects_c++/HyperNEAT/boost_1_57_0/stage/lib
 LIB_BOOST = -L$(DIR_HYPERNEAT)/boost_1_57_0/stage/lib
 # include WeBots lib
 LIB_WEBOTS = -L/Applications/$(WEBOTS_VERSION)/lib -lController
 # include Zlib (tiny XML needs this)
-# LIB_ZLIB = -L/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/zlib/out -lz
 LIB_ZLIB = -L$(DIR_HYPERNEAT)/zlib/out -lz
 
 LIBS = $(LIB_TINYXML) $(LIB_HYPERNEAT) $(LIB_BOOST) $(LIB_WEBOTS) $(LIB_ZLIB)
@@ -52,25 +48,19 @@ LIBS = $(LIB_TINYXML) $(LIB_HYPERNEAT) $(LIB_BOOST) $(LIB_WEBOTS) $(LIB_ZLIB)
 # ================== INCLUDES ==================
 
 # include WeBots source
-# INC_WEBOTS = -I/Applications/Webots/include/controller/c
 INC_WEBOTS = -I/Applications/$(WEBOTS_VERSION)/include/controller/c
+# include WeBots' ODE source
 INC_ODE = -I/Applications/$(WEBOTS_VERSION)/include/
 # include boost source
-# INC_BOOST = -I/Users/michahell/Documents/SDKS/boost_1_57_0/boost/
 INC_BOOST = -I$(DIR_HYPERNEAT)/boost_1_57_0/
 # include NEAT
-# INC_NEAT = -I/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/NE/HyperNEAT/NEAT/include
 INC_NEAT = -I$(DIR_HYPERNEAT)/NE/HyperNEAT/NEAT/include
 # include HyperNEAT
-# INC_HYPERNEAT = -I/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/include
 INC_HYPERNEAT = -I$(DIR_HYPERNEAT)/NE/HyperNEAT/Hypercube_NEAT/include
 # include tinyXML
-# INC_TXML = -I/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/tinyxmldll/include
 INC_TXML = -I$(DIR_HYPERNEAT)/tinyxmldll/include
-# include JGTL (Jason Gauci Templating Library?)
-# INC_JGTL = -I/Users/michahell/Documents/projects_c++/experimentSuite/HyperNEAT/JGTL/include
+# include JGTL (Jason Gauci's Templating Library)
 INC_JGTL = -I$(DIR_HYPERNEAT)/JGTL/include
-# combine libs and include dirs into macro's
 
 HEADERPATH = $(INC_WEBOTS) $(INC_ODE) $(INC_BOOST) $(INC_BOOST_EVERT) $(INC_NEAT) $(INC_HYPERNEAT) $(INC_TXML) $(INC_JGTL)
 
@@ -140,6 +130,12 @@ make-controllers:
 	@echo ' '
 	mv controllers/controller_1.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/controller_1
 	mv controllers/controller_2.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/controller_2
+
+	@echo ' '
+	@echo 'COPYING HYPERNEAT PARAMS DATFILE TO USER ROOT...'
+	@echo ' '
+	cp ExperimentDefinition/ExperimentDefinitionParams.dat ~/ExperimentDefinitionParams.dat
+
 
 
 make-supervisor:
