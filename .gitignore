@@ -98,3 +98,6 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
 !HyperNEAT/NE/HyperNEAT/out/OpenCL
 !HyperNEAT/NE/HyperNEAT/out/OpenCL/*
 
+# ignore any log files
+*.log
+
