@@ -131,11 +131,6 @@ make-controllers:
 	mv controllers/controller_1.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/controller_1
 	mv controllers/controller_2.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/controller_2
 
-	@echo ' '
-	@echo 'COPYING HYPERNEAT PARAMS DATFILE TO USER ROOT...'
-	@echo ' '
-	cp ExperimentDefinition/ExperimentDefinitionParams.dat ~/ExperimentDefinitionParams.dat
-
 
 
 make-supervisor:
