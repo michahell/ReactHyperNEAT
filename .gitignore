@@ -101,3 +101,6 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
 # ignore any log files
 *.log
 
+# ignore any CPPN backup files
+/**/CPPNarch_best.xml.gz
+
