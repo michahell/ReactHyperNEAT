@@ -159,45 +159,6 @@ void writeFitnessToXml(string xmlCompleteFileName, const double fitness, const d
 	screen << "done" << endl;
 }
 
-void writeCollisionsToXml(string xmlCompleteFileName, std::vector<blockCollisions> collVector)
-{
-  TiXmlDocument cppn(xmlCompleteFileName);
-  TiXmlElement *root = getIndividualXml(cppn);
-
-  // create new collisions element
-  TiXmlElement * collisions_node = new TiXmlElement( "collisions" );
-  root->LinkEndChild( collisions_node );
-
-  double totalCollisions = 0;
-
-  for(int i = 0; i < collVector.size(); i++) {
-    screen << "adding collision with " << collVector[i].defNameString << " to CPPN ... " << endl;
-    // add a collision element after last element in root
-    TiXmlElement * collision_node = new TiXmlElement("collision");
-    collisions_node->LinkEndChild(collision_node);
-
-    // convert int to string.
-    stringstream ss;
-    ss << collVector[i].collisions;
-    string collision_touchtime = ss.str();
-
-    // SetAttribute (const std::string &name, const std::string &_value)
-    collision_node->SetAttribute("obstacle", collVector[i].defNameString);
-    collision_node->SetAttribute("touchtime", collision_touchtime);
-
-    totalCollisions++;
-  }
-
-  screen << "total collisions = " << totalCollisions << endl;
-
-  // add total number of collisions
-  screen << "adding total collisions = " << totalCollisions << " to CPPN ... "  << endl;
-  root->SetDoubleAttribute("Collisions", totalCollisions);
-
-  cppn.SaveFile();
-  screen << "done" << endl;
-}
-
 void writeCollisionsToXml(string xmlCompleteFileName, map_coll collMap)
 {
   TiXmlDocument cppn(xmlCompleteFileName);
@@ -208,6 +169,7 @@ void writeCollisionsToXml(string xmlCompleteFileName, map_coll collMap)
   root->LinkEndChild( collisions_node );
 
   double totalCollisions = 0;
+  double totalTouchTime = 0;
 
   BOOST_FOREACH( map_coll::value_type &map, collMap )
   {
@@ -226,32 +188,17 @@ void writeCollisionsToXml(string xmlCompleteFileName, map_coll collMap)
     collision_node->SetAttribute("touchtime", collision_touchtime);
 
     totalCollisions++;
+    totalTouchTime += map.second;
   }
-
-  // for(int i = 0; i < collVector.size(); i++) {
-  //   screen << "adding collision with " << collVector[i].defNameString << " to CPPN ... " << endl;
-  //   // add a collision element after last element in root
-  //   TiXmlElement * collision_node = new TiXmlElement("collision");
-  //   collisions_node->LinkEndChild(collision_node);
-
-  //   // convert int to string.
-  //   stringstream ss;
-  //   ss << collVector[i].collisions;
-  //   string collision_touchtime = ss.str();
-
-  //   // SetAttribute (const std::string &name, const std::string &_value)
-  //   collision_node->SetAttribute("obstacle", collVector[i].defNameString);
-  //   collision_node->SetAttribute("touchtime", collision_touchtime);
-
-  //   totalCollisions++;
-  // }
-
-  screen << "total collisions = " << totalCollisions << endl;
-
+  
+  screen << "collisions totals:  " << totalCollisions << ", touchtime: " << totalTouchTime << endl;
+  
   // add total number of collisions
-  screen << "adding total collisions = " << totalCollisions << " to CPPN ... "  << endl;
-  root->SetDoubleAttribute("Collisions", totalCollisions);
-
+  collisions_node->SetDoubleAttribute("total", totalCollisions);
+  
+  // adding total touchmoments number
+  collisions_node->SetDoubleAttribute("totaltouchtime", totalTouchTime);
+  
   cppn.SaveFile();
   screen << "done" << endl;
 }
@@ -863,8 +810,6 @@ int main()
 
       // get any collision messages from physics plugin
       if (control_loop_iteration > 0) {
-        // int queuelength = wb_receiver_get_queue_length(physics_receiver);
-        // if(queuelength > 0) {
         while(wb_receiver_get_queue_length(physics_receiver) > 0) {
 
           int message_size = wb_receiver_get_data_size(physics_receiver);
@@ -884,12 +829,7 @@ int main()
           // store in the collision map  ->  std::map<std::string, unsigned int> collMap
           collMap[message_split[0]] = atoi(message_split[1].c_str());
 
-          // store the defname and the amount of collisions in the collision (struct) vector
-          // collVector.push_back(blockCollisions());
-          // collVector[collVector.size() - 1].defNameString = message_split[0];
-          // collVector[collVector.size() - 1].collisions = atoi(message_split[1].c_str());
-
-          // next head packet or die
+          // move on to next head packet or nothing
           wb_receiver_next_packet(physics_receiver);
         }
       }
@@ -1083,7 +1023,6 @@ int main()
     screen << "fitness / collision recorder adding results to cppn... " << endl;
 
     // iterate over the collision data
-    // writeCollisionsToXml(xmlFileName, collVector);
     writeCollisionsToXml(xmlFileName, collMap);
 
     // take the average in average_height (recordings start from iteration -1)
