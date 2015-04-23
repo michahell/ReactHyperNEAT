@@ -6,16 +6,23 @@
  * MODIFIED NEW VERSION
  *
  */
+
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
+
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-#include <cmath>
 #include <memory>
 #include <string>
+#include <vector>
+
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/foreach.hpp>
 
 #include <webots/robot.h>
 #include <webots/servo.h>
@@ -34,11 +41,10 @@
 #include "HCUBE_Defines.h"
 
 #include "../ExperimentDefinition/AdditionalSettings.h"
-#include <boost/filesystem.hpp>
 
 using namespace std;
 using namespace NEAT;
-//using namespace boost;
+// using namespace boost;
 using namespace HCUBE;
 
 // comment to speed up controller
@@ -81,7 +87,7 @@ static WbDeviceTag servo, back_connector, front_connector, top_connector,
 		receiver_bottom, gyro, gps, distance_sensors[6], bumper;
 
 // additional receiver for physics data
-static WbDeviceTag physics_data;
+static WbDeviceTag physics_receiver;
 
 NEAT::FastBiasNetwork<double> substrate;
 
@@ -97,8 +103,28 @@ T signum(T n) {
 	return 0;
 }
 
-
 map<Node, string> nameLookup;
+
+// block collision count structure
+struct blockCollisions {
+  std::string defNameString;
+  unsigned int collisions;
+};
+
+// setup a vector for block collision counts
+std::vector<blockCollisions> collVector;
+
+// setup a map for block collision touch moment counts
+typedef std::map<std::string, unsigned int> map_coll;
+// std::map<std::string, unsigned int> collMap;
+map_coll collMap;
+
+
+// stringstream for parsing messages from physics plugin
+stringstream message_parse_ss;
+
+// total collisions for this simulation
+unsigned int totalCollisions = 0;
 
 
 TiXmlElement* getIndividualXml(TiXmlDocument& cppn)
@@ -133,12 +159,97 @@ void writeFitnessToXml(string xmlCompleteFileName, const double fitness, const d
 	screen << "done" << endl;
 }
 
-void writeCollisionsToXml(string xmlCompleteFileName, const double totalCollisions)
+void writeCollisionsToXml(string xmlCompleteFileName, std::vector<blockCollisions> collVector)
 {
-  screen << "Writing collisions: " << totalCollisions << " to file: "  << xmlCompleteFileName << " ... ";
   TiXmlDocument cppn(xmlCompleteFileName);
   TiXmlElement *root = getIndividualXml(cppn);
 
+  // create new collisions element
+  TiXmlElement * collisions_node = new TiXmlElement( "collisions" );
+  root->LinkEndChild( collisions_node );
+
+  double totalCollisions = 0;
+
+  for(int i = 0; i < collVector.size(); i++) {
+    screen << "adding collision with " << collVector[i].defNameString << " to CPPN ... " << endl;
+    // add a collision element after last element in root
+    TiXmlElement * collision_node = new TiXmlElement("collision");
+    collisions_node->LinkEndChild(collision_node);
+
+    // convert int to string.
+    stringstream ss;
+    ss << collVector[i].collisions;
+    string collision_touchtime = ss.str();
+
+    // SetAttribute (const std::string &name, const std::string &_value)
+    collision_node->SetAttribute("obstacle", collVector[i].defNameString);
+    collision_node->SetAttribute("touchtime", collision_touchtime);
+
+    totalCollisions++;
+  }
+
+  screen << "total collisions = " << totalCollisions << endl;
+
+  // add total number of collisions
+  screen << "adding total collisions = " << totalCollisions << " to CPPN ... "  << endl;
+  root->SetDoubleAttribute("Collisions", totalCollisions);
+
+  cppn.SaveFile();
+  screen << "done" << endl;
+}
+
+void writeCollisionsToXml(string xmlCompleteFileName, map_coll collMap)
+{
+  TiXmlDocument cppn(xmlCompleteFileName);
+  TiXmlElement *root = getIndividualXml(cppn);
+
+  // create new collisions element
+  TiXmlElement * collisions_node = new TiXmlElement( "collisions" );
+  root->LinkEndChild( collisions_node );
+
+  double totalCollisions = 0;
+
+  BOOST_FOREACH( map_coll::value_type &map, collMap )
+  {
+    screen << "map value contents:  " << map.first << " and " << map.second << endl;
+    // add a collision element after last element in root
+    TiXmlElement * collision_node = new TiXmlElement("collision");
+    collisions_node->LinkEndChild(collision_node);
+
+    // convert int to string.
+    stringstream ss;
+    ss << map.second;
+    string collision_touchtime = ss.str();
+
+    // SetAttribute (const std::string &name, const std::string &_value)
+    collision_node->SetAttribute("obstacle", map.first);
+    collision_node->SetAttribute("touchtime", collision_touchtime);
+
+    totalCollisions++;
+  }
+
+  // for(int i = 0; i < collVector.size(); i++) {
+  //   screen << "adding collision with " << collVector[i].defNameString << " to CPPN ... " << endl;
+  //   // add a collision element after last element in root
+  //   TiXmlElement * collision_node = new TiXmlElement("collision");
+  //   collisions_node->LinkEndChild(collision_node);
+
+  //   // convert int to string.
+  //   stringstream ss;
+  //   ss << collVector[i].collisions;
+  //   string collision_touchtime = ss.str();
+
+  //   // SetAttribute (const std::string &name, const std::string &_value)
+  //   collision_node->SetAttribute("obstacle", collVector[i].defNameString);
+  //   collision_node->SetAttribute("touchtime", collision_touchtime);
+
+  //   totalCollisions++;
+  // }
+
+  screen << "total collisions = " << totalCollisions << endl;
+
+  // add total number of collisions
+  screen << "adding total collisions = " << totalCollisions << " to CPPN ... "  << endl;
   root->SetDoubleAttribute("Collisions", totalCollisions);
 
   cppn.SaveFile();
@@ -418,6 +529,7 @@ void setupNetwork() {
 
 	// NEAT::Globals::init(paramsDat);
   // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
+  // hardcoded path, uses symlink to point to the correct directory..
   NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
 
 	generateSubstrate();
@@ -607,6 +719,8 @@ int main()
 	if (id == FITNESS_RECORDER_ID) {
 		// only the first module has GPS, to compute fitness
 		gps = wb_robot_get_device("gps");
+    // only this module has the physics receiver
+    physics_receiver = wb_robot_get_device("receiver_physics");
 	}
 
 	///  lock connectors
@@ -632,6 +746,9 @@ int main()
 	wb_gyro_enable(gyro, CONTROL_STEP);
 	if (id == FITNESS_RECORDER_ID) {
 		wb_gps_enable(gps, CONTROL_STEP);
+    wb_receiver_enable(physics_receiver, CONTROL_STEP);
+    wb_receiver_set_channel(physics_receiver, physics_channel);
+    screen << "##### physics_receiver channel set to: " << wb_receiver_get_channel(physics_receiver) << endl;
 	}
 	wb_servo_enable_position(servo, CONTROL_STEP);
 
@@ -743,6 +860,39 @@ int main()
 
 			// add current Y position (height)
 			average_height += pos[1];
+
+      // get any collision messages from physics plugin
+      if (control_loop_iteration > 0) {
+        // int queuelength = wb_receiver_get_queue_length(physics_receiver);
+        // if(queuelength > 0) {
+        while(wb_receiver_get_queue_length(physics_receiver) > 0) {
+
+          int message_size = wb_receiver_get_data_size(physics_receiver);
+          const char * message = (const char *) wb_receiver_get_data(physics_receiver);
+          // screen << "##### physics plugin message received. size: " << message_size << ", msg: " << message << endl;
+          // parse message, format:   OBSTACLE_3 1
+          // clear string stream buffer
+          message_parse_ss.str(std::string());
+          // parse received message
+          message_parse_ss << message << endl;
+          string message_string = message_parse_ss.str();
+          vector<string> message_split;
+          
+          // split on spaces
+          boost::split(message_split, message_string, boost::is_any_of(" "));
+
+          // store in the collision map  ->  std::map<std::string, unsigned int> collMap
+          collMap[message_split[0]] = atoi(message_split[1].c_str());
+
+          // store the defname and the amount of collisions in the collision (struct) vector
+          // collVector.push_back(blockCollisions());
+          // collVector[collVector.size() - 1].defNameString = message_split[0];
+          // collVector[collVector.size() - 1].collisions = atoi(message_split[1].c_str());
+
+          // next head packet or die
+          wb_receiver_next_packet(physics_receiver);
+        }
+      }
 		}
 
 		/////////////////////      UPDATE SELF VALUE     ///////////////////////////////
@@ -929,19 +1079,12 @@ int main()
 	// }
 
 	if (id == FITNESS_RECORDER_ID) {
-
-    // read in the collision data
-    std::ifstream physics_log;
-    physics_log.open (physics_logfile, std::ifstream::in);
-    // Reads one string from the file
-    std::string totalCollisions;
-    physics_log >> totalCollisions;
-    screen << "collisions: " << totalCollisions << endl;
-    physics_log.close();
     
+    screen << "fitness / collision recorder adding results to cppn... " << endl;
 
-    // // add collision info to xml file
-    writeCollisionsToXml(xmlFileName, atof(totalCollisions.c_str()) );
+    // iterate over the collision data
+    // writeCollisionsToXml(xmlFileName, collVector);
+    writeCollisionsToXml(xmlFileName, collMap);
 
     // take the average in average_height (recordings start from iteration -1)
     average_height /= (control_loop_iteration + 1);

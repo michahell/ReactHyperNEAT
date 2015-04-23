@@ -227,9 +227,9 @@ namespace HCUBE {
   	screen << "Read back fitness: " << fitness << "\t\t\t\t\t\t\t\t(****) " << endl;
 
     // read back the fitness
-    double collisions = 0.0;
-    collisions = readDoubleFromXml(xmlFileName, "Collisions");
-    screen << "Read back collisions: " << collisions << "\t\t\t\t\t\t\t\t(****) " << endl;
+    // double collisions = 0.0;
+    // collisions = readDoubleFromXml(xmlFileName, "Collisions");
+    // screen << "Read back collisions: " << collisions << "\t\t\t\t\t\t\t\t(****) " << endl;
 
   	// fitness must be positive
   	fitness = (fitness > 0.0 ? fitness : 1.0E-8);

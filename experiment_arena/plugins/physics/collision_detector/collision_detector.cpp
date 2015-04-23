@@ -34,6 +34,7 @@ struct blockCollisions {
   std::string defNameString;
   dGeomID id;
   unsigned int collisions;
+  bool collidedwith;
 };
 
 // total collisions for this simulation
@@ -41,6 +42,9 @@ unsigned int totalCollisions = 0;
 
 // setup a vector for block collision counts
 std::vector<blockCollisions> collVector;
+
+// stringstream to convert datatypes for message sending
+std::stringstream message_ss;
 
 // floor geom id
 dGeomID floorID;
@@ -113,6 +117,7 @@ void webots_physics_init(dWorldID world, dSpaceID space, dJointGroupID contactJo
       collVector[v].defName = defName;
       collVector[v].id = id;
       collVector[v].collisions = 0;
+      collVector[v].collidedwith = false;
       // std::cout << "added webots node with DEF name: " << defName << " to blockCollision vector." << std::endl;
     } else {
       std::cout << "physics plugin :: could not find webots node with DEF name: " << defName << std::endl;
@@ -175,13 +180,27 @@ int webots_physics_collide(dGeomID g1, dGeomID g2) {
         totalCollisions++;
         
         // notify of the collision if this is the first only! (massive spam otherwise.)
-        if (collVector[i].collisions == 1) {
+        if (collVector[i].collidedwith == false) {
+          // this block has been collided with so set its collidedwith param to true
+          collVector[i].collidedwith = true;
+
+          // notify console
           if(g1 == collVector[i].id) {
             std::cout << "physics plugin :: collision with block : " << collVector[i].defNameString << " and : " << getGeomClassName(dGeomGetClass(g2)) << std::endl;
           } else {
             std::cout << "physics plugin :: collision with block : " << collVector[i].defNameString << " and : " << getGeomClassName(dGeomGetClass(g1)) << std::endl;
           }
         }
+
+        // clear string stream buffer
+        message_ss.str(std::string());
+        // construct message
+        message_ss << collVector[i].defNameString << " " << collVector[i].collisions << std::endl;
+        const char * buff = message_ss.str().c_str();
+        // send message to controller
+        int buffersize = sizeof(buff) * strlen(buff);
+        dWebotsSend(physics_channel, buff, buffersize);
+        // std::cout << "physics plugin :: sent message to controller, buffer size = " << buffersize << " -> " << buff << std::endl;
 
       }
     }
