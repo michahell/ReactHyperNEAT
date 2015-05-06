@@ -15,6 +15,9 @@ def generate_all_data():
   # generate generation averages
   generate_gen_avg()
 
+  # generate collision graphs
+  generate_collision_avg()
+
 
 # analyse one experiment
 def analyse_one_experiment(folder_name, folder_path):
@@ -42,7 +45,11 @@ def analyse_one_experiment(folder_name, folder_path):
     'np_best_fitness_from_generation' : np_best_fitness_from_generation,
     'np_best_dist_from_generation' : np_best_dist_from_generation,
     'np_fitness_avg' : np_fitness_avg,
-    'np_distances_avg' : np_distances_avg
+    'np_distances_avg' : np_distances_avg,
+    'np_collisions' : np_collisions,
+    'np_collisions_avg' : np_collisions_avg,
+    'np_collisions_time' : np_collisions_time,
+    'np_collisions_time_avg' : np_collisions_time_avg
   }
 
 
@@ -63,11 +70,17 @@ if __name__ == "__main__":
   generate_all_data()
 
   # plot some stats but don't show them
-  plot_stat_fitness(np_best_fitness_from_generation, 'generation best individuals', 'ro', '__plot_gen_best', 'generation', 'fitness', 200, True)
-  plot_stat_fitness(np_fitness, 'all individual fitness', 'bo', '__plot_gen_all', 'generation', 'fitness', 200, True)
-  plot_stat_fitness(np_fitness_avg, 'average generation fitness', 'go', '__plot_gen_avg', 'generation', 'fitness', 200, True)
+  plot_stat(np_best_fitness_from_generation, 'generation best individuals', 'ro', '__plot_gen_best', 'generation', 'fitness', 10, True)
+  plot_stat(np_fitness, 'all individual fitness', 'bo', '__plot_gen_all', 'generation', 'fitness', 10, True)
+  plot_stat(np_fitness_avg, 'average generation fitness', 'go', '__plot_gen_avg', 'generation', 'fitness', 10, True)
 
-  plot_stat_distance(np_best_dist_from_generation, 'generation best distances', 'mo', '__plot_gen_dist_best', 'generation', 'distance in m.', 10, True)
-  plot_stat_distance(np_distance, 'all individual distances', 'co', '__plot_gen_dist_all', 'generation', 'distance in m.', 10, True)
-  plot_stat_distance_avg(np_distances_avg, 'average generation distances', 'yo', '__plot_gen_dist_avg', 'generation', 'distance in m.', 10, True)
+  plot_stat(np_best_dist_from_generation, 'generation best distances', 'mo', '__plot_gen_dist_best', 'generation', 'distance in m.', 10, True)
+  plot_stat(np_distance, 'all individual distances', 'co', '__plot_gen_dist_all', 'generation', 'distance in m.', 10, True)
+  plot_stat_line(np_distances_avg, 'average generation distances', 'yo', '__plot_gen_dist_avg', 'generation', 'distance in m.', 10, True)
+
+  # collision graphs
+  plot_stat(np_collisions, 'all individual collisions', 'co', '__plot_gen_colls_all', 'generation', 'amount of collisions', 15, True)
+  plot_stat(np_collisions_avg, 'average collisions', 'co', '__plot_gen_colls_avg', 'generation', 'amount of collisions', 15, True)
+  plot_stat(np_collisions_time, 'all individual collision touch time', 'co', '__plot_gen_colls_tt', 'generation', 'touchtime', 2500, True)
+  plot_stat(np_collisions_time_avg, 'average collision touch time', 'co', '__plot_gen_colls_tt_avg', 'generation', 'touchtime', 2500, True)
 

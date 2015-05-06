@@ -21,7 +21,6 @@ fig_folder = 'plots/'
 # default experiment settings
 num_generations = 150
 num_individuals = 10
-y_axis_distance = 5
 
 # numpy arrays to hold fitness, distance, bodyheight etc. values
 np_fitness = np.zeros((num_generations, num_individuals))
@@ -31,6 +30,12 @@ np_best_dist_from_generation = np.zeros(num_generations)
 np_fitness_avg = np.zeros(num_generations)
 np_distances_avg = np.zeros(num_generations)
 
+# added for arena experiment
+np_collisions = np.zeros((num_generations, num_individuals))
+np_collisions_avg = np.zeros(num_generations)
+
+np_collisions_time = np.zeros((num_generations, num_individuals))
+np_collisions_time_avg = np.zeros(num_generations)
 
 # some colored output functions
 def notify(text):
@@ -71,6 +76,8 @@ def generate_raw_stat_matrices():
     
     tree = etree.parse(abspath)
     root = tree.getroot()
+    collisions_elem = tree.xpath('/Network/collisions')
+    # print len(collisions_elem)
 
     try:
       fitness = float(str(root.get("Fitness")))
@@ -84,6 +91,16 @@ def generate_raw_stat_matrices():
     except ValueError, e:
       print error('error: ' + str(e));
 
+    try:
+      collisions_total = float(str(collisions_elem[0].get("total")))
+      collisions_touchtime = float(str(collisions_elem[0].get("totaltouchtime")))
+      np_collisions[curr_generation][curr_individual] = collisions_total;
+      np_collisions_time[curr_generation][curr_individual] = collisions_touchtime;
+    except ValueError, e:
+      print error('error: ' + str(e));
+    except IndexError, e:
+      print error('error: ' + str(e));
+
 
 def generate_gen_best():
   for num_gen in xrange(0, num_generations-1):
@@ -95,6 +112,11 @@ def generate_gen_avg():
   for num_gen in xrange(0, num_generations-1):
     np_fitness_avg[num_gen] = np.average(np_fitness[num_gen])
     np_distances_avg[num_gen] = np.average(np_distance[num_gen])
+
+def generate_collision_avg():
+  for num_gen in xrange(0, num_generations-1):
+    np_collisions_avg[num_gen] = np.average(np_collisions[num_gen])
+    np_collisions_time_avg[num_gen] = np.average(np_collisions_time[num_gen])
 
 
 def find_best_individual():
@@ -136,19 +158,7 @@ def print_generation_best():
     print str(num_gen) + " --> " + str(np_best_fitness_from_generation[num_gen]) + ", dist: " + str(np_best_dist_from_generation[num_gen]);
 
 
-def plot_stat_fitness(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
-  x_range = xrange(0, num_generations)
-  fig = plt.figure()
-  fig.suptitle(description, fontsize=16)
-  plt.xlabel(label_x, fontsize=14)
-  plt.ylabel(label_y, fontsize=14)
-  plt.plot(x_range, stat, point_type)
-  plt.axis([0, num_generations, 0, y_axis_max])
-  if show_plot:
-    plt.show()
-  fig.savefig(fig_folder + file_name)
-
-def plot_stat_distance(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
+def plot_stat(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)
@@ -161,7 +171,7 @@ def plot_stat_distance(stat, description, point_type, file_name, label_x, label_
   fig.savefig(fig_folder + file_name)
 
 
-def plot_stat_distance_avg(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
+def plot_stat_line(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)

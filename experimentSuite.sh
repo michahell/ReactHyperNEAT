@@ -148,8 +148,10 @@ function runSimulations {
   do
     # run hyperneat binary and thus experiment
     notifyMsg "running experiment ${number} ..."
+    # create logfile
+    touch ${EXPERIMENT_FOLDER}/experiment${number}.log
     cd HyperNEAT/NE/HyperNEAT/out
-    ./Hypercube_NEAT_d -R $EXPERIMENT_SEED -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION
+    ./Hypercube_NEAT_d -R $EXPERIMENT_SEED -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION | tee -a ${EXPERIMENT_FOLDER}/experiment${number}.log
     cd ../../../../
     growlnotify --appIcon Webots -t 'Experiment suite' -m "simulation complete. progress: ${number} / ${SIMULATIONS}"
   done
@@ -181,8 +183,8 @@ experiment_template () {
 }
 
 # define experiment variables (callable functions)
-ModNeatExperiment7 () {
-  EXPERIMENT_NAME="ModNeatExperiment7"
+experiment_moddif () {
+  EXPERIMENT_NAME="experiment moddif"
   # hyperneat CLI required flags
   EXPERIMENT_LOCATION="${PWD}/experiment/ExperimentDefinition/ExperimentDefinitionParams.dat"
   EXPERIMENT_SEED="22"
@@ -197,6 +199,7 @@ experiment_arena () {
   EXPERIMENT_NAME="experiment arena"
   # hyperneat CLI required flags
   EXPERIMENT_LOCATION="${PWD}/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena/"
   EXPERIMENT_SEED="24"
   EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena/CPPNarchive/"
   # experiment definition for symlinking into HyperNEAT
@@ -210,7 +213,7 @@ checkRequirements ${1}
 
 # which experiment do we want to run?
 # experiment_template
-# ModNeatExperiment7
+# experiment_moddif
 experiment_arena
 
 # list of functions to go through
@@ -219,5 +222,5 @@ verifyExperimentFolders ${1}
 rebuildExperimentControllers ${1}
 rebuildExperimentPlugins ${1}
 prepareExperimentFolder ${1}
-runSimulations
+runSimulations ${1}
 # analyseResults ${1}
