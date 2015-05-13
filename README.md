@@ -16,3 +16,12 @@ How to add a new experiment:
   - edit line 25 : string pathToWorldFile
 5. edit *experimentfolder*/makefile to reflect correct paths
 6. edit *experimentfolder*/showsample.sh to reflect correct paths
+
+Issues
+------
+
+OSX 10.10 Yosemite
+* no issues
+
+OSX 10.9 Mavericks
+* Unresolved _fchmodat symbol: http://ms-cheminfo.com/?q=node/90

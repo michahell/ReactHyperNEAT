@@ -104,3 +104,5 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
 # ignore any CPPN backup files
 /**/CPPNarch_best.xml.gz
 
+# ignore any .dsstore mac osx files
+**/*.DS_Store

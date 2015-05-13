@@ -26,14 +26,14 @@ add_definitions(/fp:fast)
 
 ELSE(MSVC)
 
-SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -stdlib=libstdc++ -rdynamic -g -Wall -Wno-unused-variable -fPIC")
-SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -stdlib=libstdc++ -rdynamic -g -Wall -Wno-unused-variable -fPIC")
+SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -stdlib=libstdc++ -arch i386 -arch x86_64 -rdynamic -g -Wall -Wno-unused-variable -fPIC")
+SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -stdlib=libstdc++ -arch i386 -arch x86_64 -rdynamic -g -Wall -Wno-unused-variable -fPIC")
 
-SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -stdlib=libstdc++ -rdynamic -g -DRELEASE_MODE -msse2 -DNDEBUG -fPIC")
-SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -stdlib=libstdc++ -rdynamic -g -DRELEASE_MODE -msse2 -DNDEBUG -fPIC")
+SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -stdlib=libstdc++ -arch i386 -arch x86_64 -rdynamic -g -DRELEASE_MODE -msse2 -DNDEBUG -fPIC")
+SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -stdlib=libstdc++ -arch i386 -arch x86_64 -rdynamic -g -DRELEASE_MODE -msse2 -DNDEBUG -fPIC")
 
-SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -stdlib=libstdc++ -rdynamic -g -msse2 -DNDEBUG -fPIC")
-SET(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} -stdlib=libstdc++ -rdynamic -g -msse2 -DNDEBUG -fPIC")
+SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -stdlib=libstdc++ -arch i386 -arch x86_64 -rdynamic -g -msse2 -DNDEBUG -fPIC")
+SET(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO} -stdlib=libstdc++ -arch i386 -arch x86_64 -rdynamic -g -msse2 -DNDEBUG -fPIC")
 
 ENDIF(MSVC)
 
