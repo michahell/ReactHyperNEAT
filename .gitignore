@@ -74,6 +74,13 @@ HyperNEAT/boost_1_57_0/doc/pdf/build
 # HyperNEAT/boost_1_57_0/tools/inspect/build/
 # HyperNEAT/boost_1_57_0/tools/regression/build/
 
+# apparently these need to be ignored because they are rebuilt each time?
+HyperNEAT/boost_1_57_0/tools/build/b2
+HyperNEAT/boost_1_57_0/tools/build/bjam
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/b2
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/bjam
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bootstrap/jam0
+
 # ignore boost' final staging folder:
 HyperNEAT/boost_1_57_0/stage/
 
