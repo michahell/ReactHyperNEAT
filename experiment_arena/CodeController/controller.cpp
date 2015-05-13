@@ -94,8 +94,7 @@ NEAT::FastBiasNetwork<double> substrate;
 const int numNodes = 3;
 const int numNodesX = numNodes, numNodesY = numNodes;
 
-template<class T>
-T signum(T n) {
+template<class T> T signum(T n) {
 	if (n < 0)
 		return -1;
 	if (n > 0)
@@ -542,8 +541,7 @@ mesh2D<double, numNodes> propagate_network(
 			/// set the right value to the input nodes (in layer A)
 			//substrate.setValue(nameLookup[Node(x, y, 0)],
 			//		(input.values[boardx][boardy] - normFactor) / stDev);
-			substrate.setValue(nameLookup[Node(x, y, 0)],
-					(input.values[boardx][boardy]));
+			substrate.setValue(nameLookup[Node(x, y, 0)], (input.values[boardx][boardy]));
 		}
 
 	}
@@ -630,7 +628,13 @@ int main()
 
   #ifdef CTRLER_DEBUG
 	stringstream stream;
-	stream << "controller_debug_" << id << ".log";
+  
+  // get CPPN name from xml filename
+  unsigned found = xmlFileName.find_last_of("/");
+  string cppnFileName = xmlFileName.substr(found + 1);
+  screen << "xml file name without path: " << cppnFileName << endl;
+
+	stream << cppnFileName << "_controller_debug_" << id << ".log";
 	file.open(stream.str().c_str(), fstream::out);
 	if (!file.is_open()) {
 		screen << "Error: could not open debug log output file. ";
@@ -725,7 +729,9 @@ int main()
 	// initial amplitude [-1 ... 1] for [-pi/2 ... pi/2]
 	double amplitude = 0.5;
 	// phase difference
-	double phase = 1.0 / id;
+  double phase = 1.0 / id;
+  // reset amount of the target angle
+	double reset = 0.0;
 
 	// set initial distance
 
@@ -1004,10 +1010,12 @@ int main()
 		amplitude = output.values[0][1];
 		// update phase
 		phase = output.values[1][2];
-
+    // CPG diminishing / resetting output, [0...1]
+    reset = output.values[1][0];
 
     // target_angle = -1*((1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)));
-		target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+		target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
 
 
 		/// set servo position

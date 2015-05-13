@@ -149,7 +149,7 @@ function runSimulations {
     # run hyperneat binary and thus experiment
     notifyMsg "running experiment ${number} ..."
     # create logfile
-    touch ${EXPERIMENT_FOLDER}/experiment${number}.log
+    touch ${EXPERIMENT_FOLDER}/experiment${number}.logs
     cd HyperNEAT/NE/HyperNEAT/out
     ./Hypercube_NEAT_d -R $EXPERIMENT_SEED -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION | tee -a ${EXPERIMENT_FOLDER}/experiment${number}.log
     cd ../../../../
@@ -218,9 +218,9 @@ experiment_arena
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-# rebuildExperimentDefinition
-rebuildExperimentControllers ${1}
-rebuildExperimentPlugins ${1}
-prepareExperimentFolder ${1}
-runSimulations ${1}
+rebuildExperimentDefinition
+# rebuildExperimentControllers ${1}
+# rebuildExperimentPlugins ${1}
+# prepareExperimentFolder ${1}
+# runSimulations ${1}
 # analyseResults ${1}

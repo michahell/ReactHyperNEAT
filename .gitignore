@@ -54,15 +54,15 @@ HyperNEAT/boost_1_57_0/libs/wave/samples/token_statistics/build/
 HyperNEAT/boost_1_57_0/libs/wave/samples/waveidl/build/
 HyperNEAT/boost_1_57_0/libs/wave/test/build/
 HyperNEAT/boost_1_57_0/libs/wave/tool/build/
-HyperNEAT/boost_1_57_0/tools/auto_index/build/
-HyperNEAT/boost_1_57_0/tools/build/b2
-HyperNEAT/boost_1_57_0/tools/build/bin/
-HyperNEAT/boost_1_57_0/tools/build/bjam
-HyperNEAT/boost_1_57_0/tools/build/bootstrap.log
-HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/
-HyperNEAT/boost_1_57_0/tools/build/src/engine/bootstrap/
-HyperNEAT/boost_1_57_0/tools/inspect/build/
-HyperNEAT/boost_1_57_0/tools/regression/build/
+# HyperNEAT/boost_1_57_0/tools/auto_index/build/
+# HyperNEAT/boost_1_57_0/tools/build/b2
+# HyperNEAT/boost_1_57_0/tools/build/bin/
+# HyperNEAT/boost_1_57_0/tools/build/bjam
+# HyperNEAT/boost_1_57_0/tools/build/bootstrap.log
+# HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/
+# HyperNEAT/boost_1_57_0/tools/build/src/engine/bootstrap/
+# HyperNEAT/boost_1_57_0/tools/inspect/build/
+# HyperNEAT/boost_1_57_0/tools/regression/build/
 HyperNEAT/fuego-0.4/build/
 HyperNEAT/tinyxmldll/build/
 HyperNEAT/zlib/build/

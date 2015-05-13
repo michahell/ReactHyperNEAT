@@ -70,17 +70,17 @@ if __name__ == "__main__":
   generate_all_data()
 
   # plot some stats but don't show them
-  plot_stat(np_best_fitness_from_generation, 'generation best individuals', 'ro', '__plot_gen_best', 'generation', 'fitness', 10, True)
-  plot_stat(np_fitness, 'all individual fitness', 'bo', '__plot_gen_all', 'generation', 'fitness', 10, True)
-  plot_stat(np_fitness_avg, 'average generation fitness', 'go', '__plot_gen_avg', 'generation', 'fitness', 10, True)
+  plot_stat(np_best_fitness_from_generation, 'generation best individuals', 'ro', '__plot_gen_best', 'generation', 'fitness', 25, True)
+  plot_stat(np_fitness, 'all individual fitness', 'bo', '__plot_gen_all', 'generation', 'fitness', 25, True)
+  plot_stat(np_fitness_avg, 'average generation fitness', 'go', '__plot_gen_avg', 'generation', 'fitness', 25, True)
 
   plot_stat(np_best_dist_from_generation, 'generation best distances', 'mo', '__plot_gen_dist_best', 'generation', 'distance in m.', 10, True)
   plot_stat(np_distance, 'all individual distances', 'co', '__plot_gen_dist_all', 'generation', 'distance in m.', 10, True)
   plot_stat_line(np_distances_avg, 'average generation distances', 'yo', '__plot_gen_dist_avg', 'generation', 'distance in m.', 10, True)
 
   # collision graphs
-  plot_stat(np_collisions, 'all individual collisions', 'co', '__plot_gen_colls_all', 'generation', 'amount of collisions', 15, True)
-  plot_stat(np_collisions_avg, 'average collisions', 'co', '__plot_gen_colls_avg', 'generation', 'amount of collisions', 15, True)
-  plot_stat(np_collisions_time, 'all individual collision touch time', 'co', '__plot_gen_colls_tt', 'generation', 'touchtime', 2500, True)
-  plot_stat(np_collisions_time_avg, 'average collision touch time', 'co', '__plot_gen_colls_tt_avg', 'generation', 'touchtime', 2500, True)
+  plot_stat(np_collisions, 'all individual collisions', 'co', '__plot_gen_colls_all', 'generation', 'amount of collisions', 25, True)
+  plot_stat(np_collisions_avg, 'average collisions', 'co', '__plot_gen_colls_avg', 'generation', 'amount of collisions', 25, True)
+  plot_stat(np_collisions_time, 'all individual collision touch time', 'co', '__plot_gen_colls_tt', 'generation', 'touchtime', 3000, True)
+  plot_stat(np_collisions_time_avg, 'average collision touch time', 'co', '__plot_gen_colls_tt_avg', 'generation', 'touchtime', 3000, True)
 

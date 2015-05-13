@@ -74,32 +74,36 @@ def generate_raw_stat_matrices():
     curr_generation = int(fn.split("_")[1])
     curr_individual = int(fn.split("_")[2].split(".")[0]) - 1
     
-    tree = etree.parse(abspath)
-    root = tree.getroot()
-    collisions_elem = tree.xpath('/Network/collisions')
-    # print len(collisions_elem)
-
     try:
-      fitness = float(str(root.get("Fitness")))
-      np_fitness[curr_generation][curr_individual] = fitness;
-    except ValueError, e:
-      print error('error: ' + str(e));
+      tree = etree.parse(abspath)
+      root = tree.getroot()
+      collisions_elem = tree.xpath('/Network/collisions')
 
-    try:
-      distance = float(str(root.get("Distance")))
-      np_distance[curr_generation][curr_individual] = distance;
-    except ValueError, e:
-      print error('error: ' + str(e));
+      try:
+        fitness = float(str(root.get("Fitness")))
+        np_fitness[curr_generation][curr_individual] = fitness;
+      except ValueError, e:
+        print error('ValueError: ' + str(e));
+      
+      try:
+        distance = float(str(root.get("Distance")))
+        np_distance[curr_generation][curr_individual] = distance;
+      except ValueError, e:
+        print error('error: ' + str(e));
 
-    try:
-      collisions_total = float(str(collisions_elem[0].get("total")))
-      collisions_touchtime = float(str(collisions_elem[0].get("totaltouchtime")))
-      np_collisions[curr_generation][curr_individual] = collisions_total;
-      np_collisions_time[curr_generation][curr_individual] = collisions_touchtime;
-    except ValueError, e:
-      print error('error: ' + str(e));
-    except IndexError, e:
-      print error('error: ' + str(e));
+      try:
+        collisions_total = float(str(collisions_elem[0].get("total")))
+        collisions_touchtime = float(str(collisions_elem[0].get("totaltouchtime")))
+        np_collisions[curr_generation][curr_individual] = collisions_total;
+        np_collisions_time[curr_generation][curr_individual] = collisions_touchtime;
+      except ValueError, e:
+        print error('error: ' + str(e));
+      except IndexError, e:
+        print error('error: ' + str(e));
+
+    except etree.XMLSyntaxError, e:
+      print error('XMLSyntaxError: ' + str(e));
+      
 
 
 def generate_gen_best():
