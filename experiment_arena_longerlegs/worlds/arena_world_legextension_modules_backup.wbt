@@ -10,8 +10,8 @@ WorldInfo {
   runRealTime TRUE
 }
 Viewpoint {
-  orientation 0.439685 0.822069 0.361773 4.71353
-  position -0.334931 0.358166 0.637002
+  orientation 0.481898 0.723439 0.494379 4.3715
+  position -0.490953 1.25043 0.223517
 }
 Background {
   skyColor [
@@ -3387,7 +3387,7 @@ DEF MODULE_7 Robot {
   controller "controller_1"
 }
 DEF MODULE_10 Robot {
-  translation -0.128991 0.0305504 -0.0369997
+  translation -0.128991 0.0305504 -0.135
   rotation 0.707107 0.707107 -1.30001e-06 3.14157
   children [
     DEF RECEIVER Receiver {
@@ -3455,7 +3455,7 @@ DEF MODULE_11 Robot {
   controller "controller_1"
 }
 DEF MODULE_17 Robot {
-  translation -0.128992 0.0305531 0.0600003
+  translation -0.128992 0.0305531 -0.0371997
   rotation 0.707107 0.707107 1.31944e-06 3.14158
   children [
     DEF RECEIVER Receiver {
@@ -3638,8 +3638,44 @@ DEF MODULE_15 Robot {
   physics USE BODY_PHYSICS
   controller "controller_1"
 }
+DEF MODULE_18 Robot {
+  translation -0.128998 0.0305531 0.539
+  rotation 5.6527e-06 1.37925e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 14
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 16
+    }
+    DEF EMITTER Emitter {
+      channel 15
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_18 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_18"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_1"
+}
 DEF MODULE_16 Robot {
-  translation -0.129 0.0305504 0.539003
+  translation -0.129 0.0305504 0.636005
   rotation 1.90649e-06 1.74719e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
