@@ -353,14 +353,14 @@ DEF MODULE_8 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 3
+      channel 2
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
       channel 1
     }
     DEF EMITTER Emitter {
-      channel 2
+      channel 8
     }
     USE BODY_GROUP
     USE BACK_CONNECTOR
@@ -393,7 +393,7 @@ DEF MODULE_2 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 1
+      channel 8
     }
     DEF EMITTER Emitter {
       channel 2
@@ -547,7 +547,7 @@ DEF MODULE_6 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 7
+      channel 9
     }
     DEF EMITTER Emitter {
       channel 6
@@ -579,14 +579,14 @@ DEF MODULE_9 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 5
+      channel 6
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
       channel 7
     }
     DEF EMITTER Emitter {
-      channel 6
+      channel 9
     }
     USE BODY_GROUP
     USE BACK_CONNECTOR
@@ -615,7 +615,7 @@ DEF MODULE_7 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 6
+      channel 9
     }
     DEF EMITTER Emitter {
       channel 7
@@ -647,7 +647,7 @@ DEF MODULE_10 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 11
+      channel 17
     }
     DEF EMITTER Emitter {
       channel 10
@@ -683,7 +683,7 @@ DEF MODULE_11 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 10
+      channel 17
     }
     DEF EMITTER Emitter {
       channel 11
@@ -715,14 +715,14 @@ DEF MODULE_17 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 12
+      channel 11
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
       channel 10
     }
     DEF EMITTER Emitter {
-      channel 11
+      channel 17
     }
     USE BODY_GROUP
     USE BACK_CONNECTOR
@@ -867,7 +867,7 @@ DEF MODULE_15 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 16
+      channel 18
     }
     DEF EMITTER Emitter {
       channel 15
@@ -899,14 +899,14 @@ DEF MODULE_18 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 14
+      channel 15
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
       channel 16
     }
     DEF EMITTER Emitter {
-      channel 15
+      channel 18
     }
     USE BODY_GROUP
     USE BACK_CONNECTOR
@@ -935,7 +935,7 @@ DEF MODULE_16 Robot {
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 15
+      channel 18
     }
     DEF EMITTER Emitter {
       channel 16

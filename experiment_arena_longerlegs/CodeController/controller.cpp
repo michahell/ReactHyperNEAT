@@ -912,9 +912,7 @@ int main()
 							<< wb_receiver_get_queue_length(receiver_front)
 							<< " packages." << endl;
 				}
-				front_self
-						= *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(
-								receiver_front));
+				front_self = *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(receiver_front));
 				/* fetch next packet */
 				wb_receiver_next_packet(receiver_front);
 			} else {
@@ -931,9 +929,7 @@ int main()
 							<< wb_receiver_get_queue_length(receiver_back)
 							<< " packages." << endl;
 				}
-				back_self
-						= *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(
-								receiver_back));
+				back_self = *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(receiver_back));
 				/* fetch next packet */
 				wb_receiver_next_packet(receiver_back);
 			} else {
@@ -1166,8 +1162,8 @@ int main()
 
 	//*
 	// continue until the step function returns -1, then exit
-	while (wb_robot_step(CONTROL_STEP) != -1)
-		control_loop_iteration++;
+	// while (wb_robot_step(CONTROL_STEP) != -1)
+	// 	control_loop_iteration++;
 	// */
 
 	screen << "Bye!" << endl;

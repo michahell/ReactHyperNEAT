@@ -212,7 +212,7 @@ experiment_arena_elongated () {
   # hyperneat CLI required flags
   EXPERIMENT_LOCATION="${PWD}/experiment_arena_longerlegs/ExperimentDefinition/ExperimentDefinitionParams.dat"
   EXPERIMENT_FOLDER="${PWD}/experiment_arena_longerlegs/"
-  EXPERIMENT_SEED="24"
+  EXPERIMENT_SEED="26"
   EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_longerlegs/CPPNarchive/"
   # experiment definition for symlinking into HyperNEAT
   EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_longerlegs/ExperimentDefinition/ExperimentDefinition.h"

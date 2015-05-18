@@ -129,6 +129,7 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
 **/*.DS_Store
 
 # ignore generated worldfiles
+
 experiment_arena/worlds/arena_world_1.wbt
 experiment_arena/worlds/arena_world_2.wbt
 experiment_arena/worlds/arena_world_3.wbt
@@ -137,6 +138,12 @@ experiment_arena/worlds/arena_world_5.wbt
 experiment_arena/worlds/arena_world_6.wbt
 experiment_arena/worlds/arena_world_7.wbt
 experiment_arena/worlds/arena_world_8.wbt
+
+experiment_arena_longerlegs/worlds/arena_world_legextension_1.wbt
+experiment_arena_longerlegs/worlds/arena_world_legextension_2.wbt
+experiment_arena_longerlegs/worlds/arena_world_legextension_3.wbt
+experiment_arena_longerlegs/worlds/arena_world_legextension_4.wbt
+experiment_arena_longerlegs/worlds/arena_world_legextension_5.wbt
 
 # ignore built hyperneat binaries
 HyperNEAT/boost_1_57_0/tools/build/b2
