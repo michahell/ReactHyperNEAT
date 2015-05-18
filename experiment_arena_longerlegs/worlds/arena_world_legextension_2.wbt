@@ -81,8 +81,13 @@ DEF GROUND Solid {
 
 
 DEF OBSTACLE_1 Solid {
+<<<<<<< Updated upstream
   translation 0.682820254643 0.007 0.31334380002 
   rotation 0 1 0 0.917495797132
+=======
+  translation 0.633932128984 0.007 0.523299398467 
+  rotation 0 1 0 1.46272240752
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -106,8 +111,13 @@ DEF OBSTACLE_1 Solid {
   }
 }
 DEF OBSTACLE_2 Solid {
+<<<<<<< Updated upstream
   translation 0.551026425273 0.007 0.678517467311 
   rotation 0 1 0 0.969974376497
+=======
+  translation 0.403710267286 0.007 0.835900286403 
+  rotation 0 1 0 0.191556652285
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -131,8 +141,13 @@ DEF OBSTACLE_2 Solid {
   }
 }
 DEF OBSTACLE_3 Solid {
+<<<<<<< Updated upstream
   translation 0.254302787332 0.007 0.928870225293 
   rotation 0 1 0 1.61444803379
+=======
+  translation 0.0480318425809 0.007 0.991509665753 
+  rotation 0 1 0 2.02211360137
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -156,8 +171,13 @@ DEF OBSTACLE_3 Solid {
   }
 }
 DEF OBSTACLE_4 Solid {
+<<<<<<< Updated upstream
   translation -0.12784380002 0.007 0.997320254643 
   rotation 0 1 0 2.08179488143
+=======
+  translation -0.337799398467 0.007 0.948432128984 
+  rotation 0 1 0 0.777897962684
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -181,8 +201,13 @@ DEF OBSTACLE_4 Solid {
   }
 }
 DEF OBSTACLE_5 Solid {
+<<<<<<< Updated upstream
   translation -0.493017467311 0.007 0.865526425273 
   rotation 0 1 0 2.26846714428
+=======
+  translation -0.650400286403 0.007 0.718210267286 
+  rotation 0 1 0 1.18772733994
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -206,8 +231,13 @@ DEF OBSTACLE_5 Solid {
   }
 }
 DEF OBSTACLE_6 Solid {
+<<<<<<< Updated upstream
   translation -0.743370225293 0.007 0.568802787332 
   rotation 0 1 0 0.815785048859
+=======
+  translation -0.806009665753 0.007 0.362531842581 
+  rotation 0 1 0 2.36632940446
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -231,8 +261,13 @@ DEF OBSTACLE_6 Solid {
   }
 }
 DEF OBSTACLE_7 Solid {
+<<<<<<< Updated upstream
   translation -0.811820254643 0.007 0.18665619998 
   rotation 0 1 0 2.65317957255
+=======
+  translation -0.762932128984 0.007 -0.0232993984668 
+  rotation 0 1 0 2.09815120901
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -256,8 +291,13 @@ DEF OBSTACLE_7 Solid {
   }
 }
 DEF OBSTACLE_8 Solid {
+<<<<<<< Updated upstream
   translation -0.680026425273 0.007 -0.178517467311 
   rotation 0 1 0 1.53940128264
+=======
+  translation -0.532710267286 0.007 -0.335900286403 
+  rotation 0 1 0 1.79271060916
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -281,8 +321,13 @@ DEF OBSTACLE_8 Solid {
   }
 }
 DEF OBSTACLE_9 Solid {
+<<<<<<< Updated upstream
   translation -0.383302787332 0.007 -0.428870225293 
   rotation 0 1 0 0.15474331438
+=======
+  translation -0.177031842581 0.007 -0.491509665753 
+  rotation 0 1 0 0.794494095076
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -306,8 +351,13 @@ DEF OBSTACLE_9 Solid {
   }
 }
 DEF OBSTACLE_10 Solid {
+<<<<<<< Updated upstream
   translation -0.0011561999803 0.007 -0.497320254643 
   rotation 0 1 0 2.51139347979
+=======
+  translation 0.208799398467 0.007 -0.448432128984 
+  rotation 0 1 0 1.65103975003
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -331,8 +381,13 @@ DEF OBSTACLE_10 Solid {
   }
 }
 DEF OBSTACLE_11 Solid {
+<<<<<<< Updated upstream
   translation 0.364017467311 0.007 -0.365526425273 
   rotation 0 1 0 3.0029881937
+=======
+  translation 0.521400286403 0.007 -0.218210267286 
+  rotation 0 1 0 1.36386245877
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -356,8 +411,13 @@ DEF OBSTACLE_11 Solid {
   }
 }
 DEF OBSTACLE_12 Solid {
+<<<<<<< Updated upstream
   translation 0.614370225293 0.007 -0.068802787332 
   rotation 0 1 0 0.0906563693671
+=======
+  translation 0.677009665753 0.007 0.137468157419 
+  rotation 0 1 0 2.00905094461
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -381,8 +441,13 @@ DEF OBSTACLE_12 Solid {
   }
 }
 DEF OBSTACLE_13 Solid {
+<<<<<<< Updated upstream
   translation 0.980399460136 0.007 0.936064951887 
   rotation 0 1 0 3.12556975338
+=======
+  translation 0.891255431748 0.007 1.05562494666 
+  rotation 0 1 0 2.90265313611
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -406,8 +471,13 @@ DEF OBSTACLE_13 Solid {
   }
 }
 DEF OBSTACLE_14 Solid {
+<<<<<<< Updated upstream
   translation 0.662004482764 0.007 1.26719773718 
   rotation 0 1 0 0.663017547708
+=======
+  translation 0.535690100153 0.007 1.34648157471 
+  rotation 0 1 0 1.75758529608
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -431,8 +501,13 @@ DEF OBSTACLE_14 Solid {
   }
 }
 DEF OBSTACLE_15 Solid {
+<<<<<<< Updated upstream
   translation 0.245491049295 0.007 1.46095233158 
   rotation 0 1 0 1.96040982194
+=======
+  translation 0.0990657697646 0.007 1.48925229028 
+  rotation 0 1 0 1.27584760809
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -456,8 +531,13 @@ DEF OBSTACLE_15 Solid {
   }
 }
 DEF OBSTACLE_16 Solid {
+<<<<<<< Updated upstream
   translation -0.212888393101 0.007 1.49116110348 
   rotation 0 1 0 0.0766365128644
+=======
+  translation -0.35964902418 0.007 1.46465511711 
+  rotation 0 1 0 1.65385128821
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -481,8 +561,13 @@ DEF OBSTACLE_16 Solid {
   }
 }
 DEF OBSTACLE_17 Solid {
+<<<<<<< Updated upstream
   translation -0.651227160761 0.007 1.35374419085 
   rotation 0 1 0 1.36051210945
+=======
+  translation -0.778502306932 0.007 1.27601203974 
+  rotation 0 1 0 0.341984113319
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -506,8 +591,13 @@ DEF OBSTACLE_17 Solid {
   }
 }
 DEF OBSTACLE_18 Solid {
+<<<<<<< Updated upstream
   translation -1.01032517419 0.007 1.06726050918 
   rotation 0 1 0 0.508578266594
+=======
+  translation -1.10092562171 0.007 0.948800351077 
+  rotation 0 1 0 1.85592444006
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -531,8 +621,13 @@ DEF OBSTACLE_18 Solid {
   }
 }
 DEF OBSTACLE_19 Solid {
+<<<<<<< Updated upstream
   translation -1.24168425685 0.007 0.670401267152 
   rotation 0 1 0 1.53463610576
+=======
+  translation -1.28337391324 0.007 0.527211802812 
+  rotation 0 1 0 0.387205340223
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -556,8 +651,13 @@ DEF OBSTACLE_19 Solid {
   }
 }
 DEF OBSTACLE_20 Solid {
+<<<<<<< Updated upstream
   translation -1.31405808262 0.007 0.216764504471 
   rotation 0 1 0 0.731537136529
+=======
+  translation -1.30120652878 0.007 0.0681842644935 
+  rotation 0 1 0 2.25507255241
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -581,8 +681,13 @@ DEF OBSTACLE_20 Solid {
   }
 }
 DEF OBSTACLE_21 Solid {
+<<<<<<< Updated upstream
   translation -1.21767216529 0.007 -0.232383620374 
   rotation 0 1 0 0.293412211665
+=======
+  translation -1.15201507478 0.007 -0.366288051269 
+  rotation 0 1 0 1.61741430126
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -606,8 +711,13 @@ DEF OBSTACLE_21 Solid {
   }
 }
 DEF OBSTACLE_22 Solid {
+<<<<<<< Updated upstream
   translation -0.965543957088 0.007 -0.616383164307 
   rotation 0 1 0 1.6410296871
+=======
+  translation -0.855948683795 0.007 -0.717527250737 
+  rotation 0 1 0 0.363678444413
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -631,8 +741,13 @@ DEF OBSTACLE_22 Solid {
   }
 }
 DEF OBSTACLE_23 Solid {
+<<<<<<< Updated upstream
   translation -0.591724769626 0.007 -0.883372861106 
   rotation 0 1 0 0.569383622797
+=======
+  translation -0.452992762499 0.007 -0.93809653374 
+  rotation 0 1 0 2.87572734315
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -656,8 +771,13 @@ DEF OBSTACLE_23 Solid {
   }
 }
 DEF OBSTACLE_24 Solid {
+<<<<<<< Updated upstream
   translation -0.146700955573 0.007 -0.997294272777 
   rotation 0 1 0 2.89385316661
+=======
+  translation 0.00243125908416 0.007 -0.998206796391 
+  rotation 0 1 0 1.50792043897
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -681,8 +801,13 @@ DEF OBSTACLE_24 Solid {
   }
 }
 DEF OBSTACLE_25 Solid {
+<<<<<<< Updated upstream
   translation 0.309424553021 0.007 -0.942761681413 
   rotation 0 1 0 0.552911027462
+=======
+  translation 0.44881584325 0.007 -0.889739814637 
+  rotation 0 1 0 0.284114634786
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -706,8 +831,13 @@ DEF OBSTACLE_25 Solid {
   }
 }
 DEF OBSTACLE_26 Solid {
+<<<<<<< Updated upstream
   translation 0.715049478743 0.007 -0.727140015654 
   rotation 0 1 0 1.11964452997
+=======
+  translation 0.825874278403 0.007 -0.6273446554 
+  rotation 0 1 0 0.623272842161
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -731,8 +861,13 @@ DEF OBSTACLE_26 Solid {
   }
 }
 DEF OBSTACLE_27 Solid {
+<<<<<<< Updated upstream
   translation 1.01539192773 0.007 -0.379550176261 
   rotation 0 1 0 2.58472454222
+=======
+  translation 1.08268273352 0.007 -0.246459238916 
+  rotation 0 1 0 0.317353736218
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -756,8 +891,13 @@ DEF OBSTACLE_27 Solid {
   }
 }
 DEF OBSTACLE_28 Solid {
+<<<<<<< Updated upstream
   translation 1.16988898798 0.007 0.0530639028944 
   rotation 0 1 0 3.00171954609
+=======
+  translation 1.18455780372 0.007 0.201475748759 
+  rotation 0 1 0 1.79904872895
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -781,8 +921,13 @@ DEF OBSTACLE_28 Solid {
   }
 }
 DEF OBSTACLE_29 Solid {
+<<<<<<< Updated upstream
   translation 1.15767497543 0.007 0.512275293224 
   rotation 0 1 0 0.993577932371
+=======
+  translation 1.11774069626 0.007 0.655964205446 
+  rotation 0 1 0 1.36226509917
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -806,8 +951,13 @@ DEF OBSTACLE_29 Solid {
   }
 }
 DEF OBSTACLE_30 Solid {
+<<<<<<< Updated upstream
   translation 1.07318432549 0.007 1.57972718087 
   rotation 0 1 0 0.529969456759
+=======
+  translation 1.09761650331 0.007 1.55842853559 
+  rotation 0 1 0 2.45995971743
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -831,8 +981,13 @@ DEF OBSTACLE_30 Solid {
   }
 }
 DEF OBSTACLE_31 Solid {
+<<<<<<< Updated upstream
   translation 0.652472677927 0.007 1.84638660077 
   rotation 0 1 0 0.955351501414
+=======
+  translation 0.68191570267 0.007 1.8328340402 
+  rotation 0 1 0 2.77250806511
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -856,8 +1011,13 @@ DEF OBSTACLE_31 Solid {
   }
 }
 DEF OBSTACLE_32 Solid {
+<<<<<<< Updated upstream
   translation 0.173676168003 0.007 1.98371627235 
   rotation 0 1 0 3.01548987545
+=======
+  translation 0.205744740907 0.007 1.97900774435 
+  rotation 0 1 0 0.431462337054
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -881,8 +1041,13 @@ DEF OBSTACLE_32 Solid {
   }
 }
 DEF OBSTACLE_33 Solid {
+<<<<<<< Updated upstream
   translation -0.324415958564 0.007 1.98059056235 
   rotation 0 1 0 2.41496357292
+=======
+  translation -0.292319842557 0.007 1.98510752385 
+  rotation 0 1 0 1.99407718113
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -906,8 +1071,13 @@ DEF OBSTACLE_33 Solid {
   }
 }
 DEF OBSTACLE_34 Solid {
+<<<<<<< Updated upstream
   translation -0.801451239948 0.007 1.83726269721 
   rotation 0 1 0 0.877776337407
+=======
+  translation -0.771927817274 0.007 1.85063921086 
+  rotation 0 1 0 3.11800805025
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -931,8 +1101,13 @@ DEF OBSTACLE_34 Solid {
   }
 }
 DEF OBSTACLE_35 Solid {
+<<<<<<< Updated upstream
   translation -1.21878311469 0.007 1.56534424815 
   rotation 0 1 0 2.64411288403
+=======
+  translation -1.19422419747 0.007 1.58649662837 
+  rotation 0 1 0 2.26521381263
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -956,8 +1131,13 @@ DEF OBSTACLE_35 Solid {
   }
 }
 DEF OBSTACLE_36 Solid {
+<<<<<<< Updated upstream
   translation -1.54260183626 0.007 1.18686443076 
   rotation 0 1 0 1.24312191489
+=======
+  translation -1.52499704192 0.007 1.2140790375 
+  rotation 0 1 0 0.982149411529
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -981,8 +1161,13 @@ DEF OBSTACLE_36 Solid {
   }
 }
 DEF OBSTACLE_37 Solid {
+<<<<<<< Updated upstream
   translation -1.74667353768 0.007 0.732485428945 
   rotation 0 1 0 0.0478301657917
+=======
+  translation -1.73744910194 0.007 0.763557496615 
+  rotation 0 1 0 1.89666464522
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1006,8 +1191,13 @@ DEF OBSTACLE_37 Solid {
   }
 }
 DEF OBSTACLE_38 Solid {
+<<<<<<< Updated upstream
   translation -1.81446554334 0.007 0.239018327124 
   rotation 0 1 0 3.01468689268
+=======
+  translation -1.81436877513 0.007 0.271430581595 
+  rotation 0 1 0 1.56586873843
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1031,8 +1221,13 @@ DEF OBSTACLE_38 Solid {
   }
 }
 DEF OBSTACLE_39 Solid {
+<<<<<<< Updated upstream
   translation -1.74048574812 0.007 -0.253559104871 
   rotation 0 1 0 2.25987237872
+=======
+  translation -1.74952448703 0.007 -0.222432511693 
+  rotation 0 1 0 0.637277268102
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1056,8 +1251,13 @@ DEF OBSTACLE_39 Solid {
   }
 }
 DEF OBSTACLE_40 Solid {
+<<<<<<< Updated upstream
   translation -1.53072755506 0.007 -0.705341172971 
   rotation 0 1 0 1.97666917526
+=======
+  translation -1.54816953622 0.007 -0.678021932549 
+  rotation 0 1 0 0.0635723578985
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1081,8 +1281,13 @@ DEF OBSTACLE_40 Solid {
   }
 }
 DEF OBSTACLE_41 Solid {
+<<<<<<< Updated upstream
   translation -1.20218432549 0.007 -1.07972718087 
   rotation 0 1 0 2.63340749792
+=======
+  translation -1.22661650331 0.007 -1.05842853559 
+  rotation 0 1 0 0.889317759373
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1106,8 +1311,13 @@ DEF OBSTACLE_41 Solid {
   }
 }
 DEF OBSTACLE_42 Solid {
+<<<<<<< Updated upstream
   translation -0.781472677927 0.007 -1.34638660077 
   rotation 0 1 0 1.99481165097
+=======
+  translation -0.81091570267 0.007 -1.3328340402 
+  rotation 0 1 0 1.99858307429
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1131,8 +1341,13 @@ DEF OBSTACLE_42 Solid {
   }
 }
 DEF OBSTACLE_43 Solid {
+<<<<<<< Updated upstream
   translation -0.302676168003 0.007 -1.48371627235 
   rotation 0 1 0 2.40478333589
+=======
+  translation -0.334744740907 0.007 -1.47900774435 
+  rotation 0 1 0 2.46544251983
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1156,8 +1371,13 @@ DEF OBSTACLE_43 Solid {
   }
 }
 DEF OBSTACLE_44 Solid {
+<<<<<<< Updated upstream
   translation 0.195415958564 0.007 -1.48059056235 
   rotation 0 1 0 1.69366092594
+=======
+  translation 0.163319842557 0.007 -1.48510752385 
+  rotation 0 1 0 1.08679404577
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1181,8 +1401,13 @@ DEF OBSTACLE_44 Solid {
   }
 }
 DEF OBSTACLE_45 Solid {
+<<<<<<< Updated upstream
   translation 0.672451239948 0.007 -1.33726269721 
   rotation 0 1 0 1.78177947801
+=======
+  translation 0.642927817274 0.007 -1.35063921086 
+  rotation 0 1 0 1.97454614575
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1206,8 +1431,13 @@ DEF OBSTACLE_45 Solid {
   }
 }
 DEF OBSTACLE_46 Solid {
+<<<<<<< Updated upstream
   translation 1.08978311469 0.007 -1.06534424815 
   rotation 0 1 0 0.549957447554
+=======
+  translation 1.06522419747 0.007 -1.08649662837 
+  rotation 0 1 0 1.76229402937
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1231,8 +1461,13 @@ DEF OBSTACLE_46 Solid {
   }
 }
 DEF OBSTACLE_47 Solid {
+<<<<<<< Updated upstream
   translation 1.41360183626 0.007 -0.686864430765 
   rotation 0 1 0 1.34682903126
+=======
+  translation 1.39599704192 0.007 -0.714079037503 
+  rotation 0 1 0 0.976567760196
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1256,8 +1491,13 @@ DEF OBSTACLE_47 Solid {
   }
 }
 DEF OBSTACLE_48 Solid {
+<<<<<<< Updated upstream
   translation 1.61767353768 0.007 -0.232485428945 
   rotation 0 1 0 0.884628486842
+=======
+  translation 1.60844910194 0.007 -0.263557496615 
+  rotation 0 1 0 1.93433794211
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1281,8 +1521,13 @@ DEF OBSTACLE_48 Solid {
   }
 }
 DEF OBSTACLE_49 Solid {
+<<<<<<< Updated upstream
   translation 1.68546554334 0.007 0.260981672876 
   rotation 0 1 0 1.4069587475
+=======
+  translation 1.68536877513 0.007 0.228569418405 
+  rotation 0 1 0 1.23756672919
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1306,8 +1551,13 @@ DEF OBSTACLE_49 Solid {
   }
 }
 DEF OBSTACLE_50 Solid {
+<<<<<<< Updated upstream
   translation 1.61148574812 0.007 0.753559104871 
   rotation 0 1 0 2.96330452723
+=======
+  translation 1.62052448703 0.007 0.722432511693 
+  rotation 0 1 0 3.02493081852
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1331,8 +1581,13 @@ DEF OBSTACLE_50 Solid {
   }
 }
 DEF OBSTACLE_51 Solid {
+<<<<<<< Updated upstream
   translation 1.40172755506 0.007 1.20534117297 
   rotation 0 1 0 2.4609392342
+=======
+  translation 1.41916953622 0.007 1.17802193255 
+  rotation 0 1 0 2.73157583854
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1356,8 +1611,13 @@ DEF OBSTACLE_51 Solid {
   }
 }
 DEF OBSTACLE_52 Solid {
+<<<<<<< Updated upstream
   translation 1.35250850601 0.007 1.99773765019 
   rotation 0 1 0 0.213040156007
+=======
+  translation 2.03797238488 0.007 1.05131758423 
+  rotation 0 1 0 0.202010751176
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1381,8 +1641,13 @@ DEF OBSTACLE_52 Solid {
   }
 }
 DEF OBSTACLE_53 Solid {
+<<<<<<< Updated upstream
   translation 0.911256818316 0.007 2.2774118061 
   rotation 0 1 0 1.13601820176
+=======
+  translation 1.79650341722 0.007 1.5145814648 
+  rotation 0 1 0 1.66391887416
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1406,8 +1671,13 @@ DEF OBSTACLE_53 Solid {
   }
 }
 DEF OBSTACLE_54 Solid {
+<<<<<<< Updated upstream
   translation 0.417401827979 0.007 2.44778766677 
   rotation 0 1 0 1.44773995707
+=======
+  translation 1.45470727363 0.007 1.90967143127 
+  rotation 0 1 0 1.10922978278
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1431,8 +1701,13 @@ DEF OBSTACLE_54 Solid {
   }
 }
 DEF OBSTACLE_55 Solid {
+<<<<<<< Updated upstream
   translation -0.102432614641 0.007 2.49968022544 
   rotation 0 1 0 0.180826439526
+=======
+  translation 1.03101027268 0.007 2.21528808129 
+  rotation 0 1 0 1.71581743793
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1456,8 +1731,13 @@ DEF OBSTACLE_55 Solid {
   }
 }
 DEF OBSTACLE_56 Solid {
+<<<<<<< Updated upstream
   translation -0.620222100186 0.007 2.43029194086 
   rotation 0 1 0 2.67228828884
+=======
+  translation 0.548254029374 0.007 2.41495554215 
+  rotation 0 1 0 1.26031795114
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1481,8 +1761,13 @@ DEF OBSTACLE_56 Solid {
   }
 }
 DEF OBSTACLE_57 Solid {
+<<<<<<< Updated upstream
   translation -1.10805246347 0.007 2.24336355339 
   rotation 0 1 0 1.52445910408
+=======
+  translation 0.0324640577379 0.007 2.49790968936 
+  rotation 0 1 0 1.26202175803
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1506,8 +1791,13 @@ DEF OBSTACLE_57 Solid {
   }
 }
 DEF OBSTACLE_58 Solid {
+<<<<<<< Updated upstream
   translation -1.53962464333 0.007 1.9489724208 
   rotation 0 1 0 0.49351046446
+=======
+  translation -0.488553271349 0.007 2.45967844336 
+  rotation 0 1 0 0.573852614643
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1531,8 +1821,13 @@ DEF OBSTACLE_58 Solid {
   }
 }
 DEF OBSTACLE_59 Solid {
+<<<<<<< Updated upstream
   translation -1.89167247185 0.007 1.56298924524 
   rotation 0 1 0 2.46304040278
+=======
+  translation -0.986709778815 0.007 2.30232286053 
+  rotation 0 1 0 1.22540945445
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1556,8 +1851,13 @@ DEF OBSTACLE_59 Solid {
   }
 }
 DEF OBSTACLE_60 Solid {
+<<<<<<< Updated upstream
   translation -2.14521695946 0.007 1.10622247962 
   rotation 0 1 0 1.27353269478
+=======
+  translation -1.4351497184 0.007 2.03432602106 
+  rotation 0 1 0 0.771338159117
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1581,8 +1881,13 @@ DEF OBSTACLE_60 Solid {
   }
 }
 DEF OBSTACLE_61 Solid {
+<<<<<<< Updated upstream
   translation -2.28658945722 0.007 0.603296538491 
   rotation 0 1 0 1.77055355359
+=======
+  translation -1.80969757689 0.007 1.67013570395 
+  rotation 0 1 0 2.46348941289
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1606,8 +1911,13 @@ DEF OBSTACLE_61 Solid {
   }
 }
 DEF OBSTACLE_62 Solid {
+<<<<<<< Updated upstream
   translation -2.30816853717 0.007 0.0813242895281 
   rotation 0 1 0 0.530236609178
+=======
+  translation -2.09016138228 0.007 1.22938550344 
+  rotation 0 1 0 2.68699361273
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1631,8 +1941,13 @@ DEF OBSTACLE_62 Solid {
   }
 }
 DEF OBSTACLE_63 Solid {
+<<<<<<< Updated upstream
   translation -2.20879086553 0.007 -0.431554608223 
   rotation 0 1 0 2.51361884461
+=======
+  translation -2.26142125823 0.007 0.735836376941 
+  rotation 0 1 0 1.47819915821
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1656,8 +1971,13 @@ DEF OBSTACLE_63 Solid {
   }
 }
 DEF OBSTACLE_64 Solid {
+<<<<<<< Updated upstream
   translation -1.9938139183 0.007 -0.907690720632 
   rotation 0 1 0 1.90067631979
+=======
+  translation -2.31424454049 0.007 0.216095685605 
+  rotation 0 1 0 0.620636108258
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1681,8 +2001,13 @@ DEF OBSTACLE_64 Solid {
   }
 }
 DEF OBSTACLE_65 Solid {
+<<<<<<< Updated upstream
   translation -1.67482715836 0.007 -1.32141542663 
   rotation 0 1 0 2.69772597838
+=======
+  translation -2.24578351225 0.007 -0.301817215366 
+  rotation 0 1 0 0.023385664225
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1706,8 +2031,13 @@ DEF OBSTACLE_65 Solid {
   }
 }
 DEF OBSTACLE_66 Solid {
+<<<<<<< Updated upstream
   translation -1.26902724448 0.007 -1.65042472024 
   rotation 0 1 0 2.72831766278
+=======
+  translation -2.05972892527 0.007 -0.789981507424 
+  rotation 0 1 0 2.84768669972
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1731,8 +2061,13 @@ DEF OBSTACLE_66 Solid {
   }
 }
 DEF OBSTACLE_67 Solid {
+<<<<<<< Updated upstream
   translation -0.798290955078 0.007 -1.87698162527 
   rotation 0 1 0 3.11374257056
+=======
+  translation -1.76611103047 0.007 -1.22208012723 
+  rotation 0 1 0 1.05971895483
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1756,8 +2091,13 @@ DEF OBSTACLE_67 Solid {
   }
 }
 DEF OBSTACLE_68 Solid {
+<<<<<<< Updated upstream
   translation -0.287995805351 0.007 -1.98887240034 
   rotation 0 1 0 0.69770656916
+=======
+  translation -1.38075884458 0.007 -1.57481852634 
+  rotation 0 1 0 1.09034771309
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1781,8 +2121,13 @@ DEF OBSTACLE_68 Solid {
   }
 }
 DEF OBSTACLE_69 Solid {
+<<<<<<< Updated upstream
   translation 0.234348061092 0.007 -1.98006498479 
   rotation 0 1 0 3.12586629584
+=======
+  translation -0.924446803675 0.007 -1.82918048636 
+  rotation 0 1 0 0.279578614728
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1806,8 +2151,13 @@ DEF OBSTACLE_69 Solid {
   }
 }
 DEF OBSTACLE_70 Solid {
+<<<<<<< Updated upstream
   translation 0.740580951208 0.007 -1.85103418868 
   rotation 0 1 0 2.52928977624
+=======
+  translation -0.421774807995 0.007 -1.97145328818 
+  rotation 0 1 0 2.39232367634
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1831,8 +2181,13 @@ DEF OBSTACLE_70 Solid {
   }
 }
 DEF OBSTACLE_71 Solid {
+<<<<<<< Updated upstream
   translation 1.20341171886 0.007 -1.60873609563 
   rotation 0 1 0 0.289226757421
+=======
+  translation 0.10015796506 0.007 -1.99396696824 
+  rotation 0 1 0 2.31080082475
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1856,8 +2211,13 @@ DEF OBSTACLE_71 Solid {
   }
 }
 DEF OBSTACLE_72 Solid {
+<<<<<<< Updated upstream
   translation 1.59788903755 0.007 -1.26623305854 
   rotation 0 1 0 2.15486947922
+=======
+  translation 0.613213984599 0.007 -1.89550780821 
+  rotation 0 1 0 0.672152700848
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1881,8 +2241,13 @@ DEF OBSTACLE_72 Solid {
   }
 }
 DEF OBSTACLE_73 Solid {
+<<<<<<< Updated upstream
   translation 1.90274653294 0.007 -0.84198950481 
   rotation 0 1 0 1.98295545234
+=======
+  translation 1.08973426781 0.007 -1.68138376689 
+  rotation 0 1 0 1.79133444564
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1906,8 +2271,13 @@ DEF OBSTACLE_73 Solid {
   }
 }
 DEF OBSTACLE_74 Solid {
+<<<<<<< Updated upstream
   translation 2.10154925854 0.007 -0.358876514223 
   rotation 0 1 0 1.27145918489
+=======
+  translation 1.50402948288 0.007 -1.36313832678 
+  rotation 0 1 0 0.562673355303
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1931,8 +2301,13 @@ DEF OBSTACLE_74 Solid {
   }
 }
 DEF OBSTACLE_75 Solid {
+<<<<<<< Updated upstream
   translation 2.18357970795 0.007 0.157061166849 
   rotation 0 1 0 2.92812308966
+=======
+  translation 1.83376486753 0.007 -0.957928181934 
+  rotation 0 1 0 2.02050122136
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1956,8 +2331,13 @@ DEF OBSTACLE_75 Solid {
   }
 }
 DEF OBSTACLE_76 Solid {
+<<<<<<< Updated upstream
   translation 2.14441559841 0.007 0.678009204471 
   rotation 0 1 0 0.0970011936228
+=======
+  translation 2.06116430182 0.007 -0.487598316135 
+  rotation 0 1 0 0.536379750729
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -1981,8 +2361,13 @@ DEF OBSTACLE_76 Solid {
   }
 }
 DEF OBSTACLE_77 Solid {
+<<<<<<< Updated upstream
   translation 1.9861682772 0.007 1.1758831551 
   rotation 0 1 0 2.53068762405
+=======
+  translation 2.17396862339 0.007 0.0224956658072 
+  rotation 0 1 0 2.28229515896
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2006,8 +2391,13 @@ DEF OBSTACLE_77 Solid {
   }
 }
 DEF OBSTACLE_78 Solid {
+<<<<<<< Updated upstream
   translation 1.71736889837 0.007 1.62384250517 
   rotation 0 1 0 1.78675520903
+=======
+  translation 2.16609652208 0.007 0.544854465293 
+  rotation 0 1 0 0.14037475308
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2031,8 +2421,13 @@ DEF OBSTACLE_78 Solid {
   }
 }
 DEF OBSTACLE_79 Solid {
+<<<<<<< Updated upstream
   translation 2.65652255555 0.007 0.648166111319 
   rotation 0 1 0 0.481707338213
+=======
+  translation 2.58972491623 0.007 0.969437345487 
+  rotation 0 1 0 0.34601324676
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2056,8 +2451,13 @@ DEF OBSTACLE_79 Solid {
   }
 }
 DEF OBSTACLE_80 Solid {
+<<<<<<< Updated upstream
   translation 2.52656051525 0.007 1.17136062771 
   rotation 0 1 0 3.04855386392
+=======
+  translation 2.39836946531 0.007 1.47342715224 
+  rotation 0 1 0 0.731209625143
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2081,8 +2481,13 @@ DEF OBSTACLE_80 Solid {
   }
 }
 DEF OBSTACLE_81 Solid {
+<<<<<<< Updated upstream
   translation 2.29702547244 0.007 1.65914777189 
   rotation 0 1 0 2.66717915196
+=======
+  translation 2.11236732204 0.007 1.93040133963 
+  rotation 0 1 0 1.9164340947
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2106,8 +2511,13 @@ DEF OBSTACLE_81 Solid {
   }
 }
 DEF OBSTACLE_82 Solid {
+<<<<<<< Updated upstream
   translation 1.97673833008 0.007 2.09278215745 
   rotation 0 1 0 2.77441381678
+=======
+  translation 1.74270938838 0.007 2.32279864592 
+  rotation 0 1 0 2.36330197022
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2131,8 +2541,13 @@ DEF OBSTACLE_82 Solid {
   }
 }
 DEF OBSTACLE_83 Solid {
+<<<<<<< Updated upstream
   translation 1.57800754344 0.007 2.45559945814 
   rotation 0 1 0 0.191731700372
+=======
+  translation 1.30360141143 0.007 2.63553946269 
+  rotation 0 1 0 1.72073032874
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2156,8 +2571,13 @@ DEF OBSTACLE_83 Solid {
   }
 }
 DEF OBSTACLE_84 Solid {
+<<<<<<< Updated upstream
   translation 1.11615611303 0.007 2.73365680857 
   rotation 0 1 0 2.45650798639
+=======
+  translation 0.811918064467 0.007 2.85660533573 
+  rotation 0 1 0 0.489555542529
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2181,8 +2601,13 @@ DEF OBSTACLE_84 Solid {
   }
 }
 DEF OBSTACLE_85 Solid {
+<<<<<<< Updated upstream
   translation 0.608932730312 0.007 2.9162686207 
   rotation 0 1 0 1.54083423405
+=======
+  translation 0.286554462791 0.007 2.97750082753 
+  rotation 0 1 0 0.192561967535
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2206,8 +2631,13 @@ DEF OBSTACLE_85 Solid {
   }
 }
 DEF OBSTACLE_86 Solid {
+<<<<<<< Updated upstream
   translation 0.0758297054376 0.007 2.996417225 
   rotation 0 1 0 1.94244133785
+=======
+  translation -0.252299965016 0.007 2.99357999212 
+  rotation 0 1 0 0.342651006186
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2231,8 +2661,13 @@ DEF OBSTACLE_86 Solid {
   }
 }
 DEF OBSTACLE_87 Solid {
+<<<<<<< Updated upstream
   translation -0.462666111319 0.007 2.97102255555 
   rotation 0 1 0 0.342889614722
+=======
+  translation -0.783937345487 0.007 2.90422491623 
+  rotation 0 1 0 1.24872903437
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2256,8 +2691,13 @@ DEF OBSTACLE_87 Solid {
   }
 }
 DEF OBSTACLE_88 Solid {
+<<<<<<< Updated upstream
   translation -0.985860627712 0.007 2.84106051525 
   rotation 0 1 0 1.41465385308
+=======
+  translation -1.28792715224 0.007 2.71286946531 
+  rotation 0 1 0 0.861533957934
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2281,8 +2721,13 @@ DEF OBSTACLE_88 Solid {
   }
 }
 DEF OBSTACLE_89 Solid {
+<<<<<<< Updated upstream
   translation -1.47364777189 0.007 2.61152547244 
   rotation 0 1 0 1.47735930673
+=======
+  translation -1.74490133963 0.007 2.42686732204 
+  rotation 0 1 0 0.839129367539
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2306,8 +2751,13 @@ DEF OBSTACLE_89 Solid {
   }
 }
 DEF OBSTACLE_90 Solid {
+<<<<<<< Updated upstream
   translation -1.90728215745 0.007 2.29123833008 
   rotation 0 1 0 1.24738326997
+=======
+  translation -2.13729864592 0.007 2.05720938838 
+  rotation 0 1 0 0.283302439998
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2331,8 +2781,13 @@ DEF OBSTACLE_90 Solid {
   }
 }
 DEF OBSTACLE_91 Solid {
+<<<<<<< Updated upstream
   translation -2.27009945814 0.007 1.89250754344 
   rotation 0 1 0 0.133341066982
+=======
+  translation -2.45003946269 0.007 1.61810141143 
+  rotation 0 1 0 1.4776178971
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2356,8 +2811,13 @@ DEF OBSTACLE_91 Solid {
   }
 }
 DEF OBSTACLE_92 Solid {
+<<<<<<< Updated upstream
   translation -2.54815680857 0.007 1.43065611303 
   rotation 0 1 0 2.01837717593
+=======
+  translation -2.67110533573 0.007 1.12641806447 
+  rotation 0 1 0 1.12143241219
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2381,8 +2841,13 @@ DEF OBSTACLE_92 Solid {
   }
 }
 DEF OBSTACLE_93 Solid {
+<<<<<<< Updated upstream
   translation -2.7307686207 0.007 0.923432730312 
   rotation 0 1 0 2.64789960106
+=======
+  translation -2.79200082753 0.007 0.601054462791 
+  rotation 0 1 0 0.929870138461
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2406,8 +2871,13 @@ DEF OBSTACLE_93 Solid {
   }
 }
 DEF OBSTACLE_94 Solid {
+<<<<<<< Updated upstream
   translation -2.810917225 0.007 0.390329705438 
   rotation 0 1 0 0.0552443457633
+=======
+  translation -2.80807999212 0.007 0.0622000349841 
+  rotation 0 1 0 2.71806017455
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2431,8 +2901,13 @@ DEF OBSTACLE_94 Solid {
   }
 }
 DEF OBSTACLE_95 Solid {
+<<<<<<< Updated upstream
   translation -2.78552255555 0.007 -0.148166111319 
   rotation 0 1 0 1.95348859296
+=======
+  translation -2.71872491623 0.007 -0.469437345487 
+  rotation 0 1 0 2.45080041277
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2456,8 +2931,13 @@ DEF OBSTACLE_95 Solid {
   }
 }
 DEF OBSTACLE_96 Solid {
+<<<<<<< Updated upstream
   translation -2.65556051525 0.007 -0.671360627712 
   rotation 0 1 0 1.75423959007
+=======
+  translation -2.52736946531 0.007 -0.973427152236 
+  rotation 0 1 0 3.05976322423
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2481,8 +2961,13 @@ DEF OBSTACLE_96 Solid {
   }
 }
 DEF OBSTACLE_97 Solid {
+<<<<<<< Updated upstream
   translation -2.42602547244 0.007 -1.15914777189 
   rotation 0 1 0 2.9515802858
+=======
+  translation -2.24136732204 0.007 -1.43040133963 
+  rotation 0 1 0 3.12616584269
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2506,8 +2991,13 @@ DEF OBSTACLE_97 Solid {
   }
 }
 DEF OBSTACLE_98 Solid {
+<<<<<<< Updated upstream
   translation -2.10573833008 0.007 -1.59278215745 
   rotation 0 1 0 3.13512582979
+=======
+  translation -1.87170938838 0.007 -1.82279864592 
+  rotation 0 1 0 0.66742482644
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2531,8 +3021,13 @@ DEF OBSTACLE_98 Solid {
   }
 }
 DEF OBSTACLE_99 Solid {
+<<<<<<< Updated upstream
   translation -1.70700754344 0.007 -1.95559945814 
   rotation 0 1 0 0.640715972905
+=======
+  translation -1.43260141143 0.007 -2.13553946269 
+  rotation 0 1 0 1.48667092608
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2556,8 +3051,13 @@ DEF OBSTACLE_99 Solid {
   }
 }
 DEF OBSTACLE_100 Solid {
+<<<<<<< Updated upstream
   translation -1.24515611303 0.007 -2.23365680857 
   rotation 0 1 0 1.91180531602
+=======
+  translation -0.940918064467 0.007 -2.35660533573 
+  rotation 0 1 0 1.51882785641
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2581,8 +3081,13 @@ DEF OBSTACLE_100 Solid {
   }
 }
 DEF OBSTACLE_101 Solid {
+<<<<<<< Updated upstream
   translation -0.737932730312 0.007 -2.4162686207 
   rotation 0 1 0 1.45527766628
+=======
+  translation -0.415554462791 0.007 -2.47750082753 
+  rotation 0 1 0 0.940548131003
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2606,8 +3111,13 @@ DEF OBSTACLE_101 Solid {
   }
 }
 DEF OBSTACLE_102 Solid {
+<<<<<<< Updated upstream
   translation -0.204829705438 0.007 -2.496417225 
   rotation 0 1 0 2.19590324154
+=======
+  translation 0.123299965016 0.007 -2.49357999212 
+  rotation 0 1 0 2.44109168352
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2631,8 +3141,13 @@ DEF OBSTACLE_102 Solid {
   }
 }
 DEF OBSTACLE_103 Solid {
+<<<<<<< Updated upstream
   translation 0.333666111319 0.007 -2.47102255555 
   rotation 0 1 0 0.752088701631
+=======
+  translation 0.654937345487 0.007 -2.40422491623 
+  rotation 0 1 0 1.03562511409
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2656,8 +3171,13 @@ DEF OBSTACLE_103 Solid {
   }
 }
 DEF OBSTACLE_104 Solid {
+<<<<<<< Updated upstream
   translation 0.856860627712 0.007 -2.34106051525 
   rotation 0 1 0 0.284948917596
+=======
+  translation 1.15892715224 0.007 -2.21286946531 
+  rotation 0 1 0 0.834392333978
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2681,8 +3201,13 @@ DEF OBSTACLE_104 Solid {
   }
 }
 DEF OBSTACLE_105 Solid {
+<<<<<<< Updated upstream
   translation 1.34464777189 0.007 -2.11152547244 
   rotation 0 1 0 2.69427029513
+=======
+  translation 1.61590133963 0.007 -1.92686732204 
+  rotation 0 1 0 0.652332051832
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2706,8 +3231,13 @@ DEF OBSTACLE_105 Solid {
   }
 }
 DEF OBSTACLE_106 Solid {
+<<<<<<< Updated upstream
   translation 1.77828215745 0.007 -1.79123833008 
   rotation 0 1 0 2.01131341647
+=======
+  translation 2.00829864592 0.007 -1.55720938838 
+  rotation 0 1 0 2.39158052423
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2731,8 +3261,13 @@ DEF OBSTACLE_106 Solid {
   }
 }
 DEF OBSTACLE_107 Solid {
+<<<<<<< Updated upstream
   translation 2.14109945814 0.007 -1.39250754344 
   rotation 0 1 0 1.62919245576
+=======
+  translation 2.32103946269 0.007 -1.11810141143 
+  rotation 0 1 0 2.78781985593
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2756,8 +3291,13 @@ DEF OBSTACLE_107 Solid {
   }
 }
 DEF OBSTACLE_108 Solid {
+<<<<<<< Updated upstream
   translation 2.41915680857 0.007 -0.930656113026 
   rotation 0 1 0 0.591135469316
+=======
+  translation 2.54210533573 0.007 -0.626418064467 
+  rotation 0 1 0 2.61229389633
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2781,8 +3321,13 @@ DEF OBSTACLE_108 Solid {
   }
 }
 DEF OBSTACLE_109 Solid {
+<<<<<<< Updated upstream
   translation 2.6017686207 0.007 -0.423432730312 
   rotation 0 1 0 2.97272038039
+=======
+  translation 2.66300082753 0.007 -0.101054462791 
+  rotation 0 1 0 0.450244624107
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {
@@ -2806,8 +3351,13 @@ DEF OBSTACLE_109 Solid {
   }
 }
 DEF OBSTACLE_110 Solid {
+<<<<<<< Updated upstream
   translation 2.681917225 0.007 0.109670294562 
   rotation 0 1 0 2.04943743661
+=======
+  translation 2.67907999212 0.007 0.437799965016 
+  rotation 0 1 0 2.32581360233
+>>>>>>> Stashed changes
   children [
     Shape {
       appearance Appearance {

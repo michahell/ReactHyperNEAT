@@ -146,8 +146,8 @@ experiment_arena_longerlegs/worlds/arena_world_legextension_4.wbt
 experiment_arena_longerlegs/worlds/arena_world_legextension_5.wbt
 
 # ignore built hyperneat binaries
-HyperNEAT/boost_1_57_0/tools/build/b2
-HyperNEAT/boost_1_57_0/tools/build/bjam
-HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/b2
-HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/bjam
+HyperNEAT/boost_1_57_0/tools/build/
+HyperNEAT/boost_1_57_0/tools/build/
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/
 
