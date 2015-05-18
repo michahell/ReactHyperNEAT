@@ -78,27 +78,26 @@ int main() {
 			}
 
 			// check count, if < 0 error, if 0 ok, both ways exit
-			if (count == 0 && countdown == 0) {
+			if (countdown == 0) { //count == 0 && 
 				// success
 				std::cout << "Success: all controllers have exited.\n";
 				// exit the for loop and the simulation
 				break;
-			} else if (count < 0 || countdown < 0) {
+			} else if (countdown < 0) { // count < 0 || 
 				// exit the for loop and the simulation
 				break;
 			}
 		}
 		/// step the simulation forward
-		if (wb_robot_step(CONTROL_STEP) == -1 || count <= 0 || countdown <= 0) {
+		if (wb_robot_step(CONTROL_STEP) == -1 || countdown <= 0) { // || count <= 0 
 			break;
 		}
 	}
 
-	if (count != 0 || countdown != 0) {
+	if (countdown != 0) { // count != 0 || 
 		// error
-		std::cout
-				<< "Error: did not receive termination ids correctly. Exiting...\n";
-		std::cout << "Countdown: " << countdown << "; Count: " << count << endl;
+		std::cout << "Error: did not receive termination ids correctly. Exiting...\n";
+		std::cout << "Countdown: " << countdown << endl; // "; Count: " << count << 
 		// exit the for loop and the simulation
 	}
 
