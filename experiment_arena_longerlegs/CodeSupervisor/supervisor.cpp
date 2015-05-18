@@ -33,7 +33,7 @@ using namespace std;
 // #define CONTROL_STEP 512
 
 /// !!!IMPORTANT! number of controllers (to wait for before quitting)
-#define N 14
+#define N 18
 
 /// how much time to wait after deadline for termination notifications
 static float termination_extra_time = 5;
