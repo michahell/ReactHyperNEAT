@@ -154,10 +154,11 @@ function runSimulations {
     # ./Hypercube_NEAT_d -R $EXPERIMENT_SEED -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION | tee -a ${EXPERIMENT_FOLDER}/experiment${number}.log
     ./Hypercube_NEAT_d -R $RANDOM -I $EXPERIMENT_LOCATION -O $EXPERIMENT_OUTPUTLOCATION | tee -a ${EXPERIMENT_FOLDER}/experiment${number}.log
     cd ../../../../
-    growlnotify --appIcon Webots -t 'Experiment suite' -m "simulation complete. progress: ${number} / ${SIMULATIONS}"
+    # growlnotify --appIcon Webots -t 'Experiment suite' -m "simulation complete. progress: ${number} / ${SIMULATIONS}"
   done
 
-  growlnotify --appIcon Webots -t 'Experiment suite' -m "All simulations completed."
+  notifyMsg "All ${SIMULATIONS} simulations completed."
+  # growlnotify --appIcon Webots -t 'Experiment suite' -m "All simulations completed."
 }
 
 
