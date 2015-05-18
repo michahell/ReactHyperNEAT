@@ -127,3 +127,20 @@ HyperNEAT/NE/HyperNEAT/Hypercube_NEAT/src/Experiments/ExperimentDefinition.cpp
 
 # ignore any .dsstore mac osx files
 **/*.DS_Store
+
+# ignore generated worldfiles
+experiment_arena/worlds/arena_world_1.wbt
+experiment_arena/worlds/arena_world_2.wbt
+experiment_arena/worlds/arena_world_3.wbt
+experiment_arena/worlds/arena_world_4.wbt
+experiment_arena/worlds/arena_world_5.wbt
+experiment_arena/worlds/arena_world_6.wbt
+experiment_arena/worlds/arena_world_7.wbt
+experiment_arena/worlds/arena_world_8.wbt
+
+# ignore built hyperneat binaries
+HyperNEAT/boost_1_57_0/tools/build/b2
+HyperNEAT/boost_1_57_0/tools/build/bjam
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/b2
+HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/bjam
+
