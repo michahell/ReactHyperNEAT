@@ -12,8 +12,6 @@
 #endif
 
 // HyperNEAT params location
-// const char * datfile = "/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat";
-// const char * datfile = "/ExperimentDefinition/ExperimentDefinitionParams.dat";
 const char * datfile = "ExperimentDefinitionParams.dat";
 
 // collision log file location

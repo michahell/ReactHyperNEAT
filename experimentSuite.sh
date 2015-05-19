@@ -219,6 +219,18 @@ experiment_arena_elongated () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_longerlegs/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
+experiment_arena_substrate () {
+  EXPERIMENT_NAME="experiment arena larger substrate"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_substrate/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_substrate/"
+  EXPERIMENT_SEED="28"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_substrate/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_substrate/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_substrate/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
 
 # see if we can run this script
 checkRequirements ${1}
@@ -227,7 +239,8 @@ checkRequirements ${1}
 # experiment_template
 # experiment_moddif
 # experiment_arena
-experiment_arena_elongated
+# experiment_arena_elongated
+experiment_arena_substrate
 
 # list of functions to go through
 verifyExperimentFolders ${1}
