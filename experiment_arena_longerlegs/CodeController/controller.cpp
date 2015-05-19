@@ -731,8 +731,6 @@ int main()
 	double amplitude = 0.5;
 	// phase difference
   double phase = 1.0 / id;
-  // reset amount of the target angle
-	double reset = 0.0;
 
 	// set initial distance
 
@@ -998,22 +996,26 @@ int main()
 		// update phase
 		phase = output.values[1][2];
 
-	    // CPG diminishing / resetting output, [-1...1]
-	    // reset = output.values[1][0];
+    // CPG cancellation output, [-1...1]
+    double cancellation = output.values[1][0];
 
-	    // if the new output is higher then a certain threshold, reset the t counter
-	    // if(reset > 0.5 || reset < -0.5) {
-	    //   t = 0;
-	    // }
+    // CPG diminishing / resetting output, [-1...1]
+    // reset amount of the target angle
+    // double reset = output.values[1][0];
 
-	    // original
-	    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
-	    // SUPG-like idea 1
-			// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
-	    // SUPG-like idea 2
-	    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
-	    // original minus M_PI
-	    target_angle = alpha + amplitude * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // if the new output is higher then a certain threshold, reset the t counter
+    // if(reset > 0.5 || reset < -0.5) {
+    //   t = 0;
+    // }
+
+    // original
+    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // SUPG-like idea 1
+    // target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
+    // SUPG-like idea 2
+    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // original minus M_PI
+    target_angle = alpha + amplitude * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) - (amplitude * cancellation);
 
 
 		/// set servo position
