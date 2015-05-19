@@ -347,44 +347,8 @@ DEF MODULE_1 Robot {
   }
   controller "controller_1"
 }
-DEF MODULE_8 Robot {
-  translation 0.00501502 0.0305531 -0.0369997
-  rotation 0.707107 0.707107 3.99897e-06 3.14157
-  children [
-    DEF RECEIVER Receiver {
-      name "receiver_front"
-      channel 2
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_back"
-      channel 1
-    }
-    DEF EMITTER Emitter {
-      channel 8
-    }
-    USE BODY_GROUP
-    USE BACK_CONNECTOR
-    USE TOP_CONNECTOR
-    USE BOTTOM_CONNECTOR
-    USE SERVO
-    USE GYRO
-    USE SONAR0
-    USE SONAR1
-    USE SONAR2
-    USE SONAR3
-    USE SONAR4
-    DEF BUMPER_8 TouchSensor {
-      name "bumper"
-      boundingObject USE BODY_GROUP
-    }
-  ]
-  name "module_8"
-  boundingObject USE BODY_GROUP
-  physics USE BODY_PHYSICS
-  controller "controller_1"
-}
 DEF MODULE_2 Robot {
-  translation 0.00501502 0.0305531 0.0600023
+  translation 0.00501502 0.0305531 -0.0369997
   rotation 0.707107 0.707107 3.99897e-06 3.14157
   children [
     DEF RECEIVER Receiver {
@@ -393,7 +357,7 @@ DEF MODULE_2 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 8
+      channel 1
     }
     DEF EMITTER Emitter {
       channel 2
@@ -420,16 +384,16 @@ DEF MODULE_2 Robot {
   controller "controller_1"
 }
 DEF MODULE_3 Robot {
-  translation 0.00501214 0.0305564 0.194003
-  rotation -6.04091e-06 1.02169e-08 1 3.14159
+  translation 0.00501502 0.0305531 0.0600023
+  rotation 0.707107 0.707107 3.99897e-06 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 2
+      channel 4
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 4
+      channel 2
     }
     DEF EMITTER Emitter {
       channel 3
@@ -456,26 +420,16 @@ DEF MODULE_3 Robot {
   controller "controller_1"
 }
 DEF MODULE_4 Robot {
-  translation 0.00501065 0.0305568 0.251004
-  rotation 7.96136e-07 1 -7.37957e-07 1.57078
+  translation 0.00501214 0.0305564 0.194003
+  rotation -6.04091e-06 1.02169e-08 1 3.14159
   children [
-    DEF PHYSICS_DATA Receiver {
-      name "receiver_physics"
-      channel 20
-    }
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 13
-    }
-    GPS {
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_top"
-      channel 3
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_bottom"
       channel 5
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 3
     }
     DEF EMITTER Emitter {
       channel 4
@@ -502,16 +456,26 @@ DEF MODULE_4 Robot {
   controller "controller_1"
 }
 DEF MODULE_5 Robot {
-  translation 0.00501035 0.0305564 0.308004
-  rotation 4.60476e-08 1 8.79019e-08 3.14157
+  translation 0.00501065 0.0305568 0.251004
+  rotation 7.96136e-07 1 -7.37957e-07 1.57078
   children [
-    DEF RECEIVER Receiver {
-      name "receiver_front"
-      channel 6
+    DEF PHYSICS_DATA Receiver {
+      name "receiver_physics"
+      channel 30
     }
     DEF RECEIVER Receiver {
-      name "receiver_back"
+      name "receiver_front"
+      channel 14
+    }
+    GPS {
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
       channel 4
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 6
     }
     DEF EMITTER Emitter {
       channel 5
@@ -538,16 +502,16 @@ DEF MODULE_5 Robot {
   controller "controller_1"
 }
 DEF MODULE_6 Robot {
-  translation 0.00500902 0.0305531 0.442005
-  rotation 1.89853e-06 1.00374e-05 -1 -1.5708
+  translation 0.00501035 0.0305564 0.308004
+  rotation 4.60476e-08 1 8.79019e-08 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 5
+      channel 7
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 9
+      channel 5
     }
     DEF EMITTER Emitter {
       channel 6
@@ -573,8 +537,8 @@ DEF MODULE_6 Robot {
   physics USE BODY_PHYSICS
   controller "controller_1"
 }
-DEF MODULE_9 Robot {
-  translation 0.00500902 0.0305531 0.539
+DEF MODULE_7 Robot {
+  translation 0.00500902 0.0305531 0.442005
   rotation 1.89853e-06 1.00374e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
@@ -583,39 +547,7 @@ DEF MODULE_9 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 7
-    }
-    DEF EMITTER Emitter {
-      channel 9
-    }
-    USE BODY_GROUP
-    USE BACK_CONNECTOR
-    USE TOP_CONNECTOR
-    USE BOTTOM_CONNECTOR
-    USE SERVO
-    USE GYRO
-    USE SONAR0
-    USE SONAR1
-    USE SONAR2
-    USE SONAR3
-    USE SONAR4
-    DEF BUMPER_9 TouchSensor {
-      name "bumper"
-      boundingObject USE BODY_GROUP
-    }
-  ]
-  name "module_9"
-  boundingObject USE BODY_GROUP
-  physics USE BODY_PHYSICS
-  controller "controller_1"
-}
-DEF MODULE_7 Robot {
-  translation 0.00500787 0.0305504 0.636005
-  rotation -1.77938e-06 1.37821e-05 -1 -1.5708
-  children [
-    DEF RECEIVER Receiver {
-      name "receiver_front"
-      channel 9
+      channel 8
     }
     DEF EMITTER Emitter {
       channel 7
@@ -641,15 +573,84 @@ DEF MODULE_7 Robot {
   physics USE BODY_PHYSICS
   controller "controller_1"
 }
+DEF MODULE_8 Robot {
+  translation 0.00500902 0.0305531 0.539
+  rotation 1.89853e-06 1.00374e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 9
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 7
+    }
+    DEF EMITTER Emitter {
+      channel 8
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_8 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_8"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_1"
+}
+DEF MODULE_9 Robot {
+  translation 0.00500787 0.0305504 0.636005
+  rotation -1.77938e-06 1.37821e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 8
+    }
+    DEF EMITTER Emitter {
+      channel 9
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_9 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_9"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_1"
+}
 DEF MODULE_10 Robot {
   translation -0.128991 0.0305504 -0.135
   rotation 0.707107 0.707107 -1.30001e-06 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 17
+      channel 11
     }
     DEF EMITTER Emitter {
+      range 5
       channel 10
     }
     USE BODY_GROUP
@@ -674,16 +675,16 @@ DEF MODULE_10 Robot {
   controller "controller_1"
 }
 DEF MODULE_11 Robot {
-  translation -0.128992 0.0305531 0.0600003
+  translation -0.128992 0.0305531 -0.0371997
   rotation 0.707107 0.707107 1.31944e-06 3.14158
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 12
+      channel 10
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 17
+      channel 12
     }
     DEF EMITTER Emitter {
       channel 11
@@ -709,53 +710,17 @@ DEF MODULE_11 Robot {
   physics USE BODY_PHYSICS
   controller "controller_1"
 }
-DEF MODULE_17 Robot {
-  translation -0.128992 0.0305531 -0.0371997
+DEF MODULE_12 Robot {
+  translation -0.128992 0.0305531 0.0600003
   rotation 0.707107 0.707107 1.31944e-06 3.14158
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 11
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_back"
-      channel 10
-    }
-    DEF EMITTER Emitter {
-      channel 17
-    }
-    USE BODY_GROUP
-    USE BACK_CONNECTOR
-    USE TOP_CONNECTOR
-    USE BOTTOM_CONNECTOR
-    USE SERVO
-    USE GYRO
-    USE SONAR0
-    USE SONAR1
-    USE SONAR2
-    USE SONAR3
-    USE SONAR4
-    DEF BUMPER_17 TouchSensor {
-      name "bumper"
-      boundingObject USE BODY_GROUP
-    }
-  ]
-  name "module_17"
-  boundingObject USE BODY_GROUP
-  physics USE BODY_PHYSICS
-  controller "controller_1"
-}
-DEF MODULE_12 Robot {
-  translation -0.128994 0.0305564 0.194001
-  rotation 0.0045689 0.999982 0.00399521 -1.92777e-05
-  children [
-    DEF RECEIVER Receiver {
-      name "receiver_front"
-      channel 11
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_back"
       channel 13
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 11
     }
     DEF EMITTER Emitter {
       channel 12
@@ -782,20 +747,16 @@ DEF MODULE_12 Robot {
   controller "controller_1"
 }
 DEF MODULE_13 Robot {
-  translation -0.128994 0.0305568 0.251002
-  rotation -7.09779e-07 1 -6.54043e-07 -1.57081
+  translation -0.128994 0.0305564 0.194001
+  rotation 0.0045689 0.999982 0.00399521 -1.92777e-05
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 4
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_top"
-      channel 12
-    }
-    DEF RECEIVER Receiver {
-      name "receiver_bottom"
       channel 14
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 12
     }
     DEF EMITTER Emitter {
       channel 13
@@ -822,15 +783,19 @@ DEF MODULE_13 Robot {
   controller "controller_1"
 }
 DEF MODULE_14 Robot {
-  translation -0.128995 0.0305564 0.308002
-  rotation -1 3.83053e-08 -6.02184e-06 3.14159
+  translation -0.128994 0.0305568 0.251002
+  rotation -7.09779e-07 1 -6.54043e-07 -1.57081
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
+      channel 5
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
       channel 15
     }
     DEF RECEIVER Receiver {
-      name "receiver_back"
+      name "receiver_bottom"
       channel 13
     }
     DEF EMITTER Emitter {
@@ -858,16 +823,16 @@ DEF MODULE_14 Robot {
   controller "controller_1"
 }
 DEF MODULE_15 Robot {
-  translation -0.128998 0.0305531 0.442003
-  rotation 5.6527e-06 1.37925e-05 -1 -1.5708
+  translation -0.128995 0.0305564 0.308002
+  rotation -1 3.83053e-08 -6.02184e-06 3.14159
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
-      channel 14
+      channel 16
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 18
+      channel 14
     }
     DEF EMITTER Emitter {
       channel 15
@@ -893,8 +858,8 @@ DEF MODULE_15 Robot {
   physics USE BODY_PHYSICS
   controller "controller_1"
 }
-DEF MODULE_18 Robot {
-  translation -0.128998 0.0305531 0.539
+DEF MODULE_16 Robot {
+  translation -0.128998 0.0305531 0.442003
   rotation 5.6527e-06 1.37925e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
@@ -903,39 +868,7 @@ DEF MODULE_18 Robot {
     }
     DEF RECEIVER Receiver {
       name "receiver_back"
-      channel 16
-    }
-    DEF EMITTER Emitter {
-      channel 18
-    }
-    USE BODY_GROUP
-    USE BACK_CONNECTOR
-    USE TOP_CONNECTOR
-    USE BOTTOM_CONNECTOR
-    USE SERVO
-    USE GYRO
-    USE SONAR0
-    USE SONAR1
-    USE SONAR2
-    USE SONAR3
-    USE SONAR4
-    DEF BUMPER_18 TouchSensor {
-      name "bumper"
-      boundingObject USE BODY_GROUP
-    }
-  ]
-  name "module_18"
-  boundingObject USE BODY_GROUP
-  physics USE BODY_PHYSICS
-  controller "controller_1"
-}
-DEF MODULE_16 Robot {
-  translation -0.129 0.0305504 0.636005
-  rotation 1.90649e-06 1.74719e-05 -1 -1.5708
-  children [
-    DEF RECEIVER Receiver {
-      name "receiver_front"
-      channel 18
+      channel 17
     }
     DEF EMITTER Emitter {
       channel 16
@@ -957,6 +890,74 @@ DEF MODULE_16 Robot {
     }
   ]
   name "module_16"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_1"
+}
+DEF MODULE_17 Robot {
+  translation -0.128998 0.0305531 0.539
+  rotation 5.6527e-06 1.37925e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 18
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 16
+    }
+    DEF EMITTER Emitter {
+      channel 17
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_17 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_17"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_1"
+}
+DEF MODULE_18 Robot {
+  translation -0.129 0.0305504 0.636005
+  rotation 1.90649e-06 1.74719e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 17
+    }
+    DEF EMITTER Emitter {
+      channel 18
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_18 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_18"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
   controller "controller_1"

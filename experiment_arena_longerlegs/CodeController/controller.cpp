@@ -65,7 +65,7 @@ using namespace HCUBE;
 // #define CONTROL_STEP 512
 
 #define W 0.95  // distance from origin is penalized exponentially with base W and power (distance_travelled/distance_from_origin) - 1
-#define FITNESS_RECORDER_ID 4 // id of module equiped with a gps device to measure distances
+#define FITNESS_RECORDER_ID 5 // id of module equiped with a gps device to measure distances
 char name[32] = "";
 int control_loop_iteration = -1;
 string xmlFileName;
@@ -466,13 +466,6 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-  // stringstream ss;
-  // char const * homedir = getenv("HOME");
-  // ss << homedir << "/" << datfile << endl;
-  // const char * paramsDat = ss.str().c_str();
-
-	// NEAT::Globals::init(paramsDat);
-  // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
   // hardcoded path, uses symlink to point to the correct directory..
   NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
 
@@ -685,10 +678,19 @@ int main()
 	}
 
 	///  lock connectors
-	wb_connector_lock(front_connector);
-	wb_connector_lock(back_connector);
+  // if it does not concern the modules 1, 9, 10, 18 at the end of the organism.
+  // Those can connect to other leg segments when using longer (>2) leg lengths,
+  // causing very long simulations.
+  if(id == 1 && id == 9 && id == 10 && id == 18) {
+    wb_connector_unlock(back_connector);
+  } else {
+    wb_connector_lock(back_connector);
+  }
 
-	if (id == 4 || id == 13) {
+  // all modules can safely lock their front connectors
+  wb_connector_lock(front_connector);
+
+	if (id == 5 || id == 14) {
 		wb_connector_lock(top_connector);
 		wb_connector_lock(bottom_connector);
 	} else {
@@ -716,8 +718,7 @@ int main()
 	double distance_travelled = 0;
 	double average_height = 0;
 	// initial position of the controller
-	double *initial_position = NULL, *old_position = NULL, old_speeds[3],
-			old_distances[6];
+	double *initial_position = NULL, *old_position = NULL, old_speeds[3], old_distances[6];
 
 	// intial joint angle [-1 ... 1] for [-pi/2 ... pi/2]
 	double alpha = 0.001;
@@ -860,30 +861,20 @@ int main()
 
 
 		double distances[6];
-		for (int i = 0; i < 6; i++)
-			distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
-
 		int activity[6] = {0,0,0,0,0,0};
-		activity[0] = (distances[0] - old_distances[0])
-				> threshold ? signum(distances[0] - old_distances[0]) : 0;
 
-		activity[1]  = (distances[1] - old_distances[1])
-				> threshold ? signum(distances[1] - old_distances[1]) : 0;
+    for (int i = 0; i < 6; i++) {
+      distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
+      activity[i] = (distances[i] - old_distances[i]) > threshold ? signum(distances[i] - old_distances[i]) : 0;      
+    }
 
-		activity[2]  = (distances[2] - old_distances[2])
-				> threshold ? signum(distances[2] - old_distances[2]) : 0;
-
-		activity[3]  = (distances[3]
-				- old_distances[3]) > threshold ? signum(distances[3]
-				- old_distances[3]) : 0;
-
-		activity[4]  = (distances[4]
-				- old_distances[4]) > threshold ? signum(distances[4]
-				- old_distances[4]) : 0;
-
-		activity[5]  = (distances[5]
-				- old_distances[5]) > threshold ? signum(distances[5]
-				- old_distances[5]) : 0;
+    // following was replaced by above for loop.
+		// activity[0] = (distances[0] - old_distances[0]) > threshold ? signum(distances[0] - old_distances[0]) : 0;
+		// activity[1]  = (distances[1] - old_distances[1]) > threshold ? signum(distances[1] - old_distances[1]) : 0;
+		// activity[2]  = (distances[2] - old_distances[2]) > threshold ? signum(distances[2] - old_distances[2]) : 0;
+		// activity[3]  = (distances[3] - old_distances[3]) > threshold ? signum(distances[3] - old_distances[3]) : 0;
+		// activity[4]  = (distances[4] - old_distances[4]) > threshold ? signum(distances[4] - old_distances[4]) : 0;
+		// activity[5]  = (distances[5] - old_distances[5]) > threshold ? signum(distances[5] - old_distances[5]) : 0;
 
 		bool activated = false;
 		for (int i=0; i<6 && !activated;  i++)
@@ -999,27 +990,29 @@ int main()
 
 		// update angle, omega, amplitude, phase
 		// intial joint angle [-1 ... 1] for [-pi/2 ... pi/2]
-		alpha = output.values[1][1];
+		alpha = output.values[1][1] * 1.5708;
 		// initial angular speed [-1 ... 1] for [-10 ... 10]
 		omega = output.values[2][1];
 		// initial amplitude [-1 ... 1] for [-pi/2 ... pi/2]
-		amplitude = output.values[0][1];
+		amplitude = output.values[0][1] * 1.5708;
 		// update phase
 		phase = output.values[1][2];
     // CPG diminishing / resetting output, [-1...1]
-    reset = output.values[1][0];
+    // reset = output.values[1][0];
 
     // if the new output is higher then a certain threshold, reset the t counter
-    if(reset > 0.5 || reset < -0.5) {
-      t = 0;
-    }
+    // if(reset > 0.5 || reset < -0.5) {
+    //   t = 0;
+    // }
 
     // original
     // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
     // SUPG-like idea 1
 		// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
     // SUPG-like idea 2
-    target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // original minus M_PI
+    target_angle = alpha + amplitude * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
 
 
 		/// set servo position
