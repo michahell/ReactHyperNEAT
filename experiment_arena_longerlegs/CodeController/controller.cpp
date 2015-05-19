@@ -997,22 +997,23 @@ int main()
 		amplitude = output.values[0][1] * 1.5708;
 		// update phase
 		phase = output.values[1][2];
-    // CPG diminishing / resetting output, [-1...1]
-    // reset = output.values[1][0];
 
-    // if the new output is higher then a certain threshold, reset the t counter
-    // if(reset > 0.5 || reset < -0.5) {
-    //   t = 0;
-    // }
+	    // CPG diminishing / resetting output, [-1...1]
+	    // reset = output.values[1][0];
 
-    // original
-    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
-    // SUPG-like idea 1
-		// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
-    // SUPG-like idea 2
-    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
-    // original minus M_PI
-    target_angle = alpha + amplitude * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+	    // if the new output is higher then a certain threshold, reset the t counter
+	    // if(reset > 0.5 || reset < -0.5) {
+	    //   t = 0;
+	    // }
+
+	    // original
+	    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+	    // SUPG-like idea 1
+			// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
+	    // SUPG-like idea 2
+	    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+	    // original minus M_PI
+	    target_angle = alpha + amplitude * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
 
 
 		/// set servo position
@@ -1028,20 +1029,15 @@ int main()
 	} // end control's while loop
 
 
-	// if (id == FITNESS_RECORDER_ID) {
-	// 	// take the average in average_height (recordings start from iteration -1)
-	// 	average_height /= (control_loop_iteration + 1);
-	// }
-
 	if (id == FITNESS_RECORDER_ID) {
     
-    screen << "fitness / collision recorder adding results to cppn... " << endl;
+	    screen << "fitness / collision recorder adding results to cppn... " << endl;
 
-    // iterate over the collision data
-    writeCollisionsToXml(xmlFileName, collMap);
+	    // iterate over the collision data
+	    writeCollisionsToXml(xmlFileName, collMap);
 
-    // take the average in average_height (recordings start from iteration -1)
-    average_height /= (control_loop_iteration + 1);
+	    // take the average in average_height (recordings start from iteration -1)
+	    average_height /= (control_loop_iteration + 1);
 
 		// write distance traveled
 		const double *pos = wb_gps_get_values(gps);
@@ -1049,9 +1045,9 @@ int main()
 		double distance_from_origin = 999999;
 
 		while (distance_from_origin > 100000) {
-      // calculated euclidian distance
+      		// calculated euclidian distance
 			distance_from_origin = sqrt(pow(pos[0] - initial_position[0], 2) + pow(pos[2] - initial_position[2], 2));
-      // screen << "euclidian distance: " << pos[0] << " - " << initial_position[0] << " and " << pos[2] << " - " << initial_position[2] << endl;
+      		// screen << "euclidian distance: " << pos[0] << " - " << initial_position[0] << " and " << pos[2] << " - " << initial_position[2] << endl;
 			if (distance_from_origin > 100000) {
 				stringstream stream;
 				stream << "Error in computing fitness: " << distance_from_origin
@@ -1068,61 +1064,61 @@ int main()
 
 		///////////       COMPUTES THE FITNESS FUNCTION   ///////////
 		// const double fitness = exp(distance_from_origin // how far the robot got
-  //       * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
-  //       + (average_height)); // how high did it keep the body on average (less than 1.0m)
+        // * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+        // + (average_height)); // how high did it keep the body on average (less than 1.0m)
 
-    // the following need to be minimized
-    unsigned int maxTouchTime = 1000;
-    unsigned int maxCollisions = 10;
+	    // the following need to be minimized
+	    unsigned int maxTouchTime = 1000;
+	    unsigned int maxCollisions = 10;
 
-    // calculate the collision penalisation scalar
-    // double collision_penal_scalar = 1;
-    // if (totalCollisions > 0 && totalCollisions <= maxCollisions) {
-    //   collision_penal_scalar = 1 - (totalCollisions / maxCollisions);
-    // } else {
-    //   collision_penal_scalar = 0;
-    // }
-    // screen << "collision penal scalar = " << collision_penal_scalar << endl;
+	    // calculate the collision penalisation scalar
+	    // double collision_penal_scalar = 1;
+	    // if (totalCollisions > 0 && totalCollisions <= maxCollisions) {
+	    //   collision_penal_scalar = 1 - (totalCollisions / maxCollisions);
+	    // } else {
+	    //   collision_penal_scalar = 0;
+	    // }
+	    // screen << "collision penal scalar = " << collision_penal_scalar << endl;
 
-    // MINUS the amount of collisions
-    // const double fitness = exp( (distance_from_origin // how far the robot got
-    //     * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
-    //     + (average_height)) // how high did it keep the body on average (less than 1.0m)
-    //     * collision_penal_scalar); // the fitness score gets multiplied by collision penal scalar
+	    // MINUS the amount of collisions
+	    // const double fitness = exp( (distance_from_origin // how far the robot got
+	    //     * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+	    //     + (average_height)) // how high did it keep the body on average (less than 1.0m)
+	    //     * collision_penal_scalar); // the fitness score gets multiplied by collision penal scalar
 
-    unsigned int collisionAmountPoints = 0;
-    if(maxTouchTime - totalTouchTime > 0) {
-      collisionAmountPoints = maxTouchTime - totalTouchTime;
-    } else if (maxTouchTime - totalTouchTime <= 0) {
-      collisionAmountPoints = 0;
-    }
+	    unsigned int collisionAmountPoints = 0;
+	    if(maxTouchTime - totalTouchTime > 0) {
+	      collisionAmountPoints = maxTouchTime - totalTouchTime;
+	    } else if (maxTouchTime - totalTouchTime <= 0) {
+	      collisionAmountPoints = 0;
+	    }
 
-    unsigned int collisionTouchTimePoints = 0;
-    if(maxCollisions - totalCollisions > 0) {
-      collisionTouchTimePoints = maxCollisions - totalCollisions;
-    } else if(maxCollisions - totalCollisions <= 0) {
-      collisionTouchTimePoints = 0;
-    }
+	    unsigned int collisionTouchTimePoints = 0;
+	    if(maxCollisions - totalCollisions > 0) {
+	      collisionTouchTimePoints = maxCollisions - totalCollisions;
+	    } else if(maxCollisions - totalCollisions <= 0) {
+	      collisionTouchTimePoints = 0;
+	    }
 
-    const double fitness = exp(distance_from_origin // how far the robot got
-        * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
-        + (average_height)) // how high did it keep the body on average (less than 1.0m)
-        + (((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin); // + added the collision fitness
-        
+	    const double fitness = exp(distance_from_origin // how far the robot got
+	        * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+	        + (average_height)) // how high did it keep the body on average (less than 1.0m)
+	        + (((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin); // + added the collision fitness
+	        
 
-    // DISTANCE ONLY
-    // const double fitness = exp(distance_from_origin);
-    // const double fitness = exp(distance_from_origin * pow(W, (distance_travelled / distance_from_origin) - 1));
+	    // DISTANCE ONLY
+	    // const double fitness = exp(distance_from_origin);
+	    // const double fitness = exp(distance_from_origin * pow(W, (distance_travelled / distance_from_origin) - 1));
 
-    // BODY HEIGHT ONLY
-    // const double fitness = average_height * 10; // how high did it keep the body on average (less than 1.0m)
+	    // BODY HEIGHT ONLY
+	    // const double fitness = average_height * 10; // how high did it keep the body on average (less than 1.0m)
 
-    screen << "Distance from origin / traveled / average height: " << endl;
-    screen << distance_from_origin << " / " << distance_travelled << " / " << average_height << endl;
-    screen << "# collisions / total touchtimes: " << endl;
-    screen << totalCollisions << " / " << totalTouchTime << endl;
-    screen << "collisions points / touchtime points / fitness: " << endl;
-    screen << collisionAmountPoints << " / " << collisionTouchTimePoints << " / " << fitness << endl;
+	    screen << "Distance from origin / traveled / average height: " << endl;
+	    screen << distance_from_origin << " / " << distance_travelled << " / " << average_height << endl;
+	    screen << "# collisions / total touchtimes: " << endl;
+	    screen << totalCollisions << " / " << totalTouchTime << endl;
+	    screen << "collisions points / touchtime points / fitness: " << endl;
+	    screen << collisionAmountPoints << " / " << collisionTouchTimePoints << " / " << fitness << endl;
 
 
 		fflush(stdout);
@@ -1153,10 +1149,10 @@ int main()
 	}
 	fflush(stdout);
 
-	//*
+	// *
 	// continue until the step function returns -1, then exit
-	// while (wb_robot_step(CONTROL_STEP) != -1)
-	// 	control_loop_iteration++;
+	while (wb_robot_step(CONTROL_STEP) != -1)
+		control_loop_iteration++;
 	// */
 
 	screen << "Bye!" << endl;
