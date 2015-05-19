@@ -240,7 +240,7 @@ DEF MODULE_1 Robot {
       name "back_connector"
       model "conn_model"
       isLocked TRUE
-      autoLock TRUE
+      autoLock FALSE
       distanceTolerance 0.05
       axisTolerance 0.75
       rotationTolerance 0.75
@@ -254,7 +254,7 @@ DEF MODULE_1 Robot {
       name "top_connector"
       model "conn_model"
       isLocked TRUE
-      autoLock TRUE
+      autoLock FALSE
       distanceTolerance 0.05
       axisTolerance 0.75
       rotationTolerance 0.75
@@ -268,7 +268,7 @@ DEF MODULE_1 Robot {
       name "bottom_connector"
       model "conn_model"
       isLocked TRUE
-      autoLock TRUE
+      autoLock FALSE
       distanceTolerance 0.05
       axisTolerance 0.75
       rotationTolerance 0.75
