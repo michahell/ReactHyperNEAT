@@ -1,0 +1,3569 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Simulation of a modular robot consisting of 14 individual YAMOR robots."
+  ]
+  title "Modular Robot"
+  physics "collision_detector"
+  basicTimeStep 8
+  displayRefresh 4
+  runRealTime TRUE
+}
+Viewpoint {
+  fieldOfView 0.9
+  orientation 0.0510861 0.934675 0.351813 3.41139
+  position -0.513303 1.36006 -1.3111
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+DirectionalLight {
+  direction 1.2 -0.7 -0.5
+  intensity 1.31
+  castShadows TRUE
+}
+DirectionalLight {
+  ambientIntensity 0.7
+  direction -1.2 0.7 0.5
+  intensity 0.2
+}
+DEF GROUND Solid {
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.301961 0.301961 0.301961
+        }
+        texture ImageTexture {
+          url [
+            "textures/texture_grid.png"
+          ]
+        }
+      }
+      geometry DEF GROUND_FACE_SET IndexedFaceSet {
+        coord Coordinate {
+          point [
+            50 0 50
+            -50 0 50
+            -50 0 -50
+            50 0 -50
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            12 12
+            12 -12
+            -12 -12
+            -12 12
+          ]
+        }
+        coordIndex [
+          3, 2, 1, 0
+        ]
+        texCoordIndex [
+          0, 1, 2, 3
+        ]
+      }
+    }
+  ]
+  boundingObject Transform {
+    translation 0 -1 0
+    children [
+      Box {
+        size 100 2 100
+      }
+    ]
+  }
+  locked TRUE
+}
+
+
+
+DEF OBSTACLE_1 Solid {
+  translation 0.394347082996 0.027 0.843261623928 
+  rotation 0 1 0 1.13697369285
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_1 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_1"
+  boundingObject USE BLOCK_SHAPE_1
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_2 Solid {
+  translation 0.0362424183634 0.027 0.99320317891 
+  rotation 0 1 0 2.00600977714
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_2 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_2"
+  boundingObject USE BLOCK_SHAPE_2
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_3 Solid {
+  translation -0.348856095914 0.027 0.944004042291 
+  rotation 0 1 0 0.825062679133
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_3 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_3"
+  boundingObject USE BLOCK_SHAPE_3
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_4 Solid {
+  translation -0.657761623928 0.027 0.708847082996 
+  rotation 0 1 0 2.23245237978
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_4 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_4"
+  boundingObject USE BLOCK_SHAPE_4
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_5 Solid {
+  translation -0.80770317891 0.027 0.350742418363 
+  rotation 0 1 0 2.6125149438
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_5 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_5"
+  boundingObject USE BLOCK_SHAPE_5
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_6 Solid {
+  translation -0.758504042291 0.027 -0.0343560959138 
+  rotation 0 1 0 1.27037960121
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_6 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_6"
+  boundingObject USE BLOCK_SHAPE_6
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_7 Solid {
+  translation -0.523347082996 0.027 -0.343261623928 
+  rotation 0 1 0 0.610233846972
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_7 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_7"
+  boundingObject USE BLOCK_SHAPE_7
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_8 Solid {
+  translation -0.165242418363 0.027 -0.49320317891 
+  rotation 0 1 0 2.35308209003
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_8 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_8"
+  boundingObject USE BLOCK_SHAPE_8
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_9 Solid {
+  translation 0.219856095914 0.027 -0.444004042291 
+  rotation 0 1 0 1.48211976748
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_9 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_9"
+  boundingObject USE BLOCK_SHAPE_9
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_10 Solid {
+  translation 0.528761623928 0.027 -0.208847082996 
+  rotation 0 1 0 0.910386847966
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_10 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_10"
+  boundingObject USE BLOCK_SHAPE_10
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_11 Solid {
+  translation 0.67870317891 0.027 0.149257581637 
+  rotation 0 1 0 2.52112690422
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_11 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_11"
+  boundingObject USE BLOCK_SHAPE_11
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_12 Solid {
+  translation 0.629504042291 0.027 0.534356095914 
+  rotation 0 1 0 0.261394918315
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.2 0.75
+        }
+      }
+      geometry DEF BLOCK_SHAPE_12 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_12"
+  boundingObject USE BLOCK_SHAPE_12
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_13 Solid {
+  translation 1.12763486249 0.027 0.625918168793 
+  rotation 0 1 0 2.14406773674
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_13 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_13"
+  boundingObject USE BLOCK_SHAPE_13
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_14 Solid {
+  translation 0.911335347335 0.027 1.03118203697 
+  rotation 0 1 0 2.87928837543
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_14 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_14"
+  boundingObject USE BLOCK_SHAPE_14
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_15 Solid {
+  translation 0.563243861229 0.027 1.33094294238 
+  rotation 0 1 0 2.92250989498
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_15 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_15"
+  boundingObject USE BLOCK_SHAPE_15
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_16 Solid {
+  translation 0.130372088215 0.027 1.48471651371 
+  rotation 0 1 0 1.8395182219
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_16 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_16"
+  boundingObject USE BLOCK_SHAPE_16
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_17 Solid {
+  translation -0.328818240136 0.027 1.47173477806 
+  rotation 0 1 0 0.627091895049
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_17 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_17"
+  boundingObject USE BLOCK_SHAPE_17
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_18 Solid {
+  translation -0.752310925518 0.027 1.29375099077 
+  rotation 0 1 0 2.83722191156
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_18 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_18"
+  boundingObject USE BLOCK_SHAPE_18
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_19 Solid {
+  translation -1.08291093412 0.027 0.974802848552 
+  rotation 0 1 0 2.11223198987
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_19 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_19"
+  boundingObject USE BLOCK_SHAPE_19
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_20 Solid {
+  translation -1.27596890285 0.027 0.557966065364 
+  rotation 0 1 0 2.65734245475
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_20 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_20"
+  boundingObject USE BLOCK_SHAPE_20
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_21 Solid {
+  translation -1.30541128328 0.027 0.0995367585498 
+  rotation 0 1 0 0.478012204093
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_21 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_21"
+  boundingObject USE BLOCK_SHAPE_21
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_22 Solid {
+  translation -1.16726171877 0.027 -0.338571653761 
+  rotation 0 1 0 0.430182833757
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_22 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_22"
+  boundingObject USE BLOCK_SHAPE_22
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_23 Solid {
+  translation -0.88017807353 0.027 -0.697190202843 
+  rotation 0 1 0 1.22892633174
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_23 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_23"
+  boundingObject USE BLOCK_SHAPE_23
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_24 Solid {
+  translation -0.482932584629 0.027 -0.92788546647 
+  rotation 0 1 0 1.74136968211
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_24 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_24"
+  boundingObject USE BLOCK_SHAPE_24
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_25 Solid {
+  translation -0.0291754565597 0.027 -0.99950077096 
+  rotation 0 1 0 3.04895851823
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_25 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_25"
+  boundingObject USE BLOCK_SHAPE_25
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_26 Solid {
+  translation 0.419810896178 0.027 -0.90236407261 
+  rotation 0 1 0 0.430354287843
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_26 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_26"
+  boundingObject USE BLOCK_SHAPE_26
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_27 Solid {
+  translation 0.803388378728 0.027 -0.649594220784 
+  rotation 0 1 0 0.0452959890185
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_27 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_27"
+  boundingObject USE BLOCK_SHAPE_27
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_28 Solid {
+  translation 1.0697527266 0.027 -0.275329184618 
+  rotation 0 1 0 2.56712846143
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_28 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_28"
+  boundingObject USE BLOCK_SHAPE_28
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_29 Solid {
+  translation 1.18292995862 0.027 0.169884468881 
+  rotation 0 1 0 0.932889798149
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.35 0.8
+        }
+      }
+      geometry DEF BLOCK_SHAPE_29 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_29"
+  boundingObject USE BLOCK_SHAPE_29
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_30 Solid {
+  translation 1.50800339396 0.027 1.01794080239 
+  rotation 0 1 0 0.814032768388
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_30 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_30"
+  boundingObject USE BLOCK_SHAPE_30
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_31 Solid {
+  translation 1.22795203173 0.027 1.42985920587 
+  rotation 0 1 0 2.17048467436
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_31 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_31"
+  boundingObject USE BLOCK_SHAPE_31
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_32 Solid {
+  translation 0.843193892395 0.027 1.74619243338 
+  rotation 0 1 0 2.87301878812
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_32 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_32"
+  boundingObject USE BLOCK_SHAPE_32
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_33 Solid {
+  translation 0.384899792163 0.027 1.94131304814 
+  rotation 0 1 0 1.80412189945
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_33 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_33"
+  boundingObject USE BLOCK_SHAPE_33
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_34 Solid {
+  translation -0.109802006547 0.027 1.99941353836 
+  rotation 0 1 0 2.08414159668
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_34 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_34"
+  boundingObject USE BLOCK_SHAPE_34
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_35 Solid {
+  translation -0.600833706108 0.027 1.91578694787 
+  rotation 0 1 0 1.39356681176
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_35 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_35"
+  boundingObject USE BLOCK_SHAPE_35
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_36 Solid {
+  translation -1.0484148385 0.027 1.69720820568 
+  rotation 0 1 0 0.145734938206
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_36 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_36"
+  boundingObject USE BLOCK_SHAPE_36
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_37 Solid {
+  translation -1.41628504224 0.027 1.36138526154 
+  rotation 0 1 0 2.29735779037
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_37 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_37"
+  boundingObject USE BLOCK_SHAPE_37
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_38 Solid {
+  translation -1.67464166124 0.027 0.935524493175 
+  rotation 0 1 0 0.545623182879
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_38 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_38"
+  boundingObject USE BLOCK_SHAPE_38
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_39 Solid {
+  translation -1.80255417872 0.027 0.454126607344 
+  rotation 0 1 0 0.420755079735
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_39 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_39"
+  boundingObject USE BLOCK_SHAPE_39
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_40 Solid {
+  translation -1.78965988325 0.027 -0.0438084022258 
+  rotation 0 1 0 1.01501679207
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_40 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_40"
+  boundingObject USE BLOCK_SHAPE_40
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_41 Solid {
+  translation -1.63700339396 0.027 -0.517940802393 
+  rotation 0 1 0 1.04816126255
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_41 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_41"
+  boundingObject USE BLOCK_SHAPE_41
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_42 Solid {
+  translation -1.35695203173 0.027 -0.929859205871 
+  rotation 0 1 0 1.23984880532
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_42 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_42"
+  boundingObject USE BLOCK_SHAPE_42
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_43 Solid {
+  translation -0.972193892395 0.027 -1.24619243338 
+  rotation 0 1 0 1.44951269367
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_43 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_43"
+  boundingObject USE BLOCK_SHAPE_43
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_44 Solid {
+  translation -0.513899792163 0.027 -1.44131304814 
+  rotation 0 1 0 2.1736394798
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_44 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_44"
+  boundingObject USE BLOCK_SHAPE_44
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_45 Solid {
+  translation -0.0191979934527 0.027 -1.49941353836 
+  rotation 0 1 0 0.582676611866
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_45 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_45"
+  boundingObject USE BLOCK_SHAPE_45
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_46 Solid {
+  translation 0.471833706108 0.027 -1.41578694787 
+  rotation 0 1 0 1.61739917907
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_46 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_46"
+  boundingObject USE BLOCK_SHAPE_46
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_47 Solid {
+  translation 0.9194148385 0.027 -1.19720820568 
+  rotation 0 1 0 1.23439486519
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_47 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_47"
+  boundingObject USE BLOCK_SHAPE_47
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_48 Solid {
+  translation 1.28728504224 0.027 -0.86138526154 
+  rotation 0 1 0 0.278430364061
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_48 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_48"
+  boundingObject USE BLOCK_SHAPE_48
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_49 Solid {
+  translation 1.54564166124 0.027 -0.435524493175 
+  rotation 0 1 0 1.45924030139
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_49 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_49"
+  boundingObject USE BLOCK_SHAPE_49
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_50 Solid {
+  translation 1.67355417872 0.027 0.0458733926557 
+  rotation 0 1 0 1.30881542565
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_50 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_50"
+  boundingObject USE BLOCK_SHAPE_50
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_51 Solid {
+  translation 1.66065988325 0.027 0.543808402226 
+  rotation 0 1 0 0.2980576481
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.5 0.85
+        }
+      }
+      geometry DEF BLOCK_SHAPE_51 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_51"
+  boundingObject USE BLOCK_SHAPE_51
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_52 Solid {
+  translation 1.7121621344 0.027 1.63056932465 
+  rotation 0 1 0 0.354150331267
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_52 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_52"
+  boundingObject USE BLOCK_SHAPE_52
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_53 Solid {
+  translation 1.34589077971 0.027 2.00308238497 
+  rotation 0 1 0 1.23548747491
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_53 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_53"
+  boundingObject USE BLOCK_SHAPE_53
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_54 Solid {
+  translation 0.903584893016 0.027 2.28108632015 
+  rotation 0 1 0 0.00618709706364
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_54 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_54"
+  boundingObject USE BLOCK_SHAPE_54
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_55 Solid {
+  translation 0.409089299159 0.027 2.44959386609 
+  rotation 0 1 0 2.3776669437
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_55 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_55"
+  boundingObject USE BLOCK_SHAPE_55
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_56 Solid {
+  translation -0.110937616399 0.027 2.49952073735 
+  rotation 0 1 0 0.228894707191
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_56 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_56"
+  boundingObject USE BLOCK_SHAPE_56
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_57 Solid {
+  translation -0.628461068037 0.027 2.4281753634 
+  rotation 0 1 0 2.21625291558
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_57 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_57"
+  boundingObject USE BLOCK_SHAPE_57
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_58 Solid {
+  translation -1.11558123252 0.027 2.23940399181 
+  rotation 0 1 0 0.236469252868
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_58 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_58"
+  boundingObject USE BLOCK_SHAPE_58
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_59 Solid {
+  translation -1.5460373357 0.027 1.94338333609 
+  rotation 0 1 0 2.90097248253
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_59 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_59"
+  boundingObject USE BLOCK_SHAPE_59
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_60 Solid {
+  translation -1.89662337763 0.027 1.55607194639 
+  rotation 0 1 0 2.18147901073
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_60 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_60"
+  boundingObject USE BLOCK_SHAPE_60
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_61 Solid {
+  translation -2.14843917404 0.027 1.09834988001 
+  rotation 0 1 0 1.56693353263
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_61 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_61"
+  boundingObject USE BLOCK_SHAPE_61
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_62 Solid {
+  translation -2.28790927017 0.027 0.594893052005 
+  rotation 0 1 0 2.79018855713
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_62 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_62"
+  boundingObject USE BLOCK_SHAPE_62
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_63 Solid {
+  translation -2.30751479704 0.027 0.0728429502946 
+  rotation 0 1 0 1.85313352482
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_63 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_63"
+  boundingObject USE BLOCK_SHAPE_63
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_64 Solid {
+  translation -2.20619881562 0.027 -0.43965656901 
+  rotation 0 1 0 2.784221194
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_64 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_64"
+  boundingObject USE BLOCK_SHAPE_64
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_65 Solid {
+  translation -1.98942329669 0.027 -0.914976524169 
+  rotation 0 1 0 2.89738598939
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_65 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_65"
+  boundingObject USE BLOCK_SHAPE_65
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_66 Solid {
+  translation -1.66887466459 0.027 -1.32749229337 
+  rotation 0 1 0 0.945375516444
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_66 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_66"
+  boundingObject USE BLOCK_SHAPE_66
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_67 Solid {
+  translation -1.26183377904 0.027 -1.65496504471 
+  rotation 0 1 0 1.31730938646
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_67 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_67"
+  boundingObject USE BLOCK_SHAPE_67
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_68 Solid {
+  translation -0.790244319547 0.027 -1.87974063741 
+  rotation 0 1 0 0.882717140568
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_68 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_68"
+  boundingObject USE BLOCK_SHAPE_68
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_69 Solid {
+  translation -0.279529795935 0.027 -1.98970136109 
+  rotation 0 1 0 0.149611080984
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_69 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_69"
+  boundingObject USE BLOCK_SHAPE_69
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_70 Solid {
+  translation 0.242777039634 0.027 -1.97891920466 
+  rotation 0 1 0 1.24390410847
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_70 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_70"
+  boundingObject USE BLOCK_SHAPE_70
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_71 Solid {
+  translation 0.74851849046 0.027 -1.84797543698 
+  rotation 0 1 0 0.632936066861
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_71 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_71"
+  boundingObject USE BLOCK_SHAPE_71
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_72 Solid {
+  translation 1.21042990402 0.027 -1.60392927045 
+  rotation 0 1 0 2.12976681252
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_72 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_72"
+  boundingObject USE BLOCK_SHAPE_72
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_73 Solid {
+  translation 1.60360951646 0.027 -1.25993729708 
+  rotation 0 1 0 1.35211437968
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_73 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_73"
+  boundingObject USE BLOCK_SHAPE_73
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_74 Solid {
+  translation 1.90686091309 0.027 -0.834544213184 
+  rotation 0 1 0 1.24629507234
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_74 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_74"
+  boundingObject USE BLOCK_SHAPE_74
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_75 Solid {
+  translation 2.10383573262 0.027 -0.350683070037 
+  rotation 0 1 0 2.023308491
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_75 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_75"
+  boundingObject USE BLOCK_SHAPE_75
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_76 Solid {
+  translation 2.18391501156 0.027 0.165561052897 
+  rotation 0 1 0 0.749404951613
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_76 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_76"
+  boundingObject USE BLOCK_SHAPE_76
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_77 Solid {
+  translation 2.14278165524 0.027 0.686357301326 
+  rotation 0 1 0 0.401842396362
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_77 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_77"
+  boundingObject USE BLOCK_SHAPE_77
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_78 Solid {
+  translation 1.98265317356 0.027 1.18362941469 
+  rotation 0 1 0 2.13619876418
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.65 0.9
+        }
+      }
+      geometry DEF BLOCK_SHAPE_78 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_78"
+  boundingObject USE BLOCK_SHAPE_78
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_79 Solid {
+  translation 2.22553985553 0.027 1.77256936133 
+  rotation 0 1 0 1.86675992862
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_79 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_79"
+  boundingObject USE BLOCK_SHAPE_79
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_80 Solid {
+  translation 1.88449883485 0.027 2.19007823083 
+  rotation 0 1 0 2.62227709899
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_80 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_80"
+  boundingObject USE BLOCK_SHAPE_80
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_81 Solid {
+  translation 1.46855888196 0.027 2.53303098193 
+  rotation 0 1 0 1.32170829441
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_81 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_81"
+  boundingObject USE BLOCK_SHAPE_81
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_82 Solid {
+  translation 0.993704335975 0.027 2.78824813273 
+  rotation 0 1 0 3.06910278249
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_82 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_82"
+  boundingObject USE BLOCK_SHAPE_82
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_83 Solid {
+  translation 0.478183590812 0.027 2.94592183126 
+  rotation 0 1 0 0.264550119234
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_83 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_83"
+  boundingObject USE BLOCK_SHAPE_83
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_84 Solid {
+  translation -0.0581921804064 0.027 2.9999927657 
+  rotation 0 1 0 0.771934939554
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_84 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_84"
+  boundingObject USE BLOCK_SHAPE_84
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_85 Solid {
+  translation -0.594810357594 0.027 2.94838302037 
+  rotation 0 1 0 1.17974859713
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_85 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_85"
+  boundingObject USE BLOCK_SHAPE_85
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_86 Solid {
+  translation -1.11104900514 0.027 2.79307592884 
+  rotation 0 1 0 0.299051143892
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_86 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_86"
+  boundingObject USE BLOCK_SHAPE_86
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_87 Solid {
+  translation -1.58706936133 0.027 2.54003985553 
+  rotation 0 1 0 2.4164442726
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_87 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_87"
+  boundingObject USE BLOCK_SHAPE_87
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_88 Solid {
+  translation -2.00457823083 0.027 2.19899883485 
+  rotation 0 1 0 2.40431620785
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_88 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_88"
+  boundingObject USE BLOCK_SHAPE_88
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_89 Solid {
+  translation -2.34753098193 0.027 1.78305888196 
+  rotation 0 1 0 0.906081135592
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_89 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_89"
+  boundingObject USE BLOCK_SHAPE_89
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_90 Solid {
+  translation -2.60274813273 0.027 1.30820433598 
+  rotation 0 1 0 3.13601029701
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_90 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_90"
+  boundingObject USE BLOCK_SHAPE_90
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_91 Solid {
+  translation -2.76042183126 0.027 0.792683590812 
+  rotation 0 1 0 0.0223962189427
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_91 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_91"
+  boundingObject USE BLOCK_SHAPE_91
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_92 Solid {
+  translation -2.8144927657 0.027 0.256307819594 
+  rotation 0 1 0 3.09796437472
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_92 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_92"
+  boundingObject USE BLOCK_SHAPE_92
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_93 Solid {
+  translation -2.76288302037 0.027 -0.280310357594 
+  rotation 0 1 0 3.10785497273
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_93 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_93"
+  boundingObject USE BLOCK_SHAPE_93
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_94 Solid {
+  translation -2.60757592884 0.027 -0.796549005141 
+  rotation 0 1 0 0.698548808437
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_94 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_94"
+  boundingObject USE BLOCK_SHAPE_94
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_95 Solid {
+  translation -2.35453985553 0.027 -1.27256936133 
+  rotation 0 1 0 2.94885502269
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_95 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_95"
+  boundingObject USE BLOCK_SHAPE_95
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_96 Solid {
+  translation -2.01349883485 0.027 -1.69007823083 
+  rotation 0 1 0 1.88309233957
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_96 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_96"
+  boundingObject USE BLOCK_SHAPE_96
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_97 Solid {
+  translation -1.59755888196 0.027 -2.03303098193 
+  rotation 0 1 0 0.394856375756
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_97 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_97"
+  boundingObject USE BLOCK_SHAPE_97
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_98 Solid {
+  translation -1.12270433598 0.027 -2.28824813273 
+  rotation 0 1 0 2.08409956557
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_98 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_98"
+  boundingObject USE BLOCK_SHAPE_98
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_99 Solid {
+  translation -0.607183590812 0.027 -2.44592183126 
+  rotation 0 1 0 1.91570609591
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_99 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_99"
+  boundingObject USE BLOCK_SHAPE_99
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_100 Solid {
+  translation -0.0708078195936 0.027 -2.4999927657 
+  rotation 0 1 0 1.74857162232
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_100 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_100"
+  boundingObject USE BLOCK_SHAPE_100
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_101 Solid {
+  translation 0.465810357594 0.027 -2.44838302037 
+  rotation 0 1 0 1.62917208169
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_101 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_101"
+  boundingObject USE BLOCK_SHAPE_101
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_102 Solid {
+  translation 0.982049005141 0.027 -2.29307592884 
+  rotation 0 1 0 0.311454347015
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_102 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_102"
+  boundingObject USE BLOCK_SHAPE_102
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_103 Solid {
+  translation 1.45806936133 0.027 -2.04003985553 
+  rotation 0 1 0 1.42118945259
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_103 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_103"
+  boundingObject USE BLOCK_SHAPE_103
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_104 Solid {
+  translation 1.87557823083 0.027 -1.69899883485 
+  rotation 0 1 0 0.0620387816334
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_104 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_104"
+  boundingObject USE BLOCK_SHAPE_104
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_105 Solid {
+  translation 2.21853098193 0.027 -1.28305888196 
+  rotation 0 1 0 0.635404437516
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_105 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_105"
+  boundingObject USE BLOCK_SHAPE_105
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_106 Solid {
+  translation 2.47374813273 0.027 -0.808204335975 
+  rotation 0 1 0 2.005508381
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_106 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_106"
+  boundingObject USE BLOCK_SHAPE_106
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_107 Solid {
+  translation 2.63142183126 0.027 -0.292683590812 
+  rotation 0 1 0 1.08023820552
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_107 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_107"
+  boundingObject USE BLOCK_SHAPE_107
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_108 Solid {
+  translation 2.6854927657 0.027 0.243692180406 
+  rotation 0 1 0 0.815818452041
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_108 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_108"
+  boundingObject USE BLOCK_SHAPE_108
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_109 Solid {
+  translation 2.63388302037 0.027 0.780310357594 
+  rotation 0 1 0 1.3596503648
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_109 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_109"
+  boundingObject USE BLOCK_SHAPE_109
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF OBSTACLE_110 Solid {
+  translation 2.47857592884 0.027 1.29654900514 
+  rotation 0 1 0 0.613799942257
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.8 0.95
+        }
+      }
+      geometry DEF BLOCK_SHAPE_110 Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  name "block_bumper_110"
+  boundingObject USE BLOCK_SHAPE_110
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+
+Supervisor {
+  children [
+    DEF RECEIVER Receiver {
+    }
+  ]
+  controller "supervisor"
+}
+DEF MODULE_1 Robot {
+  translation 0.00501692 0.0305504 -0.0369977
+  rotation 0.707107 0.707107 1.33164e-06 3.14157
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 2
+    }
+    DEF GYRO Gyro {
+    }
+    DEF EMITTER Emitter {
+      channel 1
+    }
+    DEF SONAR0 DistanceSensor {
+      translation 0.027 0 0
+      children [
+        DEF SONAR Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.975691 0.981481 0.0252992
+                }
+              }
+              geometry Cylinder {
+                height 0.005
+                radius 0.003
+              }
+            }
+          ]
+        }
+      ]
+      name "sonar0"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR1 DistanceSensor {
+      translation 0 0 0.03
+      rotation 0 -1 0 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar1"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR2 DistanceSensor {
+      translation 0 -0.024 0
+      rotation 0 0 -1 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar2"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR3 DistanceSensor {
+      translation 0 0.024 0
+      rotation 0 0 1 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar3"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR4 DistanceSensor {
+      translation -0.027 0 0
+      rotation 0 1 0 3.1416
+      children [
+        USE SONAR
+      ]
+      name "sonar4"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF BODY_GROUP Group {
+      children [
+        DEF BOX_SHAPE Shape {
+          appearance DEF PLASTIC Appearance {
+            material Material {
+              diffuseColor 0 1 0
+            }
+          }
+          geometry Box {
+            size 0.054 0.0482 0.06
+          }
+        }
+        DEF CYLINDER_TRANS Transform {
+          translation 0 0 -0.03
+          children [
+            Shape {
+              appearance USE PLASTIC
+              geometry Cylinder {
+                height 0.0482
+                radius 0.027
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF BACK_CONNECTOR Connector {
+      translation 0 0 0.03
+      children [
+        DEF ROUND_SHAPE Transform {
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 1 1 1
+                }
+              }
+              geometry Cylinder {
+                height 0.003
+                radius 0.0075
+              }
+            }
+          ]
+        }
+      ]
+      name "back_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF TOP_CONNECTOR Connector {
+      translation 0.027 0 0
+      rotation 0 1 0 1.5708
+      children [
+        USE ROUND_SHAPE
+      ]
+      name "top_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF BOTTOM_CONNECTOR Connector {
+      translation -0.027 0 0
+      rotation 0 1 0 -1.5708
+      children [
+        USE ROUND_SHAPE
+      ]
+      name "bottom_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF SERVO Servo {
+      translation 0 0 -0.03
+      children [
+        DEF GREY_BOX_TRANS Transform {
+          translation 0 0 -0.0135
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.752941 0.752941 0.752941
+                }
+              }
+              geometry Box {
+                size 0.015 0.0612 0.047
+              }
+            }
+          ]
+        }
+        DEF FRONT_CONNECTOR Connector {
+          translation 0 0 -0.037
+          rotation 0 1 0 3.1416
+          children [
+            USE ROUND_SHAPE
+          ]
+          name "front_connector"
+          model "conn_model"
+          isLocked TRUE
+          autoLock TRUE
+          distanceTolerance 0.05
+          axisTolerance 0.75
+          rotationTolerance 0.75
+        }
+        DistanceSensor {
+          translation 0 0 -0.037
+          rotation 0 1 0 1.5708
+          children [
+            USE SONAR
+          ]
+          name "sonar5"
+          lookupTable [
+            0 1 0
+            0.005 1 0.1
+            0.08 0 0.1
+          ]
+          type "sonar"
+          aperture 0.001
+        }
+      ]
+      boundingObject USE GREY_BOX_TRANS
+      physics Physics {
+        density -1
+        mass 0.016
+        coulombFriction 0.5
+      }
+      maxVelocity 3.9667
+      maxForce 1.1
+      position 4.21468e-08
+      minPosition -1.5708
+      maxPosition 1.5708
+    }
+    DEF BUMPER_1 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_1"
+  boundingObject USE BODY_GROUP
+  physics DEF BODY_PHYSICS Physics {
+    density -1
+    mass 0.17
+    coulombFriction 0.5
+  }
+  controller "controller_3"
+}
+DEF MODULE_2 Robot {
+  translation 0.00501502 0.0305531 0.0600023
+  rotation 0.707107 0.707107 3.99897e-06 3.14157
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 3
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 1
+    }
+    DEF EMITTER Emitter {
+      channel 2
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_2 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_2"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_3 Robot {
+  translation 0.00501214 0.0305564 0.194003
+  rotation -6.04091e-06 1.02169e-08 1 3.14159
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 2
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 4
+    }
+    DEF EMITTER Emitter {
+      channel 3
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_3 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_3"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_4 Robot {
+  translation 0.00501065 0.0305568 0.251004
+  rotation 7.96136e-07 1 -7.37957e-07 1.57078
+  children [
+    DEF PHYSICS_DATA Receiver {
+      name "receiver_physics"
+      channel 20
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 13
+    }
+    GPS {
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
+      channel 3
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 5
+    }
+    DEF EMITTER Emitter {
+      channel 4
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_4 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_4"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_5 Robot {
+  translation 0.00501035 0.0305564 0.308004
+  rotation 4.60476e-08 1 8.79019e-08 3.14157
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 6
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 4
+    }
+    DEF EMITTER Emitter {
+      channel 5
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_5 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_5"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_6 Robot {
+  translation 0.00500902 0.0305531 0.442005
+  rotation 1.89853e-06 1.00374e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 5
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 7
+    }
+    DEF EMITTER Emitter {
+      channel 6
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_6 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_6"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_7 Robot {
+  translation 0.00500787 0.0305504 0.539005
+  rotation -1.77938e-06 1.37821e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 6
+    }
+    DEF EMITTER Emitter {
+      channel 7
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_7 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_7"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_10 Robot {
+  translation -0.128991 0.0305504 -0.0369997
+  rotation 0.707107 0.707107 -1.30001e-06 3.14157
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 11
+    }
+    DEF EMITTER Emitter {
+      channel 10
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_10 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_10"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_11 Robot {
+  translation -0.128992 0.0305531 0.0600003
+  rotation 0.707107 0.707107 1.31944e-06 3.14158
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 12
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 10
+    }
+    DEF EMITTER Emitter {
+      channel 11
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_11 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_11"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_12 Robot {
+  translation -0.128994 0.0305564 0.194001
+  rotation 0.0045689 0.999982 0.00399521 -1.92777e-05
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 11
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 13
+    }
+    DEF EMITTER Emitter {
+      channel 12
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_12 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_12"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_13 Robot {
+  translation -0.128994 0.0305568 0.251002
+  rotation -7.09779e-07 1 -6.54043e-07 -1.57081
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 4
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
+      channel 12
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 14
+    }
+    DEF EMITTER Emitter {
+      channel 13
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_13 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_13"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_14 Robot {
+  translation -0.128995 0.0305564 0.308002
+  rotation -1 3.83053e-08 -6.02184e-06 3.14159
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 15
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 13
+    }
+    DEF EMITTER Emitter {
+      channel 14
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_14 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_14"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_15 Robot {
+  translation -0.128998 0.0305531 0.442003
+  rotation 5.6527e-06 1.37925e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 14
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 16
+    }
+    DEF EMITTER Emitter {
+      channel 15
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_15 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_15"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
+DEF MODULE_16 Robot {
+  translation -0.129 0.0305504 0.539003
+  rotation 1.90649e-06 1.74719e-05 -1 -1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 15
+    }
+    DEF EMITTER Emitter {
+      channel 16
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    DEF BUMPER_16 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_16"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "controller_3"
+}
