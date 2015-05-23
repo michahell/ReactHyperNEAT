@@ -1014,8 +1014,8 @@ int main()
     reset = output.values[1][0];
 
     // target_angle = -1*((1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)));
-    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
-		target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
+    target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+		// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
 
 
 		/// set servo position

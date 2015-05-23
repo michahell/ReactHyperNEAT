@@ -92,7 +92,9 @@ static WbDeviceTag physics_receiver;
 NEAT::FastBiasNetwork<double> substrate;
 
 const int numNodes = 3;
-const int numNodesX = numNodes, numNodesY = numNodes;
+const int numNodesX = numNodes;
+// const int numNodesY = numNodes;
+const int numNodesY = 9;
 
 template<class T> T signum(T n) {
 	if (n < 0)
@@ -489,24 +491,37 @@ void setupNetwork() {
 #endif
 }
 
-template<class T, int size>
-class mesh2D {
-public:
-	T values[size][size];
-	mesh2D(T val = 0) {
-		for (int i = 0; i < size; i++)
-			for (int j = 0; j < size; j++)
-				values[i][j] = val;
-	}
-	mesh2D(const mesh2D<T, size> &source) {
-		for (int i = 0; i < size; i++)
-			for (int j = 0; j < size; j++)
-				this->values[i][j] = source.values[i][j];
-	}
+template<class T, int size> class mesh2D {
+  public:
+  	T values[size][size];
+  	mesh2D(T val = 0) {
+  		for (int i = 0; i < size; i++)
+  			for (int j = 0; j < size; j++)
+  				values[i][j] = val;
+  	}
+  	mesh2D(const mesh2D<T, size> &source) {
+  		for (int i = 0; i < size; i++)
+  			for (int j = 0; j < size; j++)
+  				this->values[i][j] = source.values[i][j];
+  	}
 };
 
-template<class T, int size>
-ostream &operator <<(ostream &stream, mesh2D<T, size> mesh) {
+template<class T, int size1, int size2> class mesh2D2 {
+  public:
+    T values[size1][size2];
+    mesh2D(T val = 0) {
+      for (int i = 0; i < size1; i++)
+        for (int j = 0; j < size2; j++)
+          values[i][j] = val;
+    }
+    mesh2D(const mesh2D<T, size1, size2> &source) {
+      for (int i = 0; i < size1; i++)
+        for (int j = 0; j < size2; j++)
+          this->values[i][j] = source.values[i][j];
+    }
+};
+
+template<class T, int size> ostream &operator <<(ostream &stream, mesh2D<T, size> mesh) {
 	stream << "mesh2D.values:" << endl;
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++)
@@ -516,21 +531,21 @@ ostream &operator <<(ostream &stream, mesh2D<T, size> mesh) {
 	return stream;
 }
 
-mesh2D<double, numNodes> propagate_network(
-		const mesh2D<double, numNodes> &input) {
-#ifdef CTRLER_DEBUG
-		file << "Network input: " << input << endl;
-#endif
+mesh2D2<double, numNodes, 9> propagate_network(const mesh2D2<double, numNodes, 9> &input) {
+
+  // #ifdef CTRLER_DEBUG
+  // 	file << "Network input: " << input << endl;
+  // #endif
 
 	/// prepare substrate network
 	substrate.reinitialize();
 	substrate.dummyActivation();
 	// for all nodes in the input layer, in NEAT coordinates
-	for (int y = (-numNodesY / 2); y <= numNodesY / 2; y++) {
+	for (int y = (-9 / 2); y <= 9 / 2; y++) {
 		for (int x = (-numNodesX / 2); x <= numNodesX / 2; x++) {
 			// compute C matrix coordinates
 			int boardx = (x + (numNodesX / 2));
-			int boardy = (y + (numNodesY / 2));
+			int boardy = (y + (9 / 2));
 			/// set the right value to the input nodes (in layer A)
 			//substrate.setValue(nameLookup[Node(x, y, 0)],
 			//		(input.values[boardx][boardy] - normFactor) / stDev);
@@ -543,7 +558,7 @@ mesh2D<double, numNodes> propagate_network(
   substrate.update();
 
 	/// write the output in coresponding object
-	mesh2D<double, numNodes> output;
+	mesh2D2<double, numNodes, numNodesY> output;
 	int count = 0;
 	for (int y = (-numNodesY / 2); y <= numNodesY / 2; y++) {
 		for (int x = (-numNodesX / 2); x <= numNodesX / 2; x++) {
@@ -569,7 +584,7 @@ mesh2D<double, numNodes> propagate_network(
 }
 
 // VALUES FOR THE 3 NEIGHBORING SERVOS
-mesh2D<double, 1> front_self, self, back_self, top_self, bottom_self;
+mesh2D<double, 3> sensor_grid_front, sensor_grid_self, sensor_grid_back, sensor_grid_top, sensor_grid_bottom;
 
 int main()
 {
@@ -658,7 +673,7 @@ int main()
 	char sonar_name[7] = "sonar0";
 	for (int i = 0; i < 6; i++) {
 		sonar_name[5] = '0' + i;
-    // screen << "has sensor? " << wb_robot_get_device(sonar_name) << endl;
+    screen << endl << "has sensor? " << wb_robot_get_device(sonar_name) << endl;
 		distance_sensors[i] = wb_robot_get_device(sonar_name);
 		wb_distance_sensor_enable(distance_sensors[i], CONTROL_STEP);
 	}
@@ -850,37 +865,24 @@ int main()
 
 
 		double distances[6];
-		for (int i = 0; i < 6; i++)
-			distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
-
 		int activity[6] = {0,0,0,0,0,0};
-		activity[0] = (distances[0] - old_distances[0])
-				> threshold ? signum(distances[0] - old_distances[0]) : 0;
 
-		activity[1]  = (distances[1] - old_distances[1])
-				> threshold ? signum(distances[1] - old_distances[1]) : 0;
+    for (int i = 0; i < 6; i++) {
+      distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
+      activity[i] = (distances[i] - old_distances[i]) > threshold ? signum(distances[i] - old_distances[i]) : 0;
+    }
 
-		activity[2]  = (distances[2] - old_distances[2])
-				> threshold ? signum(distances[2] - old_distances[2]) : 0;
-
-		activity[3]  = (distances[3]
-				- old_distances[3]) > threshold ? signum(distances[3]
-				- old_distances[3]) : 0;
-
-		activity[4]  = (distances[4]
-				- old_distances[4]) > threshold ? signum(distances[4]
-				- old_distances[4]) : 0;
-
-		activity[5]  = (distances[5]
-				- old_distances[5]) > threshold ? signum(distances[5]
-				- old_distances[5]) : 0;
-
-		bool activated = false;
-		for (int i=0; i<6 && !activated;  i++)
-			if(activity[i] == 1)
-				activated = true;
-
-		self.values[0][0] = (activated? -1.0 : 0.0); // * (sin(10.0 * t));
+    // store activity in a mesh2D (better performance to transmit 1 mesh2D then transmit 5 individual sensor vals).
+    // left sensor. Sonar2 in the webots robot module is the left sensor, seen from 'within' the robot organism.
+    sensor_grid_self[0][1] = activity[2];
+    // right sensor
+    sensor_grid_self[2][1] = activity[3];
+    // front sensor
+    sensor_grid_self[1][0] = activity[0];
+    // back sensor
+    sensor_grid_self[1][2] = activity[4];
+    // self sensor
+    sensor_grid_self[1][1] = activity[1];
 
 		// update distance sensor information for next iteration
 		for (int i = 0; i < 6; i++)
@@ -888,13 +890,12 @@ int main()
 
 		/////////////////////      END UPDATE SELF VALUE     ///////////////////////////////
 
-		// send my current alpha
-		if (wb_emitter_send(emitter, &self,
-				sizeof(mesh2D<double, numNodes / 3> )) != 1) {
+    // send my current object detection matrix
+		if (wb_emitter_send(emitter, &sensor_grid_self, sizeof(mesh2D<double, 3> )) != 1) {
 			screen << "Error: Sending my own package failed." << endl;
 		}
 
-		// get the front_self alpha
+		// get the object detection matrix of the module in front
 		if (control_loop_iteration > 0) {
 			if (wb_receiver_get_queue_length(receiver_front) > 0) {
 				if (wb_receiver_get_queue_length(receiver_front) != 1) {
@@ -902,9 +903,7 @@ int main()
 							<< wb_receiver_get_queue_length(receiver_front)
 							<< " packages." << endl;
 				}
-				front_self
-						= *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(
-								receiver_front));
+				sensor_grid_front = *((mesh2D<double, 3>*) wb_receiver_get_data(receiver_front));
 				/* fetch next packet */
 				wb_receiver_next_packet(receiver_front);
 			} else {
@@ -912,18 +911,15 @@ int main()
 			}
 		}
 
-		// get the back_self alpha
-		if (receiver_back//id != 1 && id != 7 && id != 4 && id != 10 && id != 16 && id != 13
-				&& control_loop_iteration > 0) {
+		// get the object detection matrix of the module at the back
+		if (receiver_back && control_loop_iteration > 0) { //id != 1 && id != 7 && id != 4 && id != 10 && id != 16 && id != 13
 			if (wb_receiver_get_queue_length(receiver_back) > 0) {
 				if (wb_receiver_get_queue_length(receiver_back) != 1) {
 					screen << "Warning: back receiver queue has "
 							<< wb_receiver_get_queue_length(receiver_back)
 							<< " packages." << endl;
 				}
-				back_self
-						= *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(
-								receiver_back));
+				sensor_grid_back = *((mesh2D<double, 3>*) wb_receiver_get_data(receiver_back));
 				/* fetch next packet */
 				wb_receiver_next_packet(receiver_back);
 			} else {
@@ -931,18 +927,16 @@ int main()
 			}
 		}
 
-		// get the top_self alpha
-		if (receiver_top && receiver_bottom
-				&& control_loop_iteration > 0) {
+		// get the object detection matrix of the module at the top.
+    // (applies only to center modules, 4 and 13 specifically.)
+		if (receiver_top && receiver_bottom && control_loop_iteration > 0) {
 			if (wb_receiver_get_queue_length(receiver_top) > 0) {
 				if (wb_receiver_get_queue_length(receiver_top) != 1) {
 					screen << "Warning: top receiver queue has "
 							<< wb_receiver_get_queue_length(receiver_top)
 							<< " packages." << endl;
 				}
-				top_self
-						= *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(
-								receiver_top));
+				sensor_grid_top = *((mesh2D<double, 3>*) wb_receiver_get_data(receiver_top));
 				/* fetch next packet */
 				wb_receiver_next_packet(receiver_top);
 			} else {
@@ -956,57 +950,77 @@ int main()
 							<< wb_receiver_get_queue_length(receiver_bottom)
 							<< " packages." << endl;
 				}
-				bottom_self = *((mesh2D<double, numNodes / 3>*) wb_receiver_get_data(receiver_bottom));
+				sensor_grid_bottom = *((mesh2D<double, 3>*) wb_receiver_get_data(receiver_bottom));
 				/* fetch next packet */
 				wb_receiver_next_packet(receiver_bottom);
 			} else {
 				screen << "Error: empty bottom buffer." << endl;
 			}
 		}
+
     #ifdef CTRLER_DEBUG
-    		file << "Self:" << endl << self << endl;
-    		file << "Front:" << front_self << endl;
-    		file << "Back:" << back_self << endl;
-    		file << "Top:" << top_self << endl;
-    		file << "Bottom:" << bottom_self << endl;
+    		file << "Self:" << endl << sensor_grid_self << endl;
+    		file << "Front:" << sensor_grid_front << endl;
+    		file << "Back:" << sensor_grid_back << endl;
+
+    		file << "Top:" << sensor_grid_top << endl;
+    		file << "Bottom:" << sensor_grid_bottom << endl;
     #endif
 
 		////// 	COMPUTE THE NEW ALPHA_SELF
 
 		/// create input
-		mesh2D<double, numNodes> input(0);
+		// mesh2D<double, numNodes> input(0);
+    mesh2D2<double, numNodes, 9> input(0);
 
 
 		//////////////////////////// SUBSTRATE INPUT ////////////////////////////
 
-		input.values[1][0] = front_self.values[0][0];
-		input.values[1][2] = back_self.values[0][0];
-		input.values[0][1] = top_self.values[0][0];
-		input.values[2][1] = bottom_self.values[0][0];
-		input.values[1][1] = self.values[0][0];
+    // front module obstacle sensor grid input, (from top down left to right).
+    input.values[1][0] = sensor_grid_front.values[1][0];  // front module front sensor
+    input.values[0][1] = sensor_grid_front.values[0][1];  // front module left sensor
+    input.values[1][1] = sensor_grid_front.values[1][1];  // front module bottom sensor
+    input.values[2][1] = sensor_grid_front.values[2][1];  // front module right sensor
+		input.values[1][2] = sensor_grid_front.values[1][2];  // front module back sensor
 
+    // self module obstacle sensor grid input.
+    input.values[1][3] = sensor_grid_self.values[1][0]; // current (module/controller) front sensor
+    input.values[0][4] = sensor_grid_self.values[0][1]; // current (module/controller) left sensor
+    input.values[1][4] = sensor_grid_self.values[1][1];  // current (module/controller) bottom sensor
+    input.values[2][4] = sensor_grid_self.values[2][1]; // current (module/controller) right sensor
+		input.values[1][5] = sensor_grid_self.values[1][2]; // current (module/controller) back sensor
+
+    // back obstacle sensor grid input.
+    input.values[1][6] = sensor_grid_back.values[1][0]; // back module front sensor
+    input.values[0][7] = sensor_grid_back.values[0][1]; // back module left sensor
+    input.values[1][7] = sensor_grid_back.values[1][1]; // back module bottom sensor
+    input.values[2][7] = sensor_grid_back.values[2][1]; // back module right sensor
+    input.values[1][8] = sensor_grid_back.values[1][2]; // back module back sensor
+
+    // top and bottom are excluded in this experiment.
+		
 		//////////////////////////// SUBSTRATE OUTPUT ////////////////////////////
 
 		/// compute substrate outputs
-		mesh2D<double, numNodes> output = propagate_network(input);
+		mesh2D2<double, numNodes, 9> output = propagate_network(input);
 
 
 		// update angle, omega, amplitude, phase
 		// intial joint angle [-1 ... 1] for [-pi/2 ... pi/2]
-		alpha = output.values[1][1];
+		alpha = output.values[1][5];
 		// initial angular speed [-1 ... 1] for [-10 ... 10]
-		omega = output.values[2][1];
+		omega = output.values[2][5];
 		// initial amplitude [-1 ... 1] for [-pi/2 ... pi/2]
-		amplitude = output.values[0][1];
+		amplitude = output.values[0][5];
 		// update phase
-		phase = output.values[1][2];
+		// phase = output.values[1][6];
     // CPG diminishing / resetting output, [0...1]
-    double cancellation = output.values[1][0];
+    // double cancellation = output.values[1][0];
 
     // target_angle = -1*((1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)));
-    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
 		// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
-    target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) - (amplitude * cancellation);
+    // target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) - (amplitude * cancellation);
 
 
 		/// set servo position
