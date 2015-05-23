@@ -506,30 +506,44 @@ template<class T, int size> class mesh2D {
   	}
 };
 
+// output stream operator overloading to be able to output Mesh2D
+template<class T, int size> ostream &operator <<(ostream &stream, mesh2D<T, size> mesh) {
+  stream << "mesh2D.values:" << endl;
+  for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++)
+      stream << fixed << mesh.values[i][j] << "\t";
+    stream << endl;
+  }
+  return stream;
+}
+
+
 template<class T, int size1, int size2> class mesh2D2 {
   public:
     T values[size1][size2];
-    mesh2D(T val = 0) {
+    mesh2D2(T val = 0) {
       for (int i = 0; i < size1; i++)
         for (int j = 0; j < size2; j++)
           values[i][j] = val;
     }
-    mesh2D(const mesh2D<T, size1, size2> &source) {
+    mesh2D2(const mesh2D2<T, size1, size2> &source) {
       for (int i = 0; i < size1; i++)
         for (int j = 0; j < size2; j++)
           this->values[i][j] = source.values[i][j];
     }
 };
 
-template<class T, int size> ostream &operator <<(ostream &stream, mesh2D<T, size> mesh) {
-	stream << "mesh2D.values:" << endl;
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++)
-			stream << fixed << mesh.values[i][j] << "\t";
-		stream << endl;
-	}
-	return stream;
+// output stream operator overloading to be able to output Mesh2D2 !!
+template<class T, int size1, int size2> ostream &operator <<(ostream &stream, mesh2D2<T, size1, size2> mesh) {
+  stream << "mesh2D2.values:" << endl;
+  for (int i = 0; i < size1; i++) {
+    for (int j = 0; j < size2; j++)
+      stream << fixed << mesh.values[i][j] << "\t";
+    stream << endl;
+  }
+  return stream;
 }
+
 
 mesh2D2<double, numNodes, 9> propagate_network(const mesh2D2<double, numNodes, 9> &input) {
 
@@ -874,15 +888,15 @@ int main()
 
     // store activity in a mesh2D (better performance to transmit 1 mesh2D then transmit 5 individual sensor vals).
     // left sensor. Sonar2 in the webots robot module is the left sensor, seen from 'within' the robot organism.
-    sensor_grid_self[0][1] = activity[2];
+    sensor_grid_self.values[0][1] = activity[2];
     // right sensor
-    sensor_grid_self[2][1] = activity[3];
+    sensor_grid_self.values[2][1] = activity[3];
     // front sensor
-    sensor_grid_self[1][0] = activity[0];
+    sensor_grid_self.values[1][0] = activity[0];
     // back sensor
-    sensor_grid_self[1][2] = activity[4];
+    sensor_grid_self.values[1][2] = activity[4];
     // self sensor
-    sensor_grid_self[1][1] = activity[1];
+    sensor_grid_self.values[1][1] = activity[1];
 
 		// update distance sensor information for next iteration
 		for (int i = 0; i < 6; i++)
