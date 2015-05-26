@@ -10,9 +10,8 @@ WorldInfo {
   runRealTime TRUE
 }
 Viewpoint {
-  fieldOfView 0.9
-  orientation 0.0510861 0.934675 0.351813 3.41139
-  position -0.513303 1.36006 -1.3111
+  orientation 0.0465412 0.968059 0.246366 3.50623
+  position -0.325157 0.741048 -1.29951
 }
 Background {
   skyColor [
@@ -82,8 +81,8 @@ DEF GROUND Solid {
 
 
 DEF OBSTACLE_1 Solid {
-  translation 0.645305885862 0.027 0.492230477842 
-  rotation 0 1 0 2.48090384941
+  translation 0.596461507865 0.027 0.604443063298 
+  rotation 0 1 0 0.737568394966
   children [
     Shape {
       appearance Appearance {
@@ -107,8 +106,8 @@ DEF OBSTACLE_1 Solid {
   }
 }
 DEF OBSTACLE_2 Solid {
-  translation 0.429094689991 0.027 0.814680690313 
-  rotation 0 1 0 1.78808064222
+  translation 0.330687925086 0.027 0.887437450944 
+  rotation 0 1 0 2.70605799621
   children [
     Shape {
       appearance Appearance {
@@ -132,8 +131,8 @@ DEF OBSTACLE_2 Solid {
   }
 }
 DEF OBSTACLE_3 Solid {
-  translation 0.0806251955492 0.027 0.985825167833 
-  rotation 0 1 0 2.5208325671
+  translation -0.040975943079 0.027 0.999630988384 
+  rotation 0 1 0 1.29544460471
   children [
     Shape {
       appearance Appearance {
@@ -157,8 +156,8 @@ DEF OBSTACLE_3 Solid {
   }
 }
 DEF OBSTACLE_4 Solid {
-  translation -0.306730477842 0.027 0.959805885862 
-  rotation 0 1 0 1.52611076884
+  translation -0.418943063298 0.027 0.910961507865 
+  rotation 0 1 0 0.926953621738
   children [
     Shape {
       appearance Appearance {
@@ -182,8 +181,8 @@ DEF OBSTACLE_4 Solid {
   }
 }
 DEF OBSTACLE_5 Solid {
-  translation -0.629180690313 0.027 0.743594689991 
-  rotation 0 1 0 1.51165096037
+  translation -0.701937450944 0.027 0.645187925086 
+  rotation 0 1 0 2.04485054122
   children [
     Shape {
       appearance Appearance {
@@ -207,8 +206,8 @@ DEF OBSTACLE_5 Solid {
   }
 }
 DEF OBSTACLE_6 Solid {
-  translation -0.800325167833 0.027 0.395125195549 
-  rotation 0 1 0 1.03448650618
+  translation -0.814130988384 0.027 0.273524056921 
+  rotation 0 1 0 2.10162325863
   children [
     Shape {
       appearance Appearance {
@@ -232,8 +231,8 @@ DEF OBSTACLE_6 Solid {
   }
 }
 DEF OBSTACLE_7 Solid {
-  translation -0.774305885862 0.027 0.00776952215814 
-  rotation 0 1 0 0.809988855735
+  translation -0.725461507865 0.027 -0.104443063298 
+  rotation 0 1 0 0.559821777904
   children [
     Shape {
       appearance Appearance {
@@ -257,8 +256,8 @@ DEF OBSTACLE_7 Solid {
   }
 }
 DEF OBSTACLE_8 Solid {
-  translation -0.558094689991 0.027 -0.314680690313 
-  rotation 0 1 0 0.706028258421
+  translation -0.459687925086 0.027 -0.387437450944 
+  rotation 0 1 0 2.04545803679
   children [
     Shape {
       appearance Appearance {
@@ -282,8 +281,8 @@ DEF OBSTACLE_8 Solid {
   }
 }
 DEF OBSTACLE_9 Solid {
-  translation -0.209625195549 0.027 -0.485825167833 
-  rotation 0 1 0 1.15425178747
+  translation -0.088024056921 0.027 -0.499630988384 
+  rotation 0 1 0 2.42030214628
   children [
     Shape {
       appearance Appearance {
@@ -307,8 +306,8 @@ DEF OBSTACLE_9 Solid {
   }
 }
 DEF OBSTACLE_10 Solid {
-  translation 0.177730477842 0.027 -0.459805885862 
-  rotation 0 1 0 0.990861846852
+  translation 0.289943063298 0.027 -0.410961507865 
+  rotation 0 1 0 2.10872346958
   children [
     Shape {
       appearance Appearance {
@@ -332,8 +331,8 @@ DEF OBSTACLE_10 Solid {
   }
 }
 DEF OBSTACLE_11 Solid {
-  translation 0.500180690313 0.027 -0.243594689991 
-  rotation 0 1 0 1.47517489564
+  translation 0.572937450944 0.027 -0.145187925086 
+  rotation 0 1 0 1.97143241843
   children [
     Shape {
       appearance Appearance {
@@ -357,8 +356,8 @@ DEF OBSTACLE_11 Solid {
   }
 }
 DEF OBSTACLE_12 Solid {
-  translation 0.671325167833 0.027 0.104874804451 
-  rotation 0 1 0 1.65950475833
+  translation 0.685130988384 0.027 0.226475943079 
+  rotation 0 1 0 0.372442663615
   children [
     Shape {
       appearance Appearance {
@@ -382,8 +381,8 @@ DEF OBSTACLE_12 Solid {
   }
 }
 DEF OBSTACLE_13 Solid {
-  translation 0.774193153423 0.027 1.17687312746 
-  rotation 0 1 0 1.15221673206
+  translation 1.14171084952 0.027 0.577956378949 
+  rotation 0 1 0 2.35065183592
   children [
     Shape {
       appearance Appearance {
@@ -407,8 +406,8 @@ DEF OBSTACLE_13 Solid {
   }
 }
 DEF OBSTACLE_14 Solid {
-  translation 0.382732881652 0.027 1.4172543637 
-  rotation 0 1 0 1.64306860266
+  translation 0.941786611218 0.027 0.991543832881 
+  rotation 0 1 0 0.0173454818043
   children [
     Shape {
       appearance Appearance {
@@ -432,8 +431,8 @@ DEF OBSTACLE_14 Solid {
   }
 }
 DEF OBSTACLE_15 Solid {
-  translation -0.069128668989 0.027 1.49999143014 
-  rotation 0 1 0 2.10626755037
+  translation 0.605957790042 0.027 1.30498168315 
+  rotation 0 1 0 2.71838123494
   children [
     Shape {
       appearance Appearance {
@@ -457,8 +456,8 @@ DEF OBSTACLE_15 Solid {
   }
 }
 DEF OBSTACLE_16 Solid {
-  translation -0.520365092235 0.027 1.4139102275 
-  rotation 0 1 0 1.08094994414
+  translation 0.179579929185 0.027 1.47593841125 
+  rotation 0 1 0 2.31873233171
   children [
     Shape {
       appearance Appearance {
@@ -482,8 +481,8 @@ DEF OBSTACLE_16 Solid {
   }
 }
 DEF OBSTACLE_17 Solid {
-  translation -0.910034408739 0.027 1.17063649919 
-  rotation 0 1 0 1.08478262955
+  translation -0.279762278601 0.027 1.48132536375 
+  rotation 0 1 0 2.5773756097
   children [
     Shape {
       appearance Appearance {
@@ -507,8 +506,8 @@ DEF OBSTACLE_17 Solid {
   }
 }
 DEF OBSTACLE_18 Solid {
-  translation -1.18550961807 0.027 0.803025710239 
-  rotation 0 1 0 2.41612903004
+  translation -0.710032122853 0.027 1.32041500287 
+  rotation 0 1 0 0.150655644216
   children [
     Shape {
       appearance Appearance {
@@ -532,8 +531,8 @@ DEF OBSTACLE_18 Solid {
   }
 }
 DEF OBSTACLE_19 Solid {
-  translation -1.30958626676 0.027 0.360725734699 
-  rotation 0 1 0 2.71930474834
+  translation -1.0531192769 0.027 1.01493916448 
+  rotation 0 1 0 1.70959842203
   children [
     Shape {
       appearance Appearance {
@@ -557,8 +556,8 @@ DEF OBSTACLE_19 Solid {
   }
 }
 DEF OBSTACLE_20 Solid {
-  translation -1.26550711586 0.027 -0.0965283648639 
-  rotation 0 1 0 3.04639374617
+  translation -1.26268791947 0.027 0.606154053246 
+  rotation 0 1 0 2.45968404968
   children [
     Shape {
       appearance Appearance {
@@ -582,8 +581,8 @@ DEF OBSTACLE_20 Solid {
   }
 }
 DEF OBSTACLE_21 Solid {
-  translation -1.05922529895 0.027 -0.506981888572 
-  rotation 0 1 0 0.109566599163
+  translation -1.31043464412 0.027 0.149268363608 
+  rotation 0 1 0 1.16319917283
   children [
     Shape {
       appearance Appearance {
@@ -607,8 +606,8 @@ DEF OBSTACLE_21 Solid {
   }
 }
 DEF OBSTACLE_22 Solid {
-  translation -0.718600318457 0.027 -0.815200813647 
-  rotation 0 1 0 0.750107306176
+  translation -1.18991099113 0.027 -0.294012960362 
+  rotation 0 1 0 2.90146548883
   children [
     Shape {
       appearance Appearance {
@@ -632,8 +631,8 @@ DEF OBSTACLE_22 Solid {
   }
 }
 DEF OBSTACLE_23 Solid {
-  translation -0.28963546546 0.027 -0.979558466358 
-  rotation 0 1 0 1.24525455966
+  translation -0.917394347668 0.027 -0.663822319555 
+  rotation 0 1 0 0.966111801013
   children [
     Shape {
       appearance Appearance {
@@ -657,8 +656,8 @@ DEF OBSTACLE_23 Solid {
   }
 }
 DEF OBSTACLE_24 Solid {
-  translation 0.169735179667 0.027 -0.977857434968 
-  rotation 0 1 0 0.370458212359
+  translation -0.529689596501 0.027 -0.910214910828 
+  rotation 0 1 0 0.909514526362
   children [
     Shape {
       appearance Appearance {
@@ -682,8 +681,8 @@ DEF OBSTACLE_24 Solid {
   }
 }
 DEF OBSTACLE_25 Solid {
-  translation 0.597471065837 0.027 -0.810327453193 
-  rotation 0 1 0 2.30955806552
+  translation -0.0791584126225 0.027 -0.999914049421 
+  rotation 0 1 0 0.99787274898
   children [
     Shape {
       appearance Appearance {
@@ -707,8 +706,8 @@ DEF OBSTACLE_25 Solid {
   }
 }
 DEF OBSTACLE_26 Solid {
-  translation 0.935804091457 0.027 -0.499594373387 
-  rotation 0 1 0 0.109685094099
+  translation 0.373352471106 0.027 -0.920805369627 
+  rotation 0 1 0 1.87905076842
   children [
     Shape {
       appearance Appearance {
@@ -732,8 +731,8 @@ DEF OBSTACLE_26 Solid {
   }
 }
 DEF OBSTACLE_27 Solid {
-  translation 1.13904050665 0.027 -0.0876244198092 
-  rotation 0 1 0 2.48543097955
+  translation 0.766728952387 0.027 -0.683572937008 
+  rotation 0 1 0 0.833506549537
   children [
     Shape {
       appearance Appearance {
@@ -757,8 +756,8 @@ DEF OBSTACLE_27 Solid {
   }
 }
 DEF OBSTACLE_28 Solid {
-  translation 1.17973210737 0.027 0.369943582505 
-  rotation 0 1 0 2.82100663002
+  translation 1.04784335765 0.027 -0.32025630614 
+  rotation 0 1 0 2.15197518037
   children [
     Shape {
       appearance Appearance {
@@ -782,8 +781,8 @@ DEF OBSTACLE_28 Solid {
   }
 }
 DEF OBSTACLE_29 Solid {
-  translation 1.05238326747 0.027 0.811312539372 
-  rotation 0 1 0 0.562941846521
+  translation 1.17872962875 0.027 0.120076598771 
+  rotation 0 1 0 1.363836574
   children [
     Shape {
       appearance Appearance {
@@ -807,8 +806,8 @@ DEF OBSTACLE_29 Solid {
   }
 }
 DEF OBSTACLE_30 Solid {
-  translation 1.23291159989 0.027 1.42440331253 
-  rotation 0 1 0 0.656868933965
+  translation 1.66310294953 0.027 0.529084304065 
+  rotation 0 1 0 2.59615294547
   children [
     Shape {
       appearance Appearance {
@@ -832,8 +831,8 @@ DEF OBSTACLE_30 Solid {
   }
 }
 DEF OBSTACLE_31 Solid {
-  translation 0.849489665976 0.027 1.74235481387 
-  rotation 0 1 0 0.354350987172
+  translation 1.51449575671 0.027 1.00450142497 
+  rotation 0 1 0 1.59339219903
   children [
     Shape {
       appearance Appearance {
@@ -857,8 +856,8 @@ DEF OBSTACLE_31 Solid {
   }
 }
 DEF OBSTACLE_32 Solid {
-  translation 0.392021725034 0.027 1.93940460357 
-  rotation 0 1 0 1.8567228563
+  translation 1.23796771833 0.027 1.41879332762 
+  rotation 0 1 0 2.29112727835
   children [
     Shape {
       appearance Appearance {
@@ -882,8 +881,8 @@ DEF OBSTACLE_32 Solid {
   }
 }
 DEF OBSTACLE_33 Solid {
-  translation -0.102430891032 0.027 1.99958887957 
-  rotation 0 1 0 1.55579559202
+  translation 0.85592149149 0.027 1.73839654595 
+  rotation 0 1 0 2.37990048544
   children [
     Shape {
       appearance Appearance {
@@ -907,8 +906,8 @@ DEF OBSTACLE_33 Solid {
   }
 }
 DEF OBSTACLE_34 Solid {
-  translation -0.59381057189 0.027 1.91803186975 
-  rotation 0 1 0 1.81166407039
+  translation 0.399308189363 0.027 1.93741872796 
+  rotation 0 1 0 2.1219727675
   children [
     Shape {
       appearance Appearance {
@@ -932,8 +931,8 @@ DEF OBSTACLE_34 Solid {
   }
 }
 DEF OBSTACLE_35 Solid {
-  translation -1.04230865814 0.027 1.701340838 
-  rotation 0 1 0 2.92810913969
+  translation -0.0948800938927 0.027 1.9997362801 
+  rotation 0 1 0 0.833876547939
   children [
     Shape {
       appearance Appearance {
@@ -957,8 +956,8 @@ DEF OBSTACLE_35 Solid {
   }
 }
 DEF OBSTACLE_36 Solid {
-  translation -1.41159050217 0.027 1.36707080302 
-  rotation 0 1 0 2.67266456137
+  translation -0.586607162618 0.027 1.9203006049 
+  rotation 0 1 0 1.53626274258
   children [
     Shape {
       appearance Appearance {
@@ -982,8 +981,8 @@ DEF OBSTACLE_36 Solid {
   }
 }
 DEF OBSTACLE_37 Solid {
-  translation -1.67173908516 0.027 0.942302335058 
-  rotation 0 1 0 1.94503324359
+  translation -1.03603621412 0.027 1.70554710836 
+  rotation 0 1 0 2.18953700498
   children [
     Shape {
       appearance Appearance {
@@ -1007,8 +1006,8 @@ DEF OBSTACLE_37 Solid {
   }
 }
 DEF OBSTACLE_38 Solid {
-  translation -1.80167871609 0.027 0.461447649187 
-  rotation 0 1 0 1.38561329112
+  translation -1.4067571795 0.027 1.37287384157 
+  rotation 0 1 0 0.33739555624
   children [
     Shape {
       appearance Appearance {
@@ -1032,8 +1031,8 @@ DEF OBSTACLE_38 Solid {
   }
 }
 DEF OBSTACLE_39 Solid {
-  translation -1.79088245885 0.027 -0.0365372676934 
-  rotation 0 1 0 1.75321934844
+  translation -1.66873645091 0.027 0.949232014121 
+  rotation 0 1 0 2.80857105586
   children [
     Shape {
       appearance Appearance {
@@ -1057,8 +1056,8 @@ DEF OBSTACLE_39 Solid {
   }
 }
 DEF OBSTACLE_40 Solid {
-  translation -1.64022496198 0.027 -0.511308639248 
-  rotation 0 1 0 1.64714636963
+  translation -1.80075002583 0.027 0.468942567382 
+  rotation 0 1 0 0.0342576019147
   children [
     Shape {
       appearance Appearance {
@@ -1082,8 +1081,8 @@ DEF OBSTACLE_40 Solid {
   }
 }
 DEF OBSTACLE_41 Solid {
-  translation -1.36191159989 0.027 -0.924403312528 
-  rotation 0 1 0 0.324049738613
+  translation -1.79210294953 0.027 -0.0290843040646 
+  rotation 0 1 0 2.14781189442
   children [
     Shape {
       appearance Appearance {
@@ -1107,8 +1106,8 @@ DEF OBSTACLE_41 Solid {
   }
 }
 DEF OBSTACLE_42 Solid {
-  translation -0.978489665976 0.027 -1.24235481387 
-  rotation 0 1 0 1.45258031104
+  translation -1.64349575671 0.027 -0.504501424974 
+  rotation 0 1 0 3.0683950408
   children [
     Shape {
       appearance Appearance {
@@ -1132,8 +1131,8 @@ DEF OBSTACLE_42 Solid {
   }
 }
 DEF OBSTACLE_43 Solid {
-  translation -0.521021725034 0.027 -1.43940460357 
-  rotation 0 1 0 1.03482061297
+  translation -1.36696771833 0.027 -0.918793327625 
+  rotation 0 1 0 0.511732677651
   children [
     Shape {
       appearance Appearance {
@@ -1157,8 +1156,8 @@ DEF OBSTACLE_43 Solid {
   }
 }
 DEF OBSTACLE_44 Solid {
-  translation -0.0265691089681 0.027 -1.49958887957 
-  rotation 0 1 0 0.440996369134
+  translation -0.98492149149 0.027 -1.23839654595 
+  rotation 0 1 0 0.532595568404
   children [
     Shape {
       appearance Appearance {
@@ -1182,8 +1181,8 @@ DEF OBSTACLE_44 Solid {
   }
 }
 DEF OBSTACLE_45 Solid {
-  translation 0.46481057189 0.027 -1.41803186975 
-  rotation 0 1 0 2.26193725126
+  translation -0.528308189363 0.027 -1.43741872796 
+  rotation 0 1 0 2.2729897664
   children [
     Shape {
       appearance Appearance {
@@ -1207,8 +1206,8 @@ DEF OBSTACLE_45 Solid {
   }
 }
 DEF OBSTACLE_46 Solid {
-  translation 0.913308658145 0.027 -1.201340838 
-  rotation 0 1 0 0.13069449475
+  translation -0.0341199061073 0.027 -1.4997362801 
+  rotation 0 1 0 2.6573941435
   children [
     Shape {
       appearance Appearance {
@@ -1232,8 +1231,8 @@ DEF OBSTACLE_46 Solid {
   }
 }
 DEF OBSTACLE_47 Solid {
-  translation 1.28259050217 0.027 -0.867070803024 
-  rotation 0 1 0 2.22058149979
+  translation 0.457607162618 0.027 -1.4203006049 
+  rotation 0 1 0 2.89526039203
   children [
     Shape {
       appearance Appearance {
@@ -1257,8 +1256,8 @@ DEF OBSTACLE_47 Solid {
   }
 }
 DEF OBSTACLE_48 Solid {
-  translation 1.54273908516 0.027 -0.442302335058 
-  rotation 0 1 0 2.81361167635
+  translation 0.907036214119 0.027 -1.20554710836 
+  rotation 0 1 0 1.58215611925
   children [
     Shape {
       appearance Appearance {
@@ -1282,8 +1281,8 @@ DEF OBSTACLE_48 Solid {
   }
 }
 DEF OBSTACLE_49 Solid {
-  translation 1.67267871609 0.027 0.0385523508127 
-  rotation 0 1 0 2.02963759559
+  translation 1.2777571795 0.027 -0.872873841568 
+  rotation 0 1 0 0.391975359726
   children [
     Shape {
       appearance Appearance {
@@ -1307,8 +1306,8 @@ DEF OBSTACLE_49 Solid {
   }
 }
 DEF OBSTACLE_50 Solid {
-  translation 1.66188245885 0.027 0.536537267693 
-  rotation 0 1 0 0.311136878497
+  translation 1.53973645091 0.027 -0.449232014121 
+  rotation 0 1 0 1.29104235658
   children [
     Shape {
       appearance Appearance {
@@ -1332,8 +1331,8 @@ DEF OBSTACLE_50 Solid {
   }
 }
 DEF OBSTACLE_51 Solid {
-  translation 1.51122496198 0.027 1.01130863925 
-  rotation 0 1 0 2.69444370592
+  translation 1.67175002583 0.027 0.0310574326182 
+  rotation 0 1 0 1.2163956034
   children [
     Shape {
       appearance Appearance {
@@ -1357,8 +1356,8 @@ DEF OBSTACLE_51 Solid {
   }
 }
 DEF OBSTACLE_52 Solid {
-  translation 2.0588972821 0.027 0.99409944386 
-  rotation 0 1 0 2.48743864557
+  translation 2.17463883727 0.027 0.470810478555 
+  rotation 0 1 0 0.528045768225
   children [
     Shape {
       appearance Appearance {
@@ -1382,8 +1381,8 @@ DEF OBSTACLE_52 Solid {
   }
 }
 DEF OBSTACLE_53 Solid {
-  translation 1.83005969239 0.027 1.46373126019 
-  rotation 0 1 0 0.712983910173
+  translation 2.06336015934 0.027 0.981239456198 
+  rotation 0 1 0 1.34745712947
   children [
     Shape {
       appearance Appearance {
@@ -1407,8 +1406,8 @@ DEF OBSTACLE_53 Solid {
   }
 }
 DEF OBSTACLE_54 Solid {
-  translation 1.49908589927 0.027 1.86793051013 
-  rotation 0 1 0 2.31084218879
+  translation 1.83736798944 0.027 1.45224712548 
+  rotation 0 1 0 1.64912213594
   children [
     Shape {
       appearance Appearance {
@@ -1432,8 +1431,8 @@ DEF OBSTACLE_54 Solid {
   }
 }
 DEF OBSTACLE_55 Solid {
-  translation 1.0838187856 0.027 2.18490670748 
-  rotation 0 1 0 2.70815674393
+  translation 1.50884562396 0.027 1.85844134104 
+  rotation 0 1 0 0.360622952485
   children [
     Shape {
       appearance Appearance {
@@ -1457,8 +1456,8 @@ DEF OBSTACLE_55 Solid {
   }
 }
 DEF OBSTACLE_56 Solid {
-  translation 0.606645508971 0.027 2.39757158339 
-  rotation 0 1 0 1.9566720268
+  translation 1.09550378864 0.027 2.17792406758 
+  rotation 0 1 0 1.41671460161
   children [
     Shape {
       appearance Appearance {
@@ -1482,8 +1481,8 @@ DEF OBSTACLE_56 Solid {
   }
 }
 DEF OBSTACLE_57 Solid {
-  translation 0.0932906042315 0.027 2.49446031937 
-  rotation 0 1 0 0.927925353207
+  translation 0.619625848817 0.027 2.39347190861 
+  rotation 0 1 0 2.88163699962
   children [
     Shape {
       appearance Appearance {
@@ -1507,8 +1506,8 @@ DEF OBSTACLE_57 Solid {
   }
 }
 DEF OBSTACLE_58 Solid {
-  translation -0.428570832825 0.027 2.47034961857 
-  rotation 0 1 0 2.59368811167
+  translation 0.106866507407 0.027 2.49346462422 
+  rotation 0 1 0 0.614167709871
   children [
     Shape {
       appearance Appearance {
@@ -1532,8 +1531,8 @@ DEF OBSTACLE_58 Solid {
   }
 }
 DEF OBSTACLE_59 Solid {
-  translation -0.930805117047 0.027 2.32653929512 
-  rotation 0 1 0 2.83136975608
+  translation -0.415131246773 0.027 2.47251158125 
+  rotation 0 1 0 0.607504760953
   children [
     Shape {
       appearance Appearance {
@@ -1557,8 +1556,8 @@ DEF OBSTACLE_59 Solid {
   }
 }
 DEF OBSTACLE_60 Solid {
-  translation -1.38633666817 0.027 2.07078220078 
-  rotation 0 1 0 2.81693700815
+  translation -0.918226379683 0.027 2.33174236365 
+  rotation 0 1 0 1.10734480927
   children [
     Shape {
       appearance Appearance {
@@ -1582,8 +1581,8 @@ DEF OBSTACLE_60 Solid {
   }
 }
 DEF OBSTACLE_61 Solid {
-  translation -1.77060766238 0.027 1.7168662667 
-  rotation 0 1 0 2.04570038953
+  translation -1.37529690248 0.027 2.0787458764 
+  rotation 0 1 0 1.92088524209
   children [
     Shape {
       appearance Appearance {
@@ -1607,8 +1606,8 @@ DEF OBSTACLE_61 Solid {
   }
 }
 DEF OBSTACLE_62 Solid {
-  translation -2.06290195089 0.027 1.2838711925 
-  rotation 0 1 0 0.452695819677
+  translation -1.76170202499 0.027 1.72716122559 
+  rotation 0 1 0 1.5874285946
   children [
     Shape {
       appearance Appearance {
@@ -1632,8 +1631,8 @@ DEF OBSTACLE_62 Solid {
   }
 }
 DEF OBSTACLE_63 Solid {
-  translation -2.24746187296 0.027 0.795139854704 
-  rotation 0 1 0 0.515956116762
+  translation -2.05661054702 0.027 1.29594243076 
+  rotation 0 1 0 1.92992381572
   children [
     Shape {
       appearance Appearance {
@@ -1657,8 +1656,8 @@ DEF OBSTACLE_63 Solid {
   }
 }
 DEF OBSTACLE_64 Solid {
-  translation -2.31433775543 0.027 0.277019886237 
-  rotation 0 1 0 1.93180756582
+  translation -2.24412387382 0.027 0.808336608758 
+  rotation 0 1 0 1.42321849513
   children [
     Shape {
       appearance Appearance {
@@ -1682,8 +1681,8 @@ DEF OBSTACLE_64 Solid {
   }
 }
 DEF OBSTACLE_65 Solid {
-  translation -2.25992430215 0.027 -0.242556731291 
-  rotation 0 1 0 3.07012556442
+  translation -2.31413311341 0.027 0.290630715657 
+  rotation 0 1 0 1.03336163991
   children [
     Shape {
       appearance Appearance {
@@ -1707,8 +1706,8 @@ DEF OBSTACLE_65 Solid {
   }
 }
 DEF OBSTACLE_66 Solid {
-  translation -2.08715495647 0.027 -0.735579487941 
-  rotation 0 1 0 2.82480003954
+  translation -2.26286404956 0.027 -0.229265589842 
+  rotation 0 1 0 1.26447595101
   children [
     Shape {
       appearance Appearance {
@@ -1732,8 +1731,8 @@ DEF OBSTACLE_66 Solid {
   }
 }
 DEF OBSTACLE_67 Solid {
-  translation -1.80534375855 0.027 -1.17546939929 
-  rotation 0 1 0 0.407406563312
+  translation -2.09308061077 0.027 -0.723324563339 
+  rotation 0 1 0 2.71962110358
   children [
     Shape {
       appearance Appearance {
@@ -1757,8 +1756,8 @@ DEF OBSTACLE_67 Solid {
   }
 }
 DEF OBSTACLE_68 Solid {
-  translation -1.42968322301 0.027 -1.53851188635 
-  rotation 0 1 0 1.95051881583
+  translation -1.81393586618 0.027 -1.16491135769 
+  rotation 0 1 0 0.139034588919
   children [
     Shape {
       appearance Appearance {
@@ -1782,8 +1781,8 @@ DEF OBSTACLE_68 Solid {
   }
 }
 DEF OBSTACLE_69 Solid {
-  translation -0.980425306545 0.027 -1.80513523468 
-  rotation 0 1 0 2.23447293395
+  translation -1.44047858122 0.027 -1.53021991451 
+  rotation 0 1 0 1.80677110614
   children [
     Shape {
       appearance Appearance {
@@ -1807,8 +1806,8 @@ DEF OBSTACLE_69 Solid {
   }
 }
 DEF OBSTACLE_70 Solid {
-  translation -0.481789619728 0.027 -1.96096571056 
-  rotation 0 1 0 2.13083086341
+  translation -0.992841934783 0.027 -1.79955635495 
+  rotation 0 1 0 1.77215093703
   children [
     Shape {
       appearance Appearance {
@@ -1832,8 +1831,8 @@ DEF OBSTACLE_70 Solid {
   }
 }
 DEF OBSTACLE_71 Solid {
-  translation 0.0393422584999 0.027 -1.99760245269 
-  rotation 0 1 0 1.71537872494
+  translation -0.495158134352 0.027 -1.95840068179 
+  rotation 0 1 0 2.81817183564
   children [
     Shape {
       appearance Appearance {
@@ -1857,8 +1856,8 @@ DEF OBSTACLE_71 Solid {
   }
 }
 DEF OBSTACLE_72 Solid {
-  translation 0.554875973693 0.027 -1.91307036483 
-  rotation 0 1 0 1.39420165924
+  translation 0.0257425575739 0.027 -1.99818955624 
+  rotation 0 1 0 0.209319071998
   children [
     Shape {
       appearance Appearance {
@@ -1882,8 +1881,8 @@ DEF OBSTACLE_72 Solid {
   }
 }
 DEF OBSTACLE_73 Solid {
-  translation 1.03701896983 0.027 -1.71192659371 
-  rotation 0 1 0 0.520599314248
+  translation 0.541778249862 0.027 -1.9167779498 
+  rotation 0 1 0 2.76857201932
   children [
     Shape {
       appearance Appearance {
@@ -1907,8 +1906,8 @@ DEF OBSTACLE_73 Solid {
   }
 }
 DEF OBSTACLE_74 Solid {
-  translation 1.45977879318 0.027 -1.4050148521 
-  rotation 0 1 0 0.79305433128
+  translation 1.02512932477 0.027 -1.71855478324 
+  rotation 0 1 0 2.80389989708
   children [
     Shape {
       appearance Appearance {
@@ -1932,8 +1931,8 @@ DEF OBSTACLE_74 Solid {
   }
 }
 DEF OBSTACLE_75 Solid {
-  translation 1.80036435224 0.027 -1.00888083143 
-  rotation 0 1 0 0.931313252316
+  translation 1.44973820074 0.027 -1.41420631876 
+  rotation 0 1 0 2.06749407529
   children [
     Shape {
       appearance Appearance {
@@ -1957,8 +1956,8 @@ DEF OBSTACLE_75 Solid {
   }
 }
 DEF OBSTACLE_76 Solid {
-  translation 2.04041459138 0.027 -0.544880219282 
-  rotation 0 1 0 1.66015679812
+  translation 1.79271410337 0.027 -1.02014006088 
+  rotation 0 1 0 0.142956749232
   children [
     Shape {
       appearance Appearance {
@@ -1982,8 +1981,8 @@ DEF OBSTACLE_76 Solid {
   }
 }
 DEF OBSTACLE_77 Solid {
-  translation 2.16698834005 0.027 -0.0380274087688 
-  rotation 0 1 0 2.12440926593
+  translation 2.03556711295 0.027 -0.557600223558 
+  rotation 0 1 0 0.295501495456
   children [
     Shape {
       appearance Appearance {
@@ -2007,8 +2006,8 @@ DEF OBSTACLE_77 Solid {
   }
 }
 DEF OBSTACLE_78 Solid {
-  translation 2.17326197472 0.027 0.484353033904 
-  rotation 0 1 0 0.841097485081
+  translation 2.1652049609 0.027 -0.0515224491411 
+  rotation 0 1 0 2.21080670836
   children [
     Shape {
       appearance Appearance {
@@ -2032,8 +2031,8 @@ DEF OBSTACLE_78 Solid {
   }
 }
 DEF OBSTACLE_79 Solid {
-  translation 2.57867406633 0.027 1.00903284189 
-  rotation 0 1 0 1.78616105536
+  translation 2.58813697648 0.027 0.975270343403 
+  rotation 0 1 0 0.555567376299
   children [
     Shape {
       appearance Appearance {
@@ -2057,8 +2056,8 @@ DEF OBSTACLE_79 Solid {
   }
 }
 DEF OBSTACLE_80 Solid {
-  translation 2.37980625626 0.027 1.51010591842 
-  rotation 0 1 0 1.66454344261
+  translation 2.39567407594 0.027 1.47883827906 
+  rotation 0 1 0 1.0143670328
   children [
     Shape {
       appearance Appearance {
@@ -2082,8 +2081,8 @@ DEF OBSTACLE_80 Solid {
   }
 }
 DEF OBSTACLE_81 Solid {
-  translation 2.08700512753 0.027 1.96275383117 
-  rotation 0 1 0 1.00343608948
+  translation 2.10866806534 0.027 1.93518264879 
+  rotation 0 1 0 2.41081598012
   children [
     Shape {
       appearance Appearance {
@@ -2107,8 +2106,8 @@ DEF OBSTACLE_81 Solid {
   }
 }
 DEF OBSTACLE_82 Solid {
-  translation 1.71152286334 0.027 2.34958157472 
-  rotation 0 1 0 1.07511644223
+  translation 1.73814842472 0.027 2.32676639438 
+  rotation 0 1 0 0.474508161498
   children [
     Shape {
       appearance Appearance {
@@ -2132,8 +2131,8 @@ DEF OBSTACLE_82 Solid {
   }
 }
 DEF OBSTACLE_83 Solid {
-  translation 1.26778903651 0.027 2.65572357581 
-  rotation 0 1 0 1.40965357698
+  translation 1.29835401608 0.027 2.63854117211 
+  rotation 0 1 0 0.03999093817
   children [
     Shape {
       appearance Appearance {
@@ -2157,8 +2156,8 @@ DEF OBSTACLE_83 Solid {
   }
 }
 DEF OBSTACLE_84 Solid {
-  translation 0.772856089169 0.027 2.86941496902 
-  rotation 0 1 0 0.616164752431
+  translation 0.806185891894 0.027 2.8585256521 
+  rotation 0 1 0 2.4400096113
   children [
     Shape {
       appearance Appearance {
@@ -2182,8 +2181,8 @@ DEF OBSTACLE_84 Solid {
   }
 }
 DEF OBSTACLE_85 Solid {
-  translation 0.245744016912 0.027 2.98244371396 
-  rotation 0 1 0 2.36515733828
+  translation 0.280557797169 0.027 2.97826595416 
+  rotation 0 1 0 2.16421474956
   children [
     Shape {
       appearance Appearance {
@@ -2207,8 +2206,8 @@ DEF OBSTACLE_85 Solid {
   }
 }
 DEF OBSTACLE_86 Solid {
-  translation -0.293290558927 0.027 2.99046617935 
-  rotation 0 1 0 0.722108410207
+  translation -0.25833067519 0.027 2.99316052563 
+  rotation 0 1 0 1.06176133058
   children [
     Shape {
       appearance Appearance {
@@ -2232,8 +2231,8 @@ DEF OBSTACLE_86 Solid {
   }
 }
 DEF OBSTACLE_87 Solid {
-  translation -0.823532841894 0.027 2.89317406633 
-  rotation 0 1 0 2.69525717319
+  translation -0.789770343403 0.027 2.90263697648 
+  rotation 0 1 0 3.0167804478
   children [
     Shape {
       appearance Appearance {
@@ -2257,8 +2256,8 @@ DEF OBSTACLE_87 Solid {
   }
 }
 DEF OBSTACLE_88 Solid {
-  translation -1.32460591842 0.027 2.69430625626 
-  rotation 0 1 0 3.06525627932
+  translation -1.29333827906 0.027 2.71017407594 
+  rotation 0 1 0 2.23613349169
   children [
     Shape {
       appearance Appearance {
@@ -2282,8 +2281,8 @@ DEF OBSTACLE_88 Solid {
   }
 }
 DEF OBSTACLE_89 Solid {
-  translation -1.77725383117 0.027 2.40150512753 
-  rotation 0 1 0 2.86641901615
+  translation -1.74968264879 0.027 2.42316806534 
+  rotation 0 1 0 2.76168531166
   children [
     Shape {
       appearance Appearance {
@@ -2307,8 +2306,8 @@ DEF OBSTACLE_89 Solid {
   }
 }
 DEF OBSTACLE_90 Solid {
-  translation -2.16408157472 0.027 2.02602286334 
-  rotation 0 1 0 1.09399419887
+  translation -2.14126639438 0.027 2.05264842472 
+  rotation 0 1 0 0.576028257788
   children [
     Shape {
       appearance Appearance {
@@ -2332,8 +2331,8 @@ DEF OBSTACLE_90 Solid {
   }
 }
 DEF OBSTACLE_91 Solid {
-  translation -2.47022357581 0.027 1.58228903651 
-  rotation 0 1 0 1.85859348726
+  translation -2.45304117211 0.027 1.61285401608 
+  rotation 0 1 0 1.7515872835
   children [
     Shape {
       appearance Appearance {
@@ -2357,8 +2356,8 @@ DEF OBSTACLE_91 Solid {
   }
 }
 DEF OBSTACLE_92 Solid {
-  translation -2.68391496902 0.027 1.08735608917 
-  rotation 0 1 0 0.638373457909
+  translation -2.6730256521 0.027 1.12068589189 
+  rotation 0 1 0 1.83562011087
   children [
     Shape {
       appearance Appearance {
@@ -2382,8 +2381,8 @@ DEF OBSTACLE_92 Solid {
   }
 }
 DEF OBSTACLE_93 Solid {
-  translation -2.79694371396 0.027 0.560244016912 
-  rotation 0 1 0 0.423621459238
+  translation -2.79276595416 0.027 0.595057797169 
+  rotation 0 1 0 3.05748352787
   children [
     Shape {
       appearance Appearance {
@@ -2407,8 +2406,8 @@ DEF OBSTACLE_93 Solid {
   }
 }
 DEF OBSTACLE_94 Solid {
-  translation -2.80496617935 0.027 0.021209441073 
-  rotation 0 1 0 0.936467404826
+  translation -2.80766052563 0.027 0.0561693248101 
+  rotation 0 1 0 2.49703771556
   children [
     Shape {
       appearance Appearance {
@@ -2432,8 +2431,8 @@ DEF OBSTACLE_94 Solid {
   }
 }
 DEF OBSTACLE_95 Solid {
-  translation -2.70767406633 0.027 -0.509032841894 
-  rotation 0 1 0 0.273448711194
+  translation -2.71713697648 0.027 -0.475270343403 
+  rotation 0 1 0 1.03702002653
   children [
     Shape {
       appearance Appearance {
@@ -2457,8 +2456,8 @@ DEF OBSTACLE_95 Solid {
   }
 }
 DEF OBSTACLE_96 Solid {
-  translation -2.50880625626 0.027 -1.01010591842 
-  rotation 0 1 0 2.8447660083
+  translation -2.52467407594 0.027 -0.978838279056 
+  rotation 0 1 0 0.0766677512604
   children [
     Shape {
       appearance Appearance {
@@ -2482,8 +2481,8 @@ DEF OBSTACLE_96 Solid {
   }
 }
 DEF OBSTACLE_97 Solid {
-  translation -2.21600512753 0.027 -1.46275383117 
-  rotation 0 1 0 1.70096586065
+  translation -2.23766806534 0.027 -1.43518264879 
+  rotation 0 1 0 1.02753272011
   children [
     Shape {
       appearance Appearance {
@@ -2507,8 +2506,8 @@ DEF OBSTACLE_97 Solid {
   }
 }
 DEF OBSTACLE_98 Solid {
-  translation -1.84052286334 0.027 -1.84958157472 
-  rotation 0 1 0 0.0606789926266
+  translation -1.86714842472 0.027 -1.82676639438 
+  rotation 0 1 0 1.4492402622
   children [
     Shape {
       appearance Appearance {
@@ -2532,8 +2531,8 @@ DEF OBSTACLE_98 Solid {
   }
 }
 DEF OBSTACLE_99 Solid {
-  translation -1.39678903651 0.027 -2.15572357581 
-  rotation 0 1 0 0.208357616176
+  translation -1.42735401608 0.027 -2.13854117211 
+  rotation 0 1 0 0.979581536069
   children [
     Shape {
       appearance Appearance {
@@ -2557,8 +2556,8 @@ DEF OBSTACLE_99 Solid {
   }
 }
 DEF OBSTACLE_100 Solid {
-  translation -0.901856089169 0.027 -2.36941496902 
-  rotation 0 1 0 0.906292004151
+  translation -0.935185891894 0.027 -2.3585256521 
+  rotation 0 1 0 1.4015646832
   children [
     Shape {
       appearance Appearance {
@@ -2582,8 +2581,8 @@ DEF OBSTACLE_100 Solid {
   }
 }
 DEF OBSTACLE_101 Solid {
-  translation -0.374744016912 0.027 -2.48244371396 
-  rotation 0 1 0 2.08888428142
+  translation -0.409557797169 0.027 -2.47826595416 
+  rotation 0 1 0 2.13137394486
   children [
     Shape {
       appearance Appearance {
@@ -2607,8 +2606,8 @@ DEF OBSTACLE_101 Solid {
   }
 }
 DEF OBSTACLE_102 Solid {
-  translation 0.164290558927 0.027 -2.49046617935 
-  rotation 0 1 0 2.87166888065
+  translation 0.12933067519 0.027 -2.49316052563 
+  rotation 0 1 0 0.224066929148
   children [
     Shape {
       appearance Appearance {
@@ -2632,8 +2631,8 @@ DEF OBSTACLE_102 Solid {
   }
 }
 DEF OBSTACLE_103 Solid {
-  translation 0.694532841894 0.027 -2.39317406633 
-  rotation 0 1 0 0.910370603662
+  translation 0.660770343403 0.027 -2.40263697648 
+  rotation 0 1 0 2.94823525004
   children [
     Shape {
       appearance Appearance {
@@ -2657,8 +2656,8 @@ DEF OBSTACLE_103 Solid {
   }
 }
 DEF OBSTACLE_104 Solid {
-  translation 1.19560591842 0.027 -2.19430625626 
-  rotation 0 1 0 2.48294119636
+  translation 1.16433827906 0.027 -2.21017407594 
+  rotation 0 1 0 1.50120830139
   children [
     Shape {
       appearance Appearance {
@@ -2682,8 +2681,8 @@ DEF OBSTACLE_104 Solid {
   }
 }
 DEF OBSTACLE_105 Solid {
-  translation 1.64825383117 0.027 -1.90150512753 
-  rotation 0 1 0 2.57218183962
+  translation 1.62068264879 0.027 -1.92316806534 
+  rotation 0 1 0 2.23940509096
   children [
     Shape {
       appearance Appearance {
@@ -2707,8 +2706,8 @@ DEF OBSTACLE_105 Solid {
   }
 }
 DEF OBSTACLE_106 Solid {
-  translation 2.03508157472 0.027 -1.52602286334 
-  rotation 0 1 0 2.42172450325
+  translation 2.01226639438 0.027 -1.55264842472 
+  rotation 0 1 0 1.69476795159
   children [
     Shape {
       appearance Appearance {
@@ -2732,8 +2731,8 @@ DEF OBSTACLE_106 Solid {
   }
 }
 DEF OBSTACLE_107 Solid {
-  translation 2.34122357581 0.027 -1.08228903651 
-  rotation 0 1 0 0.473883609769
+  translation 2.32404117211 0.027 -1.11285401608 
+  rotation 0 1 0 1.23272088311
   children [
     Shape {
       appearance Appearance {
@@ -2757,8 +2756,8 @@ DEF OBSTACLE_107 Solid {
   }
 }
 DEF OBSTACLE_108 Solid {
-  translation 2.55491496902 0.027 -0.587356089169 
-  rotation 0 1 0 0.679689028384
+  translation 2.5440256521 0.027 -0.620685891894 
+  rotation 0 1 0 2.24419104172
   children [
     Shape {
       appearance Appearance {
@@ -2782,8 +2781,8 @@ DEF OBSTACLE_108 Solid {
   }
 }
 DEF OBSTACLE_109 Solid {
-  translation 2.66794371396 0.027 -0.0602440169123 
-  rotation 0 1 0 0.233253190294
+  translation 2.66376595416 0.027 -0.0950577971695 
+  rotation 0 1 0 2.55720823686
   children [
     Shape {
       appearance Appearance {
@@ -2807,8 +2806,8 @@ DEF OBSTACLE_109 Solid {
   }
 }
 DEF OBSTACLE_110 Solid {
-  translation 2.67596617935 0.027 0.478790558927 
-  rotation 0 1 0 2.26012073835
+  translation 2.67866052563 0.027 0.44383067519 
+  rotation 0 1 0 0.51780946332
   children [
     Shape {
       appearance Appearance {
@@ -3095,7 +3094,7 @@ DEF MODULE_1 Robot {
     mass 0.17
     coulombFriction 0.5
   }
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_2 Robot {
   translation 0.00501502 0.0305531 0.0600023
@@ -3131,7 +3130,7 @@ DEF MODULE_2 Robot {
   name "module_2"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_3 Robot {
   translation 0.00501214 0.0305564 0.194003
@@ -3167,7 +3166,7 @@ DEF MODULE_3 Robot {
   name "module_3"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_4 Robot {
   translation 0.00501065 0.0305568 0.251004
@@ -3213,7 +3212,7 @@ DEF MODULE_4 Robot {
   name "module_4"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_5 Robot {
   translation 0.00501035 0.0305564 0.308004
@@ -3249,7 +3248,7 @@ DEF MODULE_5 Robot {
   name "module_5"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_6 Robot {
   translation 0.00500902 0.0305531 0.442005
@@ -3285,7 +3284,7 @@ DEF MODULE_6 Robot {
   name "module_6"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_7 Robot {
   translation 0.00500787 0.0305504 0.539005
@@ -3317,7 +3316,7 @@ DEF MODULE_7 Robot {
   name "module_7"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_10 Robot {
   translation -0.128991 0.0305504 -0.0369997
@@ -3349,7 +3348,7 @@ DEF MODULE_10 Robot {
   name "module_10"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_11 Robot {
   translation -0.128992 0.0305531 0.0600003
@@ -3385,7 +3384,7 @@ DEF MODULE_11 Robot {
   name "module_11"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_12 Robot {
   translation -0.128994 0.0305564 0.194001
@@ -3421,7 +3420,7 @@ DEF MODULE_12 Robot {
   name "module_12"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_13 Robot {
   translation -0.128994 0.0305568 0.251002
@@ -3461,7 +3460,7 @@ DEF MODULE_13 Robot {
   name "module_13"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_14 Robot {
   translation -0.128995 0.0305564 0.308002
@@ -3497,7 +3496,7 @@ DEF MODULE_14 Robot {
   name "module_14"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_15 Robot {
   translation -0.128998 0.0305531 0.442003
@@ -3533,7 +3532,7 @@ DEF MODULE_15 Robot {
   name "module_15"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }
 DEF MODULE_16 Robot {
   translation -0.129 0.0305504 0.539003
@@ -3565,5 +3564,5 @@ DEF MODULE_16 Robot {
   name "module_16"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "controller_1"
+  controller "controller_3"
 }

@@ -1095,24 +1095,26 @@ int main()
     //     + (average_height)) // how high did it keep the body on average (less than 1.0m)
     //     * collision_penal_scalar); // the fitness score gets multiplied by collision penal scalar
 
-    unsigned int collisionAmountPoints = 0;
+    unsigned int collisionTouchTimePoints = 0;
     if(maxTouchTime - totalTouchTime > 0) {
-      collisionAmountPoints = maxTouchTime - totalTouchTime;
+      collisionTouchTimePoints = maxTouchTime - totalTouchTime;
     } else if (maxTouchTime - totalTouchTime <= 0) {
+      collisionTouchTimePoints = 0;
+    }
+
+    unsigned int collisionAmountPoints = 0;
+    if(maxCollisions - totalCollisions > 0) {
+      collisionAmountPoints = maxCollisions - totalCollisions;
+    } else if(maxCollisions - totalCollisions <= 0) {
       collisionAmountPoints = 0;
     }
 
-    unsigned int collisionTouchTimePoints = 0;
-    if(maxCollisions - totalCollisions > 0) {
-      collisionTouchTimePoints = maxCollisions - totalCollisions;
-    } else if(maxCollisions - totalCollisions <= 0) {
-      collisionTouchTimePoints = 0;
-    }
+    unsigned int finalCollisionPoints = ((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin;
 
     const double fitness = exp(distance_from_origin // how far the robot got
         * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
         + (average_height)) // how high did it keep the body on average (less than 1.0m)
-        + (((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin); // + added the collision fitness
+        + finalCollisionPoints; // + added the collision fitness
         
 
     // DISTANCE ONLY
@@ -1128,6 +1130,8 @@ int main()
     screen << totalCollisions << " / " << totalTouchTime << endl;
     screen << "collisions points / touchtime points / fitness: " << endl;
     screen << collisionAmountPoints << " / " << collisionTouchTimePoints << " / " << fitness << endl;
+    screen << "FINAL collisions points: " << endl;
+    screen << finalCollisionPoints << endl;
 
 
 		fflush(stdout);
