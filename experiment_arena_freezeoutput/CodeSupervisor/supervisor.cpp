@@ -7,19 +7,25 @@
 #include <iostream>
 #include <cstdio>
 #include <cstring>
-#include <webots/robot.h>
-#include <webots/supervisor.h>
-#include <webots/emitter.h>
-#include <webots/receiver.h>
 #include <sstream>
 #include <ctime>
 #include <cstdlib>
 #include <unistd.h>
 #include <numeric>
-//#include <tinyxmldll.h>
-#include <tinyxmlplus.h>
 #include <stdexcept>
 #include <vector>
+
+#include <tinyxmlplus.h>
+
+#include <webots/robot.h>
+#include <webots/supervisor.h>
+#include <webots/emitter.h>
+#include <webots/receiver.h>
+#include <webots/touch_sensor.h>
+
+#include <boost/unordered_map.hpp>
+
+#include "../ExperimentDefinition/AdditionalSettings.h"
 
 using namespace std;
 
@@ -29,34 +35,17 @@ using namespace std;
 /// !!!IMPORTANT! number of controllers (to wait for before quitting)
 #define N 14
 
-///// Number of seconds until shutdown
-static float deadline = 20;
-
 /// how much time to wait after deadline for termination notifications
 static float termination_extra_time = 5;
 
 /* each module is equipped with a bunch of devices */
 static WbDeviceTag receiver;
 
-TiXmlElement* getIndividualXml(TiXmlDocument& cppn)
-{
-	cppn.LoadFile();
-
-	if (cppn.Error())
-	{
-		throw std::runtime_error("XML error");
-	}
-	TiXmlElement *root = cppn.FirstChildElement();
-
-	if (root == NULL)
-	{
-		throw std::runtime_error("XML root is NULL");
-	}
-
-	return root;
-}
 
 int main() {
+
+  boost::unordered_map<int, const char*> unique_collisions;
+
 	//// necessary to initialize Webots
 	wb_robot_init();
 
@@ -65,12 +54,10 @@ int main() {
 	wb_receiver_enable(receiver, CONTROL_STEP);
 
 	/// say hello
-	std::cout << "supervisor initialised" << std::endl;
+  std::cout << "supervisor initialised" << std::endl;
 
 	int count = (N * (N + 1)) / 2 - 8 - 9 + 15 + 16;
 	int countdown = N;
-
-	// std::vector<double> qis;
 
 	for (double time = 0.0; time < (deadline + termination_extra_time); time += CONTROL_STEP / 1000.0) {
 		if (time > deadline) {
@@ -115,7 +102,7 @@ int main() {
 		// exit the for loop and the simulation
 	}
 
-	/// step the simulation forward
+	/// step the simulation forward (WHY AN EXTRA wb_robot_step ??)
 	//	wb_robot_step(CONTROL_STEP);
 
 	//// Before you leave, say goodbye

@@ -10,6 +10,7 @@
 
 #include <string>
 #include <boost/filesystem.hpp>
+#include <boost/thread/thread.hpp>
 
 #define REPEATS 1.0
 
@@ -18,11 +19,11 @@
 #define USE_BIASES
 
 #define screen cout << fixed
-
+  
 // experiment folder path
-string pathToExperiment = "/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena";
+string pathToExperiment = "experiment_arena_freezeoutput";                 
 // WEBOTS world file name
-string pathToWorldFile = pathToExperiment + "/worlds/exp7_world_FINAL_";
+string pathToWorldFile = "/worlds/arena_world_freezeoutput_";
 // CPPN archive folder name
 string pathToArchive = "/CPPNarchive";
 // analysis folder name
@@ -101,16 +102,12 @@ namespace HCUBE {
     string str_groupnr = ss.str();
 
     // calling the webots evaluation
-    string command = "time webots "; 
+    string command = "export " + xml_env_name_string + "=" + xmlFileName + " && ";
+    // time
     // command += "--minimize --mode=fast --stdout --stderr "; 
-    command += pathToWorldFile + str_groupnr + ".wbt";
-    // command += " > ";
-    // command += xmlFileName;
-    // command += ".log ";
-
-    // screen << "Calling system(\"" << command << "\")" << endl;
-    // screen << "Calling webots to evaluate individual..." << endl;
-
+    command += "webots " + pathToWorldFile + str_groupnr + ".wbt";
+    // command += " | tee -a " + pathToExperiment + "/experiment.log";
+    
     // make system call (perform one WeBots individual simulation)
     int rez = runSystemCommand(command);
     if (rez != 0) {
@@ -125,12 +122,22 @@ namespace HCUBE {
   	// generateSubstrate();
     // create experiment CPPN folder
     string experimentFolder = "/" + getDateTimeString();
+    // construct path to experiment
+    pathToExperiment = boost::filesystem::current_path().string() + "/../../../../" + pathToExperiment;
+    screen << "relative path to experiment : " << pathToExperiment << endl;
+    // construct path to worldfile
+    pathToWorldFile = pathToExperiment + pathToWorldFile;
     pathToCurrentCppnFolder = createSubFolder(pathToExperiment, pathToArchive, experimentFolder);
   }
 
   int ModNeatExperiment7::getGroupCapacity() {
+    // get number of hardware threads / cores / procs according to boost
+    int NUM_THREADS = boost::thread::hardware_concurrency();
     // we want to process two individuals at a time, since we have 2 processor cores available.
+    screen << "how many cores do we have available according to boost ? " << NUM_THREADS << endl;
     return 2;
+    // return 5;
+    // return NUM_THREADS;
   }
 
   GeneticPopulation* ModNeatExperiment7::createInitialPopulation(int populationSize) {
@@ -201,6 +208,19 @@ namespace HCUBE {
 
 
   double ModNeatExperiment7::processEvaluation(shared_ptr<NEAT::GeneticIndividual> individual, wxDC *drawContext, unsigned int groupnr) {
+
+    // randomize arena worlds
+    stringstream commandStream;
+    commandStream << "python " << pathToExperiment << "/worlds/world_gen.py " << pathToExperiment << "/worlds/ " << groupnr + 1 << endl;
+    string strCommand = commandStream.str();
+    screen << strCommand << endl;
+
+    int rez = runSystemCommand(strCommand);
+    if (rez != 0) {
+      screen << "system() call to generate arena worlds exited with non-zero status: " << rez << "." << endl;
+      exit(EXIT_FAILURE);
+    }
+
   	//	individual->print();
   	stringstream id_str;
 
@@ -220,6 +240,11 @@ namespace HCUBE {
   	fitness = readDoubleFromXml(xmlFileName, "Fitness");
   	screen << "Read back fitness: " << fitness << "\t\t\t\t\t\t\t\t(****) " << endl;
 
+    // read back the collision data
+    std::vector<double> collisionData;
+    collisionData = readCollisionData(xmlFileName);
+    screen << "Read back collision data : " << collisionData[0] << " - " << collisionData[1] << "\t\t\t\t\t(****) " << endl;
+
   	// fitness must be positive
   	fitness = (fitness > 0.0 ? fitness : 1.0E-8);
 
@@ -232,6 +257,7 @@ namespace HCUBE {
   void ModNeatExperiment7::processGroup(shared_ptr<NEAT::GeneticGeneration> generation) {
     
     // FORK a number of processes equal to the number of individuals we are going to process
+    // getGroupSize is the size of ::getGroupCapacity
     const int groupSize = getGroupSize();
     pid_t* pids = new pid_t[groupSize];
 
@@ -249,8 +275,7 @@ namespace HCUBE {
         currIndividual++;
       }
 
-      screen << "processing generation " << currGeneration << endl;
-      screen << "processing individual " << i << endl;
+      screen << "processing generation: " << currGeneration << ", individual: " << currIndividual << ", on thread: " << i << endl;
       shared_ptr<NEAT::GeneticIndividual> individual = group[i];
       // avoid 0 fitness
       if (individual->getFitness() <= 0) individual->setFitness(0.000001);
@@ -357,8 +382,6 @@ namespace HCUBE {
   		exit(-1);
   	}
 
-  	// return root->FirstAttribute()->DoubleValue();
-
   	double value;
   	const char* valueStr = root->Attribute(attribute.c_str(),	&value);
 
@@ -369,6 +392,51 @@ namespace HCUBE {
   	}
 
   	return value;
+  }
+
+  std::vector<double> ModNeatExperiment7::readCollisionData(string xmlCompleteFileName) {
+    
+    std::vector<double> returnVec;
+
+    TiXmlDocument docHandle(xmlCompleteFileName);
+    docHandle.LoadFile();
+    if (docHandle.Error()) {
+      screen << "XML error. Exiting..." << endl;
+      fflush(stdout);
+      exit(-1);
+    }
+
+    // ugly workaround to get the 'collisions' node, because TiXML is a horriby incomplete lib.
+    TiXmlElement * collisions = docHandle.RootElement()->FirstChildElement()->NextSiblingElement()->NextSiblingElement();
+
+    if (collisions == NULL) {
+      screen << "collisions is NULL. Exiting..." << endl;
+      fflush(stdout);
+      exit(-1);
+    } else {
+
+      // add the number of total collisions
+      double value_total;
+      const char * total = collisions->Attribute("total", &value_total);
+      if (total == NULL) {
+        screen << "attribute 'total' is NULL. Exiting..." << endl;
+        fflush(stdout);
+        exit(-1);
+      }
+      returnVec.push_back(value_total);
+
+      // add the total number of touch times
+      double value_touchtime;
+      const char * touchtime = collisions->Attribute("totaltouchtime", &value_touchtime);
+      if (touchtime == NULL) {
+        screen << "attribute 'totaltouchtime' is NULL. Exiting..." << endl;
+        fflush(stdout);
+        exit(-1);
+      }
+      returnVec.push_back(value_touchtime);
+    }
+
+    return returnVec;
   }
 
 

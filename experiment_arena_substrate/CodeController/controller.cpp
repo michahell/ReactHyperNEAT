@@ -91,10 +91,9 @@ static WbDeviceTag physics_receiver;
 
 NEAT::FastBiasNetwork<double> substrate;
 
-const int numNodes = 3;
-const int numNodesX = numNodes;
-// const int numNodesY = numNodes;
-const int numNodesY = 9;
+const int numNodes = 9;
+const int numNodesX = numNodes, numNodesY = numNodes;
+// const int numNodesY = 9;
 
 template<class T> T signum(T n) {
 	if (n < 0)
@@ -545,7 +544,7 @@ template<class T, int size1, int size2> ostream &operator <<(ostream &stream, me
 }
 
 
-mesh2D2<double, numNodes, 9> propagate_network(const mesh2D2<double, numNodes, 9> &input) {
+mesh2D<double, numNodes> propagate_network(const mesh2D<double, numNodes> &input) {
 
   // #ifdef CTRLER_DEBUG
   // 	file << "Network input: " << input << endl;
@@ -555,11 +554,11 @@ mesh2D2<double, numNodes, 9> propagate_network(const mesh2D2<double, numNodes, 9
 	substrate.reinitialize();
 	substrate.dummyActivation();
 	// for all nodes in the input layer, in NEAT coordinates
-	for (int y = (-9 / 2); y <= 9 / 2; y++) {
+	for (int y = (-numNodesY / 2); y <= numNodesY / 2; y++) {
 		for (int x = (-numNodesX / 2); x <= numNodesX / 2; x++) {
 			// compute C matrix coordinates
 			int boardx = (x + (numNodesX / 2));
-			int boardy = (y + (9 / 2));
+			int boardy = (y + (numNodesY / 2));
 			/// set the right value to the input nodes (in layer A)
 			//substrate.setValue(nameLookup[Node(x, y, 0)],
 			//		(input.values[boardx][boardy] - normFactor) / stDev);
@@ -572,7 +571,7 @@ mesh2D2<double, numNodes, 9> propagate_network(const mesh2D2<double, numNodes, 9
   substrate.update();
 
 	/// write the output in coresponding object
-	mesh2D2<double, numNodes, numNodesY> output;
+	mesh2D<double, numNodes> output;
 	int count = 0;
 	for (int y = (-numNodesY / 2); y <= numNodesY / 2; y++) {
 		for (int x = (-numNodesX / 2); x <= numNodesX / 2; x++) {
@@ -687,7 +686,7 @@ int main()
 	char sonar_name[7] = "sonar0";
 	for (int i = 0; i < 6; i++) {
 		sonar_name[5] = '0' + i;
-    screen << endl << "has sensor? " << wb_robot_get_device(sonar_name) << endl;
+    screen << endl << "has sensor? " << (wb_robot_get_device(sonar_name) != NULL) << endl;
 		distance_sensors[i] = wb_robot_get_device(sonar_name);
 		wb_distance_sensor_enable(distance_sensors[i], CONTROL_STEP);
 	}
@@ -976,7 +975,6 @@ int main()
     		file << "Self:" << endl << sensor_grid_self << endl;
     		file << "Front:" << sensor_grid_front << endl;
     		file << "Back:" << sensor_grid_back << endl;
-
     		file << "Top:" << sensor_grid_top << endl;
     		file << "Bottom:" << sensor_grid_bottom << endl;
     #endif
@@ -985,38 +983,51 @@ int main()
 
 		/// create input
 		// mesh2D<double, numNodes> input(0);
-    mesh2D2<double, numNodes, 9> input(0);
+    mesh2D<double, numNodes> input(0);
 
 
 		//////////////////////////// SUBSTRATE INPUT ////////////////////////////
 
     // front module obstacle sensor grid input, (from top down left to right).
-    input.values[1][0] = sensor_grid_front.values[1][0];  // front module front sensor
-    input.values[0][1] = sensor_grid_front.values[0][1];  // front module left sensor
-    input.values[1][1] = sensor_grid_front.values[1][1];  // front module bottom sensor
-    input.values[2][1] = sensor_grid_front.values[2][1];  // front module right sensor
-		input.values[1][2] = sensor_grid_front.values[1][2];  // front module back sensor
+    input.values[4][0] = sensor_grid_front.values[1][0];  // front module front sensor
+    input.values[3][1] = sensor_grid_front.values[0][1];  // front module left sensor
+    input.values[4][1] = sensor_grid_front.values[1][1];  // front module bottom sensor
+    input.values[5][1] = sensor_grid_front.values[2][1];  // front module right sensor
+		input.values[4][2] = sensor_grid_front.values[1][2];  // front module back sensor
 
     // self module obstacle sensor grid input.
-    input.values[1][3] = sensor_grid_self.values[1][0]; // current (module/controller) front sensor
-    input.values[0][4] = sensor_grid_self.values[0][1]; // current (module/controller) left sensor
-    input.values[1][4] = sensor_grid_self.values[1][1];  // current (module/controller) bottom sensor
-    input.values[2][4] = sensor_grid_self.values[2][1]; // current (module/controller) right sensor
-		input.values[1][5] = sensor_grid_self.values[1][2]; // current (module/controller) back sensor
+    input.values[4][3] = sensor_grid_self.values[1][0]; // current (module/controller) front sensor
+    input.values[3][4] = sensor_grid_self.values[0][1]; // current (module/controller) left sensor
+    input.values[4][4] = sensor_grid_self.values[1][1]; // current (module/controller) bottom sensor
+    input.values[5][4] = sensor_grid_self.values[2][1]; // current (module/controller) right sensor
+		input.values[4][5] = sensor_grid_self.values[1][2]; // current (module/controller) back sensor
 
     // back obstacle sensor grid input.
-    input.values[1][6] = sensor_grid_back.values[1][0]; // back module front sensor
-    input.values[0][7] = sensor_grid_back.values[0][1]; // back module left sensor
-    input.values[1][7] = sensor_grid_back.values[1][1]; // back module bottom sensor
-    input.values[2][7] = sensor_grid_back.values[2][1]; // back module right sensor
-    input.values[1][8] = sensor_grid_back.values[1][2]; // back module back sensor
+    input.values[4][6] = sensor_grid_back.values[1][0]; // back module front sensor
+    input.values[3][7] = sensor_grid_back.values[0][1]; // back module left sensor
+    input.values[4][7] = sensor_grid_back.values[1][1]; // back module bottom sensor
+    input.values[5][7] = sensor_grid_back.values[2][1]; // back module right sensor
+    input.values[4][8] = sensor_grid_back.values[1][2]; // back module back sensor
 
-    // top and bottom are excluded in this experiment.
-		
+    // top  (left) obstacle sensor grid input.
+    input.values[1][3] = sensor_grid_top.values[1][0]; // top module front sensor
+    input.values[0][4] = sensor_grid_top.values[0][1]; // top module left sensor
+    input.values[1][4] = sensor_grid_top.values[1][1]; // top module bottom sensor
+    input.values[2][4] = sensor_grid_top.values[2][1]; // top module right sensor
+    input.values[0][5] = sensor_grid_top.values[1][2]; // top module back sensor
+
+    // bottom (right) obstacle sensor grid input.
+    input.values[7][3] = sensor_grid_top.values[1][0]; // bottom module front sensor
+    input.values[6][4] = sensor_grid_top.values[0][1]; // bottom module left sensor
+    input.values[7][4] = sensor_grid_top.values[1][1]; // bottom module bottom sensor
+    input.values[8][4] = sensor_grid_top.values[2][1]; // bottom module right sensor
+    input.values[6][5] = sensor_grid_top.values[1][2]; // bottom module back sensor
+
+
 		//////////////////////////// SUBSTRATE OUTPUT ////////////////////////////
 
 		/// compute substrate outputs
-		mesh2D2<double, numNodes, 9> output = propagate_network(input);
+		mesh2D<double, numNodes> output = propagate_network(input);
 
 
 		// update angle, omega, amplitude, phase

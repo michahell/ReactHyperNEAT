@@ -48,7 +48,8 @@ namespace HCUBE {
 
   	shared_ptr<NEAT::GeneticIndividual> readCppnFromXml(string xmlCompleteFileName);
 
-  	double readDoubleFromXml(string xmlCompleteFileName, string attribute) ;
+    double readDoubleFromXml(string xmlCompleteFileName, string attribute) ;
+    std::vector<double> readCollisionData(string xmlCompleteFileName) ;
 
   	virtual Experiment* clone();
 

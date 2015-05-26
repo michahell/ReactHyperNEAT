@@ -173,17 +173,6 @@ function analyseResults {
 
 
 # define experiment variables (callable functions)
-experiment_template () {
-  EXPERIMENT_NAME="experiment template"
-  # hyperneat CLI required flags
-  EXPERIMENT_LOCATION="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinitionParams.dat"
-  EXPERIMENT_SEED="23"
-  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_template/CPPNarchive/"
-  # experiment definition for symlinking into HyperNEAT
-  EXPERIMENT_DEF_HPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.h"
-  EXPERIMENT_DEF_CPP="${PWD}/experiment_template/ExperimentDefinition/ExperimentDefinition.cpp"
-}
-
 experiment_moddif () {
   EXPERIMENT_NAME="experiment moddif"
   # hyperneat CLI required flags
@@ -207,18 +196,6 @@ experiment_arena () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
-experiment_arena_elongated () {
-  EXPERIMENT_NAME="experiment arena elongated legs"
-  # hyperneat CLI required flags
-  EXPERIMENT_LOCATION="${PWD}/experiment_arena_longerlegs/ExperimentDefinition/ExperimentDefinitionParams.dat"
-  EXPERIMENT_FOLDER="${PWD}/experiment_arena_longerlegs/"
-  EXPERIMENT_SEED="26"
-  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_longerlegs/CPPNarchive/"
-  # experiment definition for symlinking into HyperNEAT
-  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_longerlegs/ExperimentDefinition/ExperimentDefinition.h"
-  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_longerlegs/ExperimentDefinition/ExperimentDefinition.cpp"
-}
-
 experiment_arena_substrate () {
   EXPERIMENT_NAME="experiment arena larger substrate"
   # hyperneat CLI required flags
@@ -231,16 +208,27 @@ experiment_arena_substrate () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_substrate/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
+experiment_arena_freezeoutput () {
+  EXPERIMENT_NAME="experiment arena freeze output"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_freezeoutput/"
+  EXPERIMENT_SEED="30"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_freezeoutput/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
 
 # see if we can run this script
 checkRequirements ${1}
 
 # which experiment do we want to run?
-# experiment_template
 # experiment_moddif
 # experiment_arena
-# experiment_arena_elongated
-experiment_arena_substrate
+# experiment_arena_substrate
+experiment_arena_freezeoutput
 
 # list of functions to go through
 verifyExperimentFolders ${1}

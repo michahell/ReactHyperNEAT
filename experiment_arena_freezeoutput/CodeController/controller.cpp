@@ -6,15 +6,23 @@
  * MODIFIED NEW VERSION
  *
  */
+
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
+
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-#include <cmath>
 #include <memory>
+#include <string>
+#include <vector>
+
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/foreach.hpp>
 
 #include <webots/robot.h>
 #include <webots/servo.h>
@@ -32,13 +40,15 @@
 
 #include "HCUBE_Defines.h"
 
+#include "../ExperimentDefinition/AdditionalSettings.h"
+
 using namespace std;
 using namespace NEAT;
-//using namespace boost;
+// using namespace boost;
 using namespace HCUBE;
 
 // comment to speed up controller
-// #define CTRLER_DEBUG
+#define CTRLER_DEBUG
 //#define CTRLER_DEBUG_WRITE_NETWORK
 //
 
@@ -62,9 +72,6 @@ string xmlFileName;
 fstream file;
 
 
-// Number of seconds until shutdown
-static float deadline = 20;
-
 bool heterogeneous_controller = true;
 char *thread_id;
 
@@ -79,13 +86,15 @@ static WbDeviceTag servo, back_connector, front_connector, top_connector,
 		bottom_connector, emitter, receiver_front, receiver_back, receiver_top,
 		receiver_bottom, gyro, gps, distance_sensors[6], bumper;
 
+// additional receiver for physics data
+static WbDeviceTag physics_receiver;
+
 NEAT::FastBiasNetwork<double> substrate;
 
 const int numNodes = 3;
 const int numNodesX = numNodes, numNodesY = numNodes;
 
-template<class T>
-T signum(T n) {
+template<class T> T signum(T n) {
 	if (n < 0)
 		return -1;
 	if (n > 0)
@@ -93,8 +102,28 @@ T signum(T n) {
 	return 0;
 }
 
-
 map<Node, string> nameLookup;
+
+// block collision count structure
+struct blockCollisions {
+  std::string defNameString;
+  unsigned int collisions;
+};
+
+// setup a vector for block collision counts
+std::vector<blockCollisions> collVector;
+
+// the amounts of collisions and touch times
+double totalCollisions = 0;
+double totalTouchTime = 0;
+
+// setup a map for block collision touch moment counts
+typedef std::map<std::string, unsigned int> map_coll;
+// std::map<std::string, unsigned int> collMap;
+map_coll collMap;
+
+// stringstream for parsing messages from physics plugin
+stringstream message_parse_ss;
 
 
 TiXmlElement* getIndividualXml(TiXmlDocument& cppn)
@@ -116,7 +145,7 @@ TiXmlElement* getIndividualXml(TiXmlDocument& cppn)
 	return root;
 }
 
-void writeFitnessToXml(string xmlCompleteFileName, const double fitness, const double distance)
+void writeFitnessToXml(string xmlCompleteFileName, const double fitness, const double distance, const double bodyheight)
 {
 	screen << "Writing fitness: " << fitness << " to file: "	<< xmlCompleteFileName << " ... ";
 	TiXmlDocument cppn(xmlCompleteFileName);
@@ -124,9 +153,51 @@ void writeFitnessToXml(string xmlCompleteFileName, const double fitness, const d
 
 	root->SetDoubleAttribute("Fitness", fitness);
   root->SetDoubleAttribute("Distance", distance);
+  root->SetDoubleAttribute("Bodyheight", bodyheight);
 
 	cppn.SaveFile();
 	screen << "done" << endl;
+}
+
+void writeCollisionsToXml(string xmlCompleteFileName, map_coll collMap)
+{
+  TiXmlDocument cppn(xmlCompleteFileName);
+  TiXmlElement *root = getIndividualXml(cppn);
+
+  // create new collisions element
+  TiXmlElement * collisions_node = new TiXmlElement( "collisions" );
+  root->LinkEndChild( collisions_node );
+
+  BOOST_FOREACH( map_coll::value_type &map, collMap )
+  {
+    screen << "map value contents:  " << map.first << " and " << map.second << endl;
+    // add a collision element after last element in root
+    TiXmlElement * collision_node = new TiXmlElement("collision");
+    collisions_node->LinkEndChild(collision_node);
+
+    // convert int to string.
+    stringstream ss;
+    ss << map.second;
+    string collision_touchtime = ss.str();
+
+    // SetAttribute (const std::string &name, const std::string &_value)
+    collision_node->SetAttribute("obstacle", map.first);
+    collision_node->SetAttribute("touchtime", collision_touchtime);
+
+    totalCollisions++;
+    totalTouchTime += map.second;
+  }
+
+  screen << "collisions totals:  " << totalCollisions << ", touchtime: " << totalTouchTime << endl;
+
+  // add total number of collisions
+  collisions_node->SetDoubleAttribute("total", totalCollisions);
+  
+  // adding total touchmoments number
+  collisions_node->SetDoubleAttribute("totaltouchtime", totalTouchTime);
+
+  cppn.SaveFile();
+  screen << "done" << endl;
 }
 
 boost::shared_ptr<NEAT::GeneticIndividual> readCppnFromXml(string xmlCompleteFileName) {
@@ -261,8 +332,7 @@ void generateSubstrate() {
 }
 
 void populateSubstrate(boost::shared_ptr<const NEAT::GeneticIndividual> individual) {
-	NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<
-			double> ();
+	NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<double> ();
 	// for all nodes in the source layer
 	for (int y1 = 0; y1 < numNodesY; y1++) {
 		for (int x1 = 0; x1 < numNodesX; x1++) {
@@ -396,7 +466,16 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-	NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment/ExperimentDefinition/ExperimentDefinitionParams.dat");
+  // stringstream ss;
+  // char const * homedir = getenv("HOME");
+  // ss << homedir << "/" << datfile << endl;
+  // const char * paramsDat = ss.str().c_str();
+
+	// NEAT::Globals::init(paramsDat);
+  // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
+  // hardcoded path, uses symlink to point to the correct directory..
+  NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
+
 	generateSubstrate();
 	boost::shared_ptr<GeneticIndividual> cppn = readCppnFromXml(xmlFileName);
 	populateSubstrate(cppn);
@@ -462,8 +541,7 @@ mesh2D<double, numNodes> propagate_network(
 			/// set the right value to the input nodes (in layer A)
 			//substrate.setValue(nameLookup[Node(x, y, 0)],
 			//		(input.values[boardx][boardy] - normFactor) / stDev);
-			substrate.setValue(nameLookup[Node(x, y, 0)],
-					(input.values[boardx][boardy]));
+			substrate.setValue(nameLookup[Node(x, y, 0)], (input.values[boardx][boardy]));
 		}
 
 	}
@@ -512,6 +590,18 @@ int main()
 	 char* cppnXmlFile (getenv("CPPN_XML_FILE2"));
   #endif
 
+  #ifdef XML3
+   char* cppnXmlFile (getenv("CPPN_XML_FILE3"));
+  #endif
+
+  #ifdef XML4
+   char* cppnXmlFile (getenv("CPPN_XML_FILE4"));
+  #endif
+
+  #ifdef XML5
+   char* cppnXmlFile (getenv("CPPN_XML_FILE5"));
+  #endif
+
 	if (cppnXmlFile == NULL)
 	{
 		std::cout << "No XML file specified in CPPN_XML_FILE environment.\nAborting\n";
@@ -538,7 +628,13 @@ int main()
 
   #ifdef CTRLER_DEBUG
 	stringstream stream;
-	stream << "controller_debug_" << id << ".log";
+  
+  // get CPPN name from xml filename
+  unsigned found = xmlFileName.find_last_of("/");
+  string cppnFileName = xmlFileName.substr(found + 1);
+  screen << "xml file name without path: " << cppnFileName << endl;
+
+	stream << cppnFileName << "_controller_debug_" << id << ".log";
 	file.open(stream.str().c_str(), fstream::out);
 	if (!file.is_open()) {
 		screen << "Error: could not open debug log output file. ";
@@ -584,6 +680,8 @@ int main()
 	if (id == FITNESS_RECORDER_ID) {
 		// only the first module has GPS, to compute fitness
 		gps = wb_robot_get_device("gps");
+    // only this module has the physics receiver
+    physics_receiver = wb_robot_get_device("receiver_physics");
 	}
 
 	///  lock connectors
@@ -609,6 +707,9 @@ int main()
 	wb_gyro_enable(gyro, CONTROL_STEP);
 	if (id == FITNESS_RECORDER_ID) {
 		wb_gps_enable(gps, CONTROL_STEP);
+    wb_receiver_enable(physics_receiver, CONTROL_STEP);
+    wb_receiver_set_channel(physics_receiver, physics_channel);
+    screen << "##### physics_receiver channel set to: " << wb_receiver_get_channel(physics_receiver) << endl;
 	}
 	wb_servo_enable_position(servo, CONTROL_STEP);
 
@@ -628,7 +729,9 @@ int main()
 	// initial amplitude [-1 ... 1] for [-pi/2 ... pi/2]
 	double amplitude = 0.5;
 	// phase difference
-	double phase = 1.0 / id;
+  double phase = 1.0 / id;
+  // reset amount of the target angle
+	double reset = 0.0;
 
 	// set initial distance
 
@@ -694,10 +797,10 @@ int main()
       file << "Bumper: " << wb_touch_sensor_get_value(bumper) << endl;
 
       // to screen
-      screen << "robot " << id << " dists: ";
-      for (int i = 0; i < 6; i++) screen << wb_distance_sensor_get_value(distance_sensors[i]) << "  ";
+      // screen << "robot " << id << " dists: ";
+      // for (int i = 0; i < 6; i++) screen << wb_distance_sensor_get_value(distance_sensors[i]) << "  ";
       // screen << "Bumper: " << wb_touch_sensor_get_value(bumper) << endl;
-      screen << endl;
+      // screen << endl;
     #endif
 
 		const double *pos = NULL;
@@ -720,6 +823,32 @@ int main()
 
 			// add current Y position (height)
 			average_height += pos[1];
+
+      // get any collision messages from physics plugin
+      if (control_loop_iteration > 0) {
+        while(wb_receiver_get_queue_length(physics_receiver) > 0) {
+
+          int message_size = wb_receiver_get_data_size(physics_receiver);
+          const char * message = (const char *) wb_receiver_get_data(physics_receiver);
+          // screen << "##### physics plugin message received. size: " << message_size << ", msg: " << message << endl;
+          // parse message, format:   OBSTACLE_3 1
+          // clear string stream buffer
+          message_parse_ss.str(std::string());
+          // parse received message
+          message_parse_ss << message << endl;
+          string message_string = message_parse_ss.str();
+          vector<string> message_split;
+          
+          // split on spaces
+          boost::split(message_split, message_string, boost::is_any_of(" "));
+
+          // store in the collision map  ->  std::map<std::string, unsigned int> collMap
+          collMap[message_split[0]] = atoi(message_split[1].c_str());
+
+          // move on to next head packet or nothing
+          wb_receiver_next_packet(physics_receiver);
+        }
+      }
 		}
 
 		/////////////////////      UPDATE SELF VALUE     ///////////////////////////////
@@ -844,13 +973,13 @@ int main()
 				screen << "Error: empty bottom buffer." << endl;
 			}
 		}
-#ifdef CTRLER_DEBUG
-		file << "Self:" << endl << self << endl;
-		file << "Front:" << front_self << endl;
-		file << "Back:" << back_self << endl;
-		file << "Top:" << top_self << endl;
-		file << "Bottom:" << bottom_self << endl;
-#endif
+    #ifdef CTRLER_DEBUG
+    		file << "Self:" << endl << self << endl;
+    		file << "Front:" << front_self << endl;
+    		file << "Back:" << back_self << endl;
+    		file << "Top:" << top_self << endl;
+    		file << "Bottom:" << bottom_self << endl;
+    #endif
 
 		////// 	COMPUTE THE NEW ALPHA_SELF
 
@@ -881,31 +1010,44 @@ int main()
 		amplitude = output.values[0][1];
 		// update phase
 		phase = output.values[1][2];
-
+    // CPG cancellation / output to keep angle as it is [0...1]
+    double allowchange = output.values[1][0];
 
     // target_angle = -1*((1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)));
-		target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+    // target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
+    target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
 
 
 		/// set servo position
-		wb_servo_set_position(servo, target_angle);
+    if(allowchange < 0.5 || allowchange > -0.5) {
+		  wb_servo_set_position(servo, target_angle);
+    }
 
-#ifdef CTRLER_DEBUG
-		file << "alpha: " << alpha << "; omega: " << omega << "; amplitude: "
-		<< amplitude <<"; phase: "<< phase << ": servo value: " << target_angle << /*" row: " << row <<*/ endl;
-#endif
+    #ifdef CTRLER_DEBUG
+    		file << "alpha: " << alpha << "; omega: " << omega << "; amplitude: "
+    		<< amplitude <<"; phase: "<< phase << ": servo value: " << target_angle << /*" row: " << row <<*/ endl;
+    #endif
 
 		/* computed elapsed time */
 		t += CONTROL_STEP / 1000.0;
 	} // end control's while loop
 
 
-	if (id == FITNESS_RECORDER_ID) {
-		// take the average in average_height (recordings start from iteration -1)
-		average_height /= (control_loop_iteration + 1);
-	}
+	// if (id == FITNESS_RECORDER_ID) {
+	// 	// take the average in average_height (recordings start from iteration -1)
+	// 	average_height /= (control_loop_iteration + 1);
+	// }
 
 	if (id == FITNESS_RECORDER_ID) {
+    
+    screen << "fitness / collision recorder adding results to cppn... " << endl;
+
+    // iterate over the collision data
+    writeCollisionsToXml(xmlFileName, collMap);
+
+    // take the average in average_height (recordings start from iteration -1)
+    average_height /= (control_loop_iteration + 1);
+
 		// write distance traveled
 		const double *pos = wb_gps_get_values(gps);
 
@@ -929,12 +1071,49 @@ int main()
 			}
 		}
 
-		//stringstream stream;
-
 		///////////       COMPUTES THE FITNESS FUNCTION   ///////////
-		const double fitness = exp(distance_from_origin // how far the robot got
+		// const double fitness = exp(distance_from_origin // how far the robot got
+  //       * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+  //       + (average_height)); // how high did it keep the body on average (less than 1.0m)
+
+    // the following need to be minimized
+    unsigned int maxTouchTime = 1000;
+    unsigned int maxCollisions = 10;
+
+    // calculate the collision penalisation scalar
+    // double collision_penal_scalar = 1;
+    // if (totalCollisions > 0 && totalCollisions <= maxCollisions) {
+    //   collision_penal_scalar = 1 - (totalCollisions / maxCollisions);
+    // } else {
+    //   collision_penal_scalar = 0;
+    // }
+    // screen << "collision penal scalar = " << collision_penal_scalar << endl;
+
+    // MINUS the amount of collisions
+    // const double fitness = exp( (distance_from_origin // how far the robot got
+    //     * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+    //     + (average_height)) // how high did it keep the body on average (less than 1.0m)
+    //     * collision_penal_scalar); // the fitness score gets multiplied by collision penal scalar
+
+    unsigned int collisionAmountPoints = 0;
+    if(maxTouchTime - totalTouchTime > 0) {
+      collisionAmountPoints = maxTouchTime - totalTouchTime;
+    } else if (maxTouchTime - totalTouchTime <= 0) {
+      collisionAmountPoints = 0;
+    }
+
+    unsigned int collisionTouchTimePoints = 0;
+    if(maxCollisions - totalCollisions > 0) {
+      collisionTouchTimePoints = maxCollisions - totalCollisions;
+    } else if(maxCollisions - totalCollisions <= 0) {
+      collisionTouchTimePoints = 0;
+    }
+
+    const double fitness = exp(distance_from_origin // how far the robot got
         * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
-        + (average_height)); // how high did it keep the body on average (less than 1.0m)
+        + (average_height)) // how high did it keep the body on average (less than 1.0m)
+        + (((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin); // + added the collision fitness
+        
 
     // DISTANCE ONLY
     // const double fitness = exp(distance_from_origin);
@@ -943,14 +1122,19 @@ int main()
     // BODY HEIGHT ONLY
     // const double fitness = average_height * 10; // how high did it keep the body on average (less than 1.0m)
 
-		screen << "Distance from initial position / traveled / average height / fitness\nFitness components: " << distance_from_origin << " / " << distance_travelled << " / " << average_height << " / " << fitness << endl;
-		//screen << stream.str();
+    screen << "Distance from origin / traveled / average height: " << endl;
+    screen << distance_from_origin << " / " << distance_travelled << " / " << average_height << endl;
+    screen << "# collisions / total touchtimes: " << endl;
+    screen << totalCollisions << " / " << totalTouchTime << endl;
+    screen << "collisions points / touchtime points / fitness: " << endl;
+    screen << collisionAmountPoints << " / " << collisionTouchTimePoints << " / " << fitness << endl;
+
 
 		fflush(stdout);
 
 		/// Fitness is the distance between the initial and final positions of the first controller
 		// scaled down exponentially by the ratio of distance travelled
-		writeFitnessToXml(xmlFileName, fitness, distance_from_origin);
+		writeFitnessToXml(xmlFileName, fitness, distance_from_origin, average_height);
 
 	}
 
