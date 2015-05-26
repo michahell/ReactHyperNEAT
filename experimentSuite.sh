@@ -232,7 +232,7 @@ experiment_arena_freezeoutput
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-rebuildExperimentDefinition
+# rebuildExperimentDefinition
 rebuildExperimentControllers ${1}
 rebuildExperimentPlugins ${1}
 prepareExperimentFolder ${1}

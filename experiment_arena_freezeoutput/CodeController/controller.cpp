@@ -1109,7 +1109,13 @@ int main()
       collisionAmountPoints = 0;
     }
 
-    unsigned int finalCollisionPoints = ((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin;
+    // if more then 2 meters is travelled ( the first ring of obstacles HAD to be crossed) THEN collision points kick in:
+    // else, the robot just failed to cover ground and should not get any points at all
+    // (instead of getting full points because no obstacles had been encountered...)
+    double finalCollisionPoints = 0;
+    if(distance_from_origin > 1 || totalCollisions > 0) {
+    	finalCollisionPoints = ((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin;
+    }
 
     const double fitness = exp(distance_from_origin // how far the robot got
         * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
@@ -1126,12 +1132,12 @@ int main()
 
     screen << "Distance from origin / traveled / average height: " << endl;
     screen << distance_from_origin << " / " << distance_travelled << " / " << average_height << endl;
-    screen << "# collisions / total touchtimes: " << endl;
-    screen << totalCollisions << " / " << totalTouchTime << endl;
-    screen << "collisions points / touchtime points / fitness: " << endl;
-    screen << collisionAmountPoints << " / " << collisionTouchTimePoints << " / " << fitness << endl;
+    
     screen << "FINAL collisions points: " << endl;
-    screen << finalCollisionPoints << endl;
+    screen << "((" << collisionAmountPoints << " * " << collisionTouchTimePoints << ") / 1000 ) * " << distance_from_origin << " = " << finalCollisionPoints << endl;
+
+    screen << "fitness: " << endl;
+    screen << fitness << endl;
 
 
 		fflush(stdout);
