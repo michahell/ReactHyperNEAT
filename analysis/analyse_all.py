@@ -34,22 +34,8 @@ def get_cppn_experiment_folders():
     sys.exit()
 
 
-
-def plot_all_avg_fitness():
-  global np_all_avg_fitness
-  
-  print notify('creating average fitness boxplot...')
-
-  for index, dict in enumerate(all_experiment_data):
-    print 'integrating experiment : ' + dict['experiment_name']
-    for index2, average_fitness in enumerate(dict['np_fitness_avg']):
-      # print 'indexes : ' + str(index) + ' : ' + str(index2)
-      np_all_avg_fitness[index][index2] = average_fitness
-
-  fig = plt.figure()
-  bp = plt.boxplot(np_all_avg_fitness, patch_artist=True, widths=0.8) 
-
-  # change outline color, fill color and linewidth of the boxes
+# sets boxplot styles for average fitness boxplots
+def set_bp_style_fitness(bp):
   for box in bp['boxes']:
     # change outline color 
     box.set( color='#7570b3', linewidth=0.5)
@@ -72,6 +58,25 @@ def plot_all_avg_fitness():
   for flier in bp['fliers']:
     flier.set(color='#e7298a', alpha=0.5)
     # marker='o', 
+
+
+# create a boxplot for average fitness for 150 generations
+def plot_all_avg_fitness():
+  global np_all_avg_fitness
+  
+  print notify('creating average fitness boxplot...')
+
+  for index, dict in enumerate(all_experiment_data):
+    print 'integrating experiment : ' + dict['experiment_name']
+    for index2, average_fitness in enumerate(dict['np_fitness_avg']):
+      # print 'indexes : ' + str(index) + ' : ' + str(index2)
+      np_all_avg_fitness[index][index2] = average_fitness
+
+  fig = plt.figure()
+  bp = plt.boxplot(np_all_avg_fitness, patch_artist=True, widths=0.8) 
+
+  # change outline color, fill color and linewidth of the boxes
+  set_bp_style_fitness(bp)
 
   fig.savefig(fig_folder + 'boxplot_np_all_avg_fitness', bbox_inches='tight')
 

@@ -1123,24 +1123,32 @@ int main()
     //     + (average_height)) // how high did it keep the body on average (less than 1.0m)
     //     * collision_penal_scalar); // the fitness score gets multiplied by collision penal scalar
 
-    unsigned int collisionAmountPoints = 0;
+    unsigned int collisionTouchTimePoints = 0;
     if(maxTouchTime - totalTouchTime > 0) {
-      collisionAmountPoints = maxTouchTime - totalTouchTime;
+      collisionTouchTimePoints = maxTouchTime - totalTouchTime;
     } else if (maxTouchTime - totalTouchTime <= 0) {
+      collisionTouchTimePoints = 0;
+    }
+
+    unsigned int collisionAmountPoints = 0;
+    if(maxCollisions - totalCollisions > 0) {
+      collisionAmountPoints = maxCollisions - totalCollisions;
+    } else if(maxCollisions - totalCollisions <= 0) {
       collisionAmountPoints = 0;
     }
 
-    unsigned int collisionTouchTimePoints = 0;
-    if(maxCollisions - totalCollisions > 0) {
-      collisionTouchTimePoints = maxCollisions - totalCollisions;
-    } else if(maxCollisions - totalCollisions <= 0) {
-      collisionTouchTimePoints = 0;
+    // if more then 2 meters is travelled ( the first ring of obstacles HAD to be crossed) THEN collision points kick in:
+    // else, the robot just failed to cover ground and should not get any points at all
+    // (instead of getting full points because no obstacles had been encountered...)
+    double finalCollisionPoints = 0;
+    if(distance_from_origin > 1 || totalCollisions > 0) {
+      finalCollisionPoints = ((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin;
     }
 
     const double fitness = exp(distance_from_origin // how far the robot got
         * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
         + (average_height)) // how high did it keep the body on average (less than 1.0m)
-        + (((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin); // + added the collision fitness
+        + finalCollisionPoints; // + added the collision fitness
         
 
     // DISTANCE ONLY
@@ -1152,10 +1160,12 @@ int main()
 
     screen << "Distance from origin / traveled / average height: " << endl;
     screen << distance_from_origin << " / " << distance_travelled << " / " << average_height << endl;
-    screen << "# collisions / total touchtimes: " << endl;
-    screen << totalCollisions << " / " << totalTouchTime << endl;
-    screen << "collisions points / touchtime points / fitness: " << endl;
-    screen << collisionAmountPoints << " / " << collisionTouchTimePoints << " / " << fitness << endl;
+    
+    screen << "FINAL collisions points: " << endl;
+    screen << "((" << collisionAmountPoints << " * " << collisionTouchTimePoints << ") / 1000 ) * " << distance_from_origin << " = " << finalCollisionPoints << endl;
+
+    screen << "fitness: " << endl;
+    screen << fitness << endl;
 
 
 		fflush(stdout);

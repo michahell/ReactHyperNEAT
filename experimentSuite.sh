@@ -226,13 +226,15 @@ checkRequirements ${1}
 
 # which experiment do we want to run?
 # experiment_moddif
-# experiment_arena
+
+# mine
+experiment_arena
 # experiment_arena_substrate
-experiment_arena_freezeoutput
+# experiment_arena_freezeoutput
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-# rebuildExperimentDefinition
+rebuildExperimentDefinition
 rebuildExperimentControllers ${1}
 rebuildExperimentPlugins ${1}
 prepareExperimentFolder ${1}

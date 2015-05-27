@@ -8,7 +8,7 @@
 #ifdef VIEWSIMULATION
   float deadline = 60;
 #else
-  float deadline = 25;
+  float deadline = 10;
 #endif
 
 // HyperNEAT params location
