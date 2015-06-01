@@ -11,7 +11,8 @@
 #  -lstdc++							link the C++11 library...
 #  libstdc++						GNU/Linux standard C++ lib
 
-CFLAGS = -g -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
+# CFLAGS = -g -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
+CFLAGS = -ggdb -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
 
 PLATFORM_CFLAG = -DMACOS
 EXTRA_CFLAGS = -mmacosx-version-min=10.5 -arch i386 -arch x86_64
