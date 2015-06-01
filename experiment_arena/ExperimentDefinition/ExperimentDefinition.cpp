@@ -5,6 +5,7 @@
 #include <ctime>
 #include <cmath>
 #include <unistd.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -280,11 +281,12 @@ namespace HCUBE {
       // avoid 0 fitness
       if (individual->getFitness() <= 0) individual->setFitness(0.000001);
 
-      // spawn child process
+      // spawn child process after 1 sec (webotsrc test)
+      usleep(1000 * 1000);
       pids[i] = fork();
       
       // child code
-      if (pids[i] == 0) { 
+      if (pids[i] == 0) {
         // code only executed by child process
         // evaluate individual and get fitness
         double fitness = processEvaluation(individual, NULL, i);
