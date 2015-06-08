@@ -220,6 +220,18 @@ experiment_arena_freezeoutput () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
+lalala () {
+  EXPERIMENT_NAME="experiment arena freeze output"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_freezeoutput/"
+  EXPERIMENT_SEED="30"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_freezeoutput/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
 
 # see if we can run this script
 checkRequirements ${1}
@@ -228,15 +240,16 @@ checkRequirements ${1}
 # experiment_moddif
 
 # mine
-experiment_arena
+# experiment_arena
 # experiment_arena_substrate
 # experiment_arena_freezeoutput
+lalala
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-# rebuildExperimentDefinition
-# rebuildExperimentControllers ${1}
-# rebuildExperimentPlugins ${1}
+rebuildExperimentDefinition
+rebuildExperimentControllers ${1}
+rebuildExperimentPlugins ${1}
 prepareExperimentFolder ${1}
 runSimulations ${1}
 # analyseResults ${1}
