@@ -220,16 +220,16 @@ experiment_arena_freezeoutput () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
-lalala () {
-  EXPERIMENT_NAME="experiment arena freeze output"
+experiment_arena_noinputs () {
+  EXPERIMENT_NAME="experiment arena no inputs"
   # hyperneat CLI required flags
-  EXPERIMENT_LOCATION="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinitionParams.dat"
-  EXPERIMENT_FOLDER="${PWD}/experiment_arena_freezeoutput/"
-  EXPERIMENT_SEED="30"
-  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_freezeoutput/CPPNarchive/"
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_noinputs/"
+  EXPERIMENT_SEED="32"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_noinputs/CPPNarchive/"
   # experiment definition for symlinking into HyperNEAT
-  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.h"
-  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.cpp"
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
 
@@ -241,9 +241,9 @@ checkRequirements ${1}
 
 # mine
 # experiment_arena
+experiment_arena_noinputs
 # experiment_arena_substrate
 # experiment_arena_freezeoutput
-lalala
 
 # list of functions to go through
 verifyExperimentFolders ${1}

@@ -1,0 +1,52 @@
+<Network Fitness="1.54798549961964604371" SpeciesID="-65511" UserData="" Distance="0.41382268762233070936" Bodyheight="0.05694563691932054417">
+    <Nodes>
+        <Node ID="0" Enabled="1" Name="X1" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="1" Enabled="1" Name="Y1" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="2" Enabled="1" Name="Z1" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="3" Enabled="1" Name="X2" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="4" Enabled="1" Name="Y2" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="5" Enabled="1" Name="Z2" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="6" Enabled="1" Name="Bias" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="7" Enabled="1" Name="DeltaX" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="8" Enabled="1" Name="DeltaY" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="9" Enabled="1" Name="DeltaZ" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="10" Enabled="1" Name="T1" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="11" Enabled="1" Name="T2" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="12" Enabled="1" Name="DeltaT" Type="NetworkSensor" DrawingPosition="0.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="13" Enabled="1" Name="Output" Type="NetworkOutputNode" DrawingPosition="1.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="14" Enabled="1" Name="Bias_out" Type="NetworkOutputNode" DrawingPosition="1.00000000000000000000" TopologyFrozen="0" ActivationFunction="0" />
+        <Node ID="15" Enabled="1" Name="" Type="HiddenNode" DrawingPosition="0.50000000000000000000" TopologyFrozen="0" ActivationFunction="1" />
+    </Nodes>
+    <Links>
+        <Link ID="0" Enabled="1" fromNode="0" toNode="13" weight="0.16549278472141948360" fixed="0" />
+        <Link ID="1" Enabled="1" fromNode="0" toNode="14" weight="1.21412982801690416679" fixed="0" />
+        <Link ID="2" Enabled="1" fromNode="1" toNode="13" weight="4.02238833444967092134" fixed="0" />
+        <Link ID="3" Enabled="1" fromNode="1" toNode="14" weight="-1.75232278569727517592" fixed="0" />
+        <Link ID="4" Enabled="1" fromNode="2" toNode="13" weight="-0.75738390112759079731" fixed="0" />
+        <Link ID="5" Enabled="1" fromNode="2" toNode="14" weight="1.92041211803291655968" fixed="0" />
+        <Link ID="6" Enabled="1" fromNode="3" toNode="13" weight="-0.54458960447324877840" fixed="0" />
+        <Link ID="7" Enabled="1" fromNode="3" toNode="14" weight="-2.68380108560866048606" fixed="0" />
+        <Link ID="8" Enabled="1" fromNode="4" toNode="13" weight="1.59235543046970695613" fixed="0" />
+        <Link ID="9" Enabled="1" fromNode="4" toNode="14" weight="-1.39652712347788998670" fixed="0" />
+        <Link ID="10" Enabled="1" fromNode="5" toNode="13" weight="1.15086737319084431164" fixed="0" />
+        <Link ID="11" Enabled="1" fromNode="5" toNode="14" weight="0.62620871634769570413" fixed="0" />
+        <Link ID="12" Enabled="1" fromNode="6" toNode="13" weight="-0.23407141570441947209" fixed="0" />
+        <Link ID="13" Enabled="1" fromNode="6" toNode="14" weight="3.40627849101626400952" fixed="0" />
+        <Link ID="14" Enabled="1" fromNode="7" toNode="13" weight="0.48559993890387920246" fixed="0" />
+        <Link ID="15" Enabled="1" fromNode="7" toNode="14" weight="2.45472763922548553595" fixed="0" />
+        <Link ID="16" Enabled="1" fromNode="8" toNode="13" weight="3.17428336419807211044" fixed="0" />
+        <Link ID="17" Enabled="1" fromNode="8" toNode="14" weight="1.51766642042524546596" fixed="0" />
+        <Link ID="18" Enabled="1" fromNode="9" toNode="13" weight="3.37909867349334636089" fixed="0" />
+        <Link ID="19" Enabled="1" fromNode="9" toNode="14" weight="0.42778275642163343662" fixed="0" />
+        <Link ID="20" Enabled="1" fromNode="10" toNode="13" weight="-2.77517642862384450453" fixed="0" />
+        <Link ID="21" Enabled="1" fromNode="10" toNode="14" weight="3.09737771969929154281" fixed="0" />
+        <Link ID="22" Enabled="1" fromNode="11" toNode="13" weight="0.47302254793999098936" fixed="0" />
+        <Link ID="23" Enabled="1" fromNode="11" toNode="14" weight="-0.83912649590166865643" fixed="0" />
+        <Link ID="24" Enabled="1" fromNode="12" toNode="13" weight="-0.27812885919810881319" fixed="0" />
+        <Link ID="25" Enabled="1" fromNode="12" toNode="14" weight="3.00781738752693739158" fixed="0" />
+        <Link ID="26" Enabled="1" fromNode="11" toNode="15" weight="0.43049953698211762543" fixed="0" />
+        <Link ID="27" Enabled="1" fromNode="15" toNode="13" weight="1.51903465619556321542" fixed="0" />
+        <Link ID="28" Enabled="1" fromNode="6" toNode="15" weight="-0.21359773140567611671" fixed="0" />
+    </Links>
+    <collisions total="0.00000000000000000000" totaltouchtime="0.00000000000000000000" />
+</Network>
