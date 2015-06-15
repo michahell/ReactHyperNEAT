@@ -22,9 +22,9 @@
 #define screen cout << fixed
   
 // experiment folder path
-string pathToExperiment = "experiment_arena";                 
+string pathToExperiment = "experiment_arena_noinputs";                 
 // WEBOTS world file name
-string pathToWorldFile = "/worlds/arena_world_";
+string pathToWorldFile = "/worlds/arena_world_noinputs_";
 // CPPN archive folder name
 string pathToArchive = "/CPPNarchive";
 // analysis folder name

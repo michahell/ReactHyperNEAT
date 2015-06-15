@@ -4,7 +4,7 @@ from lxml import etree
 from scipy.interpolate import spline
 
 import matplotlib as mpl
-# mpl.use('PDF')
+mpl.use('PDF')
 import matplotlib.pyplot as plt
 plt.ioff()
 
@@ -52,6 +52,7 @@ def error(text):
 
 def get_experiment_path():
   global experiment_path, experiment_folder, fig_folder
+
   experiment_path = str(sys.argv[1])
   experiment_folder = experiment_path.split("/")[3]
   print experiment_path, experiment_folder
@@ -60,12 +61,15 @@ def get_experiment_path():
 
 def set_experiment_path(folder_name, folder_path):
   global experiment_path, experiment_folder, fig_folder
+
   experiment_path = folder_path
   experiment_folder = folder_name
   fig_folder = 'plots/' + experiment_folder
 
 
 def generate_raw_stat_matrices():
+  global np_fitness, np_distance, np_collisions, np_collisions_time
+
   for fn in os.listdir(experiment_path):
     abspath = os.path.join(experiment_path, fn);
     # print "parsing " + abspath
@@ -96,6 +100,7 @@ def generate_raw_stat_matrices():
         collisions_touchtime = float(str(collisions_elem[0].get("totaltouchtime")))
         np_collisions[curr_generation][curr_individual] = collisions_total;
         np_collisions_time[curr_generation][curr_individual] = collisions_touchtime;
+
       except ValueError, e:
         print error('error: ' + str(e));
       except IndexError, e:
@@ -107,17 +112,23 @@ def generate_raw_stat_matrices():
 
 
 def generate_gen_best():
+  global np_best_fitness_from_generation, np_best_dist_from_generation
+
   for num_gen in xrange(0, num_generations-1):
     np_best_fitness_from_generation[num_gen] = find_best_fitness_individual_generation(num_gen)
     np_best_dist_from_generation[num_gen] = find_best_distance_individual_generation(num_gen)
 
 
 def generate_gen_avg():
+  global np_fitness_avg, np_distances_avg
+
   for num_gen in xrange(0, num_generations-1):
     np_fitness_avg[num_gen] = np.average(np_fitness[num_gen])
     np_distances_avg[num_gen] = np.average(np_distance[num_gen])
 
 def generate_collision_avg():
+  global np_collisions_avg, np_collisions_time_avg
+
   for num_gen in xrange(0, num_generations-1):
     np_collisions_avg[num_gen] = np.average(np_collisions[num_gen])
     np_collisions_time_avg[num_gen] = np.average(np_collisions_time[num_gen])
@@ -163,6 +174,19 @@ def print_generation_best():
 
 
 def plot_stat(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
+  x_range = xrange(0, num_generations)
+  fig = plt.figure()
+  fig.suptitle(description, fontsize=16)
+  plt.xlabel(label_x, fontsize=14)
+  plt.ylabel(label_y, fontsize=14)
+  plt.plot(x_range, stat, point_type)
+  plt.axis([0, num_generations, 0, y_axis_max])
+  if show_plot:
+    plt.show()
+  fig.savefig(fig_folder + file_name)
+
+
+def plot_stat_2(stat, description, point_type, fig_folder, file_name, label_x, label_y, y_axis_max, show_plot):
   x_range = xrange(0, num_generations)
   fig = plt.figure()
   fig.suptitle(description, fontsize=16)

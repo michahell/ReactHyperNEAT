@@ -220,6 +220,18 @@ experiment_arena_freezeoutput () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
+experiment_arena_noinputs () {
+  EXPERIMENT_NAME="experiment arena no inputs"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_noinputs/"
+  EXPERIMENT_SEED="32"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_noinputs/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
 
 # see if we can run this script
 checkRequirements ${1}
@@ -228,7 +240,8 @@ checkRequirements ${1}
 # experiment_moddif
 
 # mine
-experiment_arena
+# experiment_arena
+experiment_arena_noinputs
 # experiment_arena_substrate
 # experiment_arena_freezeoutput
 

@@ -466,6 +466,13 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
+  // stringstream ss;
+  // char const * homedir = getenv("HOME");
+  // ss << homedir << "/" << datfile << endl;
+  // const char * paramsDat = ss.str().c_str();
+
+	// NEAT::Globals::init(paramsDat);
+  // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
   // hardcoded path, uses symlink to point to the correct directory..
   NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
 
@@ -661,7 +668,8 @@ int main()
 		sonar_name[5] = '0' + i;
     // screen << "has sensor? " << wb_robot_get_device(sonar_name) << endl;
 		distance_sensors[i] = wb_robot_get_device(sonar_name);
-		wb_distance_sensor_enable(distance_sensors[i], CONTROL_STEP);
+		// wb_distance_sensor_enable(distance_sensors[i], CONTROL_STEP);
+    wb_distance_sensor_disable(distance_sensors[i]);
 	}
 
 	bumper = wb_robot_get_device("bumper");
@@ -709,8 +717,7 @@ int main()
 	double distance_travelled = 0;
 	double average_height = 0;
 	// initial position of the controller
-	double *initial_position = NULL, *old_position = NULL, old_speeds[3],
-			old_distances[6];
+	double *initial_position = NULL, *old_position = NULL, old_speeds[3], old_distances[6];
 
 	// intial joint angle [-1 ... 1] for [-pi/2 ... pi/2]
 	double alpha = 0.001;
@@ -760,8 +767,8 @@ int main()
 	old_speeds[2] = speeds[2];
 
 	// get current distance sensor reading and write them to the old_distances vector
-	for (int i = 0; i < 6; i++)
-		old_distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
+	// for (int i = 0; i < 6; i++)
+	// 	old_distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
 
 	/*
 	 * <<<<<<<<<<<<<    MAIN CONTROL LOOP      >>>>>>>>>>>>>>>>>>
@@ -784,9 +791,9 @@ int main()
     #ifdef CTRLER_DEBUG
   		//////////////// EXPERIMENTAL
   		// read distance sensor values
-      file << "Distances: ";
-      for (int i = 0; i < 6; i++) file << wb_distance_sensor_get_value(distance_sensors[i]) << ";\t";
-      file << endl;
+      // file << "Distances: ";
+      // for (int i = 0; i < 6; i++) file << wb_distance_sensor_get_value(distance_sensors[i]) << ";\t";
+      // file << endl;
       file << "Bumper: " << wb_touch_sensor_get_value(bumper) << endl;
 
       // to screen
@@ -852,42 +859,42 @@ int main()
 		const double threshold = 0.50;
 
 
-		double distances[6];
-		for (int i = 0; i < 6; i++)
-			distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
+		// double distances[6];
+		// for (int i = 0; i < 6; i++)
+		// 	distances[i] = wb_distance_sensor_get_value(distance_sensors[i]);
 
-		int activity[6] = {0,0,0,0,0,0};
-		activity[0] = (distances[0] - old_distances[0])
-				> threshold ? signum(distances[0] - old_distances[0]) : 0;
+		// int activity[6] = {0,0,0,0,0,0};
+		// activity[0] = (distances[0] - old_distances[0])
+		// 		> threshold ? signum(distances[0] - old_distances[0]) : 0;
 
-		activity[1]  = (distances[1] - old_distances[1])
-				> threshold ? signum(distances[1] - old_distances[1]) : 0;
+		// activity[1]  = (distances[1] - old_distances[1])
+		// 		> threshold ? signum(distances[1] - old_distances[1]) : 0;
 
-		activity[2]  = (distances[2] - old_distances[2])
-				> threshold ? signum(distances[2] - old_distances[2]) : 0;
+		// activity[2]  = (distances[2] - old_distances[2])
+		// 		> threshold ? signum(distances[2] - old_distances[2]) : 0;
 
-		activity[3]  = (distances[3]
-				- old_distances[3]) > threshold ? signum(distances[3]
-				- old_distances[3]) : 0;
+		// activity[3]  = (distances[3]
+		// 		- old_distances[3]) > threshold ? signum(distances[3]
+		// 		- old_distances[3]) : 0;
 
-		activity[4]  = (distances[4]
-				- old_distances[4]) > threshold ? signum(distances[4]
-				- old_distances[4]) : 0;
+		// activity[4]  = (distances[4]
+		// 		- old_distances[4]) > threshold ? signum(distances[4]
+		// 		- old_distances[4]) : 0;
 
-		activity[5]  = (distances[5]
-				- old_distances[5]) > threshold ? signum(distances[5]
-				- old_distances[5]) : 0;
+		// activity[5]  = (distances[5]
+		// 		- old_distances[5]) > threshold ? signum(distances[5]
+		// 		- old_distances[5]) : 0;
 
-		bool activated = false;
-		for (int i=0; i<6 && !activated;  i++)
-			if(activity[i] == 1)
-				activated = true;
+		// bool activated = false;
+		// for (int i=0; i<6 && !activated;  i++)
+		// 	if(activity[i] == 1)
+		// 		activated = true;
 
-		self.values[0][0] = (activated? -1.0 : 0.0); // * (sin(10.0 * t));
+		// self.values[0][0] = (activated? -1.0 : 0.0); // * (sin(10.0 * t));
 
 		// update distance sensor information for next iteration
-		for (int i = 0; i < 6; i++)
-			old_distances[i] = distances[i];
+		// for (int i = 0; i < 6; i++)
+		// 	old_distances[i] = distances[i];
 
 		/////////////////////      END UPDATE SELF VALUE     ///////////////////////////////
 
@@ -982,11 +989,11 @@ int main()
 
 		//////////////////////////// SUBSTRATE INPUT ////////////////////////////
 
-		input.values[1][0] = front_self.values[0][0];
-		input.values[1][2] = back_self.values[0][0];
-		input.values[0][1] = top_self.values[0][0];
-		input.values[2][1] = bottom_self.values[0][0];
-		input.values[1][1] = self.values[0][0];
+		// input.values[1][0] = front_self.values[0][0];
+		// input.values[1][2] = back_self.values[0][0];
+		// input.values[0][1] = top_self.values[0][0];
+		// input.values[2][1] = bottom_self.values[0][0];
+		// input.values[1][1] = self.values[0][0];
 
 		//////////////////////////// SUBSTRATE OUTPUT ////////////////////////////
 
@@ -1003,18 +1010,16 @@ int main()
 		amplitude = output.values[0][1];
 		// update phase
 		phase = output.values[1][2];
-    // CPG cancellation / output to keep angle as it is [0...1]
-    double allowchange = output.values[1][0];
+    // CPG diminishing / resetting output, [0...1]
+    reset = output.values[1][0];
 
     // target_angle = -1*((1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)));
-    // target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
     target_angle = (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0));
+		// target_angle = (1 - reset) * ( (1.5708 * alpha) +  (1.5708 * amplitude) * sin(10.0 * M_PI * omega * t + id * (CONTROL_STEP / 1000.0)) );
 
 
 		/// set servo position
-    if(allowchange < 0.5 || allowchange > -0.5) {
-		  wb_servo_set_position(servo, target_angle);
-    }
+		wb_servo_set_position(servo, target_angle);
 
     #ifdef CTRLER_DEBUG
     		file << "alpha: " << alpha << "; omega: " << omega << "; amplitude: "
@@ -1107,7 +1112,7 @@ int main()
     // (instead of getting full points because no obstacles had been encountered...)
     double finalCollisionPoints = 0;
     if(distance_from_origin > 1 || totalCollisions > 0) {
-    	finalCollisionPoints = ((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin;
+      finalCollisionPoints = ((collisionAmountPoints * collisionTouchTimePoints) / 1000) * distance_from_origin;
     }
 
     const double fitness = exp(distance_from_origin // how far the robot got

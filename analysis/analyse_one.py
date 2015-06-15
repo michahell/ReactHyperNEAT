@@ -40,16 +40,16 @@ def analyse_one_experiment(folder_name, folder_path):
   # return a dict with all the numpy arrays
   return {
     'experiment_name' : folder_name,
-    'np_fitness' : np_fitness, 
-    'np_distance' : np_distance,
-    'np_best_fitness_from_generation' : np_best_fitness_from_generation,
-    'np_best_dist_from_generation' : np_best_dist_from_generation,
-    'np_fitness_avg' : np_fitness_avg,
-    'np_distances_avg' : np_distances_avg,
-    'np_collisions' : np_collisions,
-    'np_collisions_avg' : np_collisions_avg,
-    'np_collisions_time' : np_collisions_time,
-    'np_collisions_time_avg' : np_collisions_time_avg
+    'np_fitness' : np.copy(np_fitness), 
+    'np_distance' : np.copy(np_distance),
+    'np_best_fitness_from_generation' : np.copy(np_best_fitness_from_generation),
+    'np_best_dist_from_generation' : np.copy(np_best_dist_from_generation),
+    'np_fitness_avg' : np.copy(np_fitness_avg),
+    'np_distances_avg' : np.copy(np_distances_avg),
+    'np_collisions' : np.copy(np_collisions),
+    'np_collisions_avg' : np.copy(np_collisions_avg),
+    'np_collisions_time' : np.copy(np_collisions_time),
+    'np_collisions_time_avg' : np.copy(np_collisions_time_avg)
   }
 
 
