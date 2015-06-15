@@ -151,3 +151,6 @@ HyperNEAT/boost_1_57_0/tools/build/
 HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/
 HyperNEAT/boost_1_57_0/tools/build/src/engine/bin.macosxx86_64/
 
+# ignore ST2 project files
+*.sublime-workspace
+*.sublime-project
