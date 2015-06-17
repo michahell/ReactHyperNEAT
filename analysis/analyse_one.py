@@ -18,6 +18,9 @@ def generate_all_data():
   # generate collision graphs
   generate_collision_avg()
 
+  # generate species graph
+  generate_species()
+
 
 # analyse one experiment
 def analyse_one_experiment(folder_name, folder_path):

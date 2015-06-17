@@ -29,6 +29,10 @@ np_best_fitness_from_generation = np.zeros(num_generations)
 np_best_dist_from_generation = np.zeros(num_generations)
 np_fitness_avg = np.zeros(num_generations)
 np_distances_avg = np.zeros(num_generations)
+np_species = np.zeros((num_generations, num_individuals))
+
+# python lists for quick prototyping
+unique_species = []
 
 # added for arena experiment
 np_collisions = np.zeros((num_generations, num_individuals))
@@ -68,7 +72,7 @@ def set_experiment_path(folder_name, folder_path):
 
 
 def generate_raw_stat_matrices():
-  global np_fitness, np_distance, np_collisions, np_collisions_time
+  global np_fitness, np_distance, np_collisions, np_collisions_time, np_species
 
   for fn in os.listdir(experiment_path):
     abspath = os.path.join(experiment_path, fn);
@@ -83,15 +87,26 @@ def generate_raw_stat_matrices():
       root = tree.getroot()
       collisions_elem = tree.xpath('/Network/collisions')
 
+      # try to get the fitness xml attribute
       try:
         fitness = float(str(root.get("Fitness")))
         np_fitness[curr_generation][curr_individual] = fitness;
       except ValueError, e:
         print error('ValueError: ' + str(e));
       
+      # try to get the distance xml attribute
       try:
         distance = float(str(root.get("Distance")))
         np_distance[curr_generation][curr_individual] = distance;
+      except ValueError, e:
+        print error('error: ' + str(e));
+
+      # try to get the speciesID xml attribute
+      try:
+        speciesID = long(str(root.get("SpeciesID")))
+        np_species[curr_generation][curr_individual] = speciesID
+        if speciesID not in unique_species:
+          unique_species.append(speciesID)
       except ValueError, e:
         print error('error: ' + str(e));
 
@@ -111,9 +126,12 @@ def generate_raw_stat_matrices():
       
 
 
+def generate_gen_worst():
+  pass
+
+
 def generate_gen_best():
   global np_best_fitness_from_generation, np_best_dist_from_generation
-
   for num_gen in xrange(0, num_generations-1):
     np_best_fitness_from_generation[num_gen] = find_best_fitness_individual_generation(num_gen)
     np_best_dist_from_generation[num_gen] = find_best_distance_individual_generation(num_gen)
@@ -121,17 +139,23 @@ def generate_gen_best():
 
 def generate_gen_avg():
   global np_fitness_avg, np_distances_avg
-
   for num_gen in xrange(0, num_generations-1):
     np_fitness_avg[num_gen] = np.average(np_fitness[num_gen])
     np_distances_avg[num_gen] = np.average(np_distance[num_gen])
 
+
 def generate_collision_avg():
   global np_collisions_avg, np_collisions_time_avg
-
   for num_gen in xrange(0, num_generations-1):
     np_collisions_avg[num_gen] = np.average(np_collisions[num_gen])
     np_collisions_time_avg[num_gen] = np.average(np_collisions_time[num_gen])
+
+
+def generate_species():
+  global np_species
+  # for num_gen in xrange(0, num_generations-1):
+  #   pass
+  print unique_species
 
 
 def find_best_individual():
@@ -160,17 +184,6 @@ def find_best_distance_individual_generation(num_generation):
   # print np_curr_gen
   max_distance = np.amax(np_curr_gen)
   return max_distance
-
-
-def print_best_individual():
-  print "\nSimulation best individual: "
-  print find_best_individual()
-
-
-def print_generation_best():
-  print "\nGeneration best individuals: "
-  for num_gen in xrange(0, num_generations-1):
-    print str(num_gen) + " --> " + str(np_best_fitness_from_generation[num_gen]) + ", dist: " + str(np_best_dist_from_generation[num_gen]);
 
 
 def plot_stat(stat, description, point_type, file_name, label_x, label_y, y_axis_max, show_plot):
