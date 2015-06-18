@@ -94,9 +94,9 @@ cleanFirst:
 	rm -f controllers/*.out
 	rm -rf controllers/controller_1
 	rm -rf controllers/controller_2
-	rm -rf controllers/controller_3
-	rm -rf controllers/controller_4
-	rm -rf controllers/controller_5
+	# rm -rf controllers/controller_3
+	# rm -rf controllers/controller_4
+	# rm -rf controllers/controller_5
 	rm -rf controllers/supervisor
 
 
@@ -110,9 +110,9 @@ make-controllers:
 	@echo ' '
 	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/
 	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/
-	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/
-	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/
-	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/
+	# rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/
+	# rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/
+	# rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/
 	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/viewer/
 	
 
@@ -121,9 +121,9 @@ make-controllers:
 	@echo ' '
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML1 -c CodeController/controller.cpp  -o controllers/controller_1.o
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML2 -c CodeController/controller.cpp  -o controllers/controller_2.o
-	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML3 -c CodeController/controller.cpp  -o controllers/controller_3.o
-	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML4 -c CodeController/controller.cpp  -o controllers/controller_4.o
-	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML5 -c CodeController/controller.cpp  -o controllers/controller_5.o
+	# $(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML3 -c CodeController/controller.cpp  -o controllers/controller_3.o
+	# $(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML4 -c CodeController/controller.cpp  -o controllers/controller_4.o
+	# $(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML5 -c CodeController/controller.cpp  -o controllers/controller_5.o
 
 
 	@echo ' '
@@ -131,15 +131,15 @@ make-controllers:
 	@echo ' '
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML1 controllers/controller_1.o $(LIBFLAGS) -o controllers/controller_1.out
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML2 controllers/controller_2.o $(LIBFLAGS) -o controllers/controller_2.out
-	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML3 controllers/controller_3.o $(LIBFLAGS) -o controllers/controller_3.out
-	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML4 controllers/controller_4.o $(LIBFLAGS) -o controllers/controller_4.out
-	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML5 controllers/controller_5.o $(LIBFLAGS) -o controllers/controller_5.out
+	# $(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML3 controllers/controller_3.o $(LIBFLAGS) -o controllers/controller_3.out
+	# $(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML4 controllers/controller_4.o $(LIBFLAGS) -o controllers/controller_4.out
+	# $(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML5 controllers/controller_5.o $(LIBFLAGS) -o controllers/controller_5.out
 
 
 	@echo ' '
 	@echo 'CREATING CONTROLLER DIRS IN WEBOTS FOLDER...'
 	@echo ' '
-	@cd /Applications/$(WEBOTS_VERSION)/resources/controllers && mkdir -p controller_1 && mkdir -p controller_2 &&mkdir -p controller_3 && mkdir -p controller_4 && mkdir -p controller_5
+	@cd /Applications/$(WEBOTS_VERSION)/resources/controllers && mkdir -p controller_1 && mkdir -p controller_2
 
 
 	@echo ' '
@@ -147,9 +147,9 @@ make-controllers:
 	@echo ' '
 	mv controllers/controller_1.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/controller_1
 	mv controllers/controller_2.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/controller_2
-	mv controllers/controller_3.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/controller_3
-	mv controllers/controller_4.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/controller_4
-	mv controllers/controller_5.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/controller_5
+	# mv controllers/controller_3.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/controller_3
+	# mv controllers/controller_4.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/controller_4
+	# mv controllers/controller_5.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/controller_5
 
 
 

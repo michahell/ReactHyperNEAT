@@ -41,8 +41,8 @@ ring_offset_z = 0.25
 arena_range = pl.frange(arena_start, arena_end, circle_increments)
 
 # vars for generating webots worldfiles
-template_name = 'arena_world_freezeoutput_template.wbt'
-final_name = 'arena_world_freezeoutput_' # plus core number
+template_name = 'arena_world_offspringtest_template.wbt'
+final_name = 'arena_world_offspringtest_' # plus core number
 
 # webots worldfile text being replaced
 

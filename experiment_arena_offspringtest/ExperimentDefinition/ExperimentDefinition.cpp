@@ -21,9 +21,9 @@
 #define screen cout << fixed
   
 // experiment folder path
-string pathToExperiment = "experiment_arena_freezeoutput";                 
+string pathToExperiment = "experiment_arena_offspringtest";            
 // WEBOTS world file name
-string pathToWorldFile = "/worlds/arena_world_freezeoutput_";
+string pathToWorldFile = "/worlds/arena_world_offspringtest_";
 // CPPN archive folder name
 string pathToArchive = "/CPPNarchive";
 // analysis folder name
@@ -36,7 +36,10 @@ string pathToCurrentAnalysisFolder = "";
 unsigned int currGeneration = 0;
 unsigned int currIndividual = 0;
 
-unsigned int popSize = 0;
+unsigned int genSize = 0;
+unsigned int genCount = 0;
+
+NEAT::GeneticPopulation *populationRef = NULL;
 
 namespace HCUBE {
 
@@ -135,8 +138,8 @@ namespace HCUBE {
     int NUM_THREADS = boost::thread::hardware_concurrency();
     // we want to process two individuals at a time, since we have 2 processor cores available.
     screen << "how many cores do we have available according to boost ? " << NUM_THREADS << endl;
-    // return 2;
-    return 5;
+    return 2;
+    // return 5;
     // return NUM_THREADS;
   }
 
@@ -200,8 +203,10 @@ namespace HCUBE {
   	screen << "Finished creating population\n";
 
     // store population and individual size
-    popSize = population->getIndividualCount();
-    // screen << "\n individual count: " << popSize << "\n";
+    genSize = population->getIndividualCount();
+    genCount = Globals::getSingleton()->getParameterValue("MaxGenerations");
+    populationRef = population;
+    // screen << "\n individual count: " << genSize << "\n";
 
   	return population;
   }
@@ -266,7 +271,7 @@ namespace HCUBE {
       // if it is not, then it is the first individual of the next population.
       // this is an ugly workaround since it is not easily possible to get the current individual or generation
       // from HyperNEAT itself, thus it needs to be managed by ourselves.
-      if(currIndividual == popSize) {
+      if(currIndividual == genSize) {
         // reset individual and increase generation number
         currIndividual = 1;
         currGeneration++;
@@ -332,6 +337,51 @@ namespace HCUBE {
 
       // reward this individual its fitness
       individual->reward(abs(::atof(fitness.c_str())) + 0.000001);
+    }
+
+    // DO THE FOLLOWING AT THE END OF EACH SINGLE EXPERIMENT.
+    // screen << ", genCountMinOne: " << (genCount-1) << ", gen: " << currGeneration << ", genSizeMinOne: " << (genSize) << ", indiv: " << currIndividual << endl;
+    if(currGeneration == genCount-1 && currIndividual == genSize) {
+      
+      // write species offspring info to a CSV file
+      string csvFileName = pathToCurrentCppnFolder + "/offspringTable.csv";
+      // write fitness to textfile
+      ofstream csvFile (csvFileName.c_str());
+
+      screen << endl << "getting species offspring information... " << endl;
+      // loop through population to get the geneticSpecies
+      for (int i = 0; i < genCount; i++) {
+        shared_ptr<NEAT::GeneticGeneration> generation = populationRef->getGeneration(i);
+        for (int j = 0; j < genSize; j++) {
+          
+          try {
+            shared_ptr<NEAT::GeneticIndividual> individual = generation->getIndividual(j);
+            screen << "processing: " << i << ", " << j << ", fitness: " << individual->getFitness() << endl;
+            const int speciesID = individual->getSpeciesID();
+            shared_ptr<NEAT::GeneticSpecies> species = populationRef->getSpecies(speciesID);
+            const int speciesSize = species->getIndividualCount();
+            const int speciesOffspCount = species->getOffspringCount();
+            double indivContrib = (speciesSize > 0 && speciesOffspCount > 0) ? (speciesSize / speciesOffspCount) : 0;
+            screen << "selection pressure for gen. " << i << ", ind. " << j << ", species id, size, offsp: " << speciesID << ", " << speciesSize << " / " << speciesOffspCount << " = " << indivContrib << endl;
+
+            try {
+              // this is the csvfile format
+              csvFile << i << "," << j << "," << speciesSize << "," << speciesOffspCount << "," << indivContrib << endl;  // current generation
+              // get distance, collisions, touchtimes, fitness from xml file.
+            } catch (std::exception e) {
+              cout << e.what() << endl;
+            }
+
+          } catch ( const JGTL::LocatedException& e ) {
+            // standard exceptions
+            // cout << e.what() << '\n';
+          }
+
+        }
+      }
+
+      // close csvFile
+      csvFile.close();
     }
 
   }
@@ -406,7 +456,7 @@ namespace HCUBE {
       exit(-1);
     }
 
-    // ugly workaround to get the 'collisions' node, because TiXML is a horriby incomplete lib.
+    // ugly workaround to get the 'collisions' node...
     TiXmlElement * collisions = docHandle.RootElement()->FirstChildElement()->NextSiblingElement()->NextSiblingElement();
 
     if (collisions == NULL) {

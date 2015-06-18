@@ -8,6 +8,8 @@ mpl.use('PDF')
 import matplotlib.pyplot as plt
 plt.ioff()
 
+import csv
+
 # import settings and options
 print("running with lxml.etree")
 np.set_printoptions(threshold=np.nan, precision=3)
@@ -30,8 +32,9 @@ np_best_dist_from_generation = np.zeros(num_generations)
 np_fitness_avg = np.zeros(num_generations)
 np_distances_avg = np.zeros(num_generations)
 np_species = np.zeros((num_generations, num_individuals))
+np_experiment_champ = np.zeros(4)
 
-# python lists for quick prototyping
+# other datatypes, python lists for quick prototyping etc.
 unique_species = []
 
 # added for arena experiment
@@ -72,7 +75,7 @@ def set_experiment_path(folder_name, folder_path):
 
 
 def generate_raw_stat_matrices():
-  global np_fitness, np_distance, np_collisions, np_collisions_time, np_species
+  global np_fitness, np_distance, np_collisions, np_collisions_time, np_species, np_experiment_champ
 
   for fn in os.listdir(experiment_path):
     abspath = os.path.join(experiment_path, fn);
@@ -103,13 +106,15 @@ def generate_raw_stat_matrices():
 
       # try to get the speciesID xml attribute
       try:
-        speciesID = long(str(root.get("SpeciesID")))
+        speciesID = int(str(root.get("SpeciesID")))
         np_species[curr_generation][curr_individual] = speciesID
         if speciesID not in unique_species:
+          # print 'new species in gen. ' + str(curr_generation) + ', individual: ' + str(curr_individual) + ' = ' + str(speciesID)
           unique_species.append(speciesID)
       except ValueError, e:
         print error('error: ' + str(e));
 
+      # try to get collision data
       try:
         collisions_total = float(str(collisions_elem[0].get("total")))
         collisions_touchtime = float(str(collisions_elem[0].get("totaltouchtime")))
@@ -123,11 +128,14 @@ def generate_raw_stat_matrices():
 
     except etree.XMLSyntaxError, e:
       print error('XMLSyntaxError: ' + str(e));
-      
-
-
-def generate_gen_worst():
-  pass
+  
+  # get champ
+  np_experiment_champ[0] = np.amax(np_fitness)
+  # np_experiment_champ[0] = np_fitness.argmax()
+  # index = np.where( np_fitness == np_fitness.argmax() )
+  # print np_experiment_champ[0], np_fitness.argmax(), str(index)
+  # np_experiment_champ[1] =  np_fitness[index[0], index[1]]
+  # np_experiment_champ[1] = np_distance[index[0], index[1]]
 
 
 def generate_gen_best():
@@ -153,9 +161,19 @@ def generate_collision_avg():
 
 def generate_species():
   global np_species
-  # for num_gen in xrange(0, num_generations-1):
-  #   pass
-  print unique_species
+  # print unique_species
+  # print '\n\r'
+  # print len(unique_species)
+  # print '\n\r'
+  # print np_species
+
+  # parse offspringTable.csv
+  # with open('offspringTable.csv', 'rb') as csvfile:
+  #   offspringTable = csv.reader(csvfile, delimiter = ' ', quotechar='|')
+  #   for row in offspringTable:
+  #     print ', '.join(row)
+      # Spam, Spam, Spam, Spam, Spam, Baked Beans
+      # Spam, Lovely Spam, Wonderful Spam
 
 
 def find_best_individual():

@@ -466,13 +466,6 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-  // stringstream ss;
-  // char const * homedir = getenv("HOME");
-  // ss << homedir << "/" << datfile << endl;
-  // const char * paramsDat = ss.str().c_str();
-
-	// NEAT::Globals::init(paramsDat);
-  // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
   // hardcoded path, uses symlink to point to the correct directory..
   NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
 
