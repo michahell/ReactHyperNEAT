@@ -259,7 +259,7 @@ experiment_arena_noinputs_evasion () {
   # hyperneat CLI required flags
   EXPERIMENT_LOCATION="${PWD}/experiment_arena_noinputs_evasion/ExperimentDefinition/ExperimentDefinitionParams.dat"
   EXPERIMENT_FOLDER="${PWD}/experiment_arena_noinputs_evasion/"
-  EXPERIMENT_SEED="32"
+  EXPERIMENT_SEED="36"
   EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_noinputs_evasion/CPPNarchive/"
   # experiment definition for symlinking into HyperNEAT
   EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_noinputs_evasion/ExperimentDefinition/ExperimentDefinition.h"

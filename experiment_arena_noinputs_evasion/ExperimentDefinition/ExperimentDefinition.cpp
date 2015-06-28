@@ -136,8 +136,8 @@ namespace HCUBE {
     int NUM_THREADS = boost::thread::hardware_concurrency();
     // we want to process two individuals at a time, since we have 2 processor cores available.
     screen << "how many cores do we have available according to boost ? " << NUM_THREADS << endl;
-    return 2;
-    // return 5;
+    // return 2;
+    return 5;
     // return NUM_THREADS;
   }
 
