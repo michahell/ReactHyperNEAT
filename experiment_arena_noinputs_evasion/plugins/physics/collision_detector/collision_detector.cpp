@@ -50,7 +50,7 @@ std::stringstream message_ss;
 dGeomID floorID;
 
 // amount of blocks to check for collision
-int num_blocks = 67; // 105;
+int num_blocks = 67;
 
 // webots node DEF names
 std::string webots_obstacle_base_name = "OBSTACLE_";

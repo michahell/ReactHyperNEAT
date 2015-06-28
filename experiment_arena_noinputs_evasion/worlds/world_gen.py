@@ -17,7 +17,7 @@ def error(text):
   return '\033[0;31m' + text + '\033[0m'
 
   
-# prevent script from working if no path provided
+# prevent script from working if no path provides
 if len(sys.argv) < (1 + 2):
   print error('You have not provided the path to the worlds folder!')
   print error('You have not provided the core / thread number!')
@@ -41,8 +41,8 @@ ring_offset_z = 0.25
 arena_range = pl.frange(arena_start, arena_end, circle_increments)
 
 # vars for generating webots worldfiles
-template_name = 'arena_world_substrate_evasion_template.wbt'
-final_name = 'arena_world_substrate_evasion_' # plus core number
+template_name = 'arena_world_noinputs_evasion_template.wbt'
+final_name = 'arena_world_noinputs_evasion_' # plus core number
 
 
 # webots worldfile text being replaced

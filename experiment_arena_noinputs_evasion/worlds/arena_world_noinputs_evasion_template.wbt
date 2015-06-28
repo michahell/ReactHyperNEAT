@@ -4,13 +4,14 @@ WorldInfo {
     "Simulation of a modular robot consisting of 14 individual YAMOR robots."
   ]
   title "Modular Robot"
+  physics "collision_detector"
   basicTimeStep 8
   displayRefresh 4
   runRealTime TRUE
 }
 Viewpoint {
-  orientation 0.00188631 0.721975 0.691916 3.14654
-  position 1.18051 4.24515 0.0360964
+  orientation 0.0465412 0.968059 0.246366 3.50623
+  position -0.325157 0.741048 -1.29951
 }
 Background {
   skyColor [
@@ -26,14 +27,6 @@ DirectionalLight {
   ambientIntensity 0.7
   direction -1.2 0.7 0.5
   intensity 0.2
-}
-Supervisor {
-  children [
-    DEF RECEIVER Receiver {
-    }
-  ]
-  name "mod_supervisor7"
-  controller "mod_supervisor7"
 }
 DEF GROUND Solid {
   children [
@@ -84,134 +77,21 @@ DEF GROUND Solid {
   }
   locked TRUE
 }
-DEF BLOCK1 Solid {
-  translation 0.45 0.025 0.24
-  rotation 0 -1 0 1.6
+
+
+<OBSTACLES>
+
+
+Supervisor {
   children [
-    DEF BLOCK_SHAPE_1 Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 1 0.0705882 0.403922
-          shininess 0.1
-          specularColor 0.329412 0.25098 0.278431
-        }
-      }
-      geometry DEF BOX Box {
-        size 0.15 0.05 0.025
-      }
+    DEF RECEIVER Receiver {
     }
   ]
-  boundingObject USE BLOCK_SHAPE_1
-  physics DEF BALL_PHYSICS Physics {
-    density -1
-    mass 1
-    bounce 0.05
-    coulombFriction 0.9
-    forceDependentSlip 0.5
-  }
-}
-DEF BLOCK2 Solid {
-  translation 1 0.038 0.23
-  rotation 0 -1 0 1.6
-  children [
-    DEF BLOCK_SHAPE_2 Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0.2 0.0705882 0.403922
-          shininess 0.1
-        }
-      }
-      geometry DEF BLOCK Box {
-        size 0.15 0.075 0.025
-      }
-    }
-  ]
-  boundingObject USE BLOCK_SHAPE_2
-  physics DEF BLOCK_PHYSICS Physics {
-    density -1
-    mass 1
-    bounce 0.05
-    coulombFriction 0.9
-    forceDependentSlip 0.5
-  }
-}
-DEF BLOCK3 Solid {
-  translation 1.5 0.05 0.2
-  rotation 0 -1 0 1.6
-  children [
-    DEF BLOCK_SHAPE_3 Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0.6 0.270588 0.403922
-          shininess 0.1
-        }
-      }
-      geometry DEF BLOCK Box {
-        size 0.15 0.1 0.025
-      }
-    }
-  ]
-  boundingObject USE BLOCK_SHAPE_3
-  physics DEF BLOCK_PHYSICS Physics {
-    density -1
-    mass 1
-    bounce 0.05
-    coulombFriction 0.9
-    forceDependentSlip 0.5
-  }
-}
-DEF BLOCK4 Solid {
-  translation 2 0.0625 0.2
-  rotation 0 -1 0 1.6
-  children [
-    DEF BLOCK_SHAPE_4 Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0.6 0.170588 0.903922
-          shininess 0.1
-        }
-      }
-      geometry DEF BLOCK Box {
-        size 0.15 0.125 0.025
-      }
-    }
-  ]
-  boundingObject USE BLOCK_SHAPE_4
-  physics DEF BLOCK_PHYSICS Physics {
-    density -1
-    mass 1
-    bounce 0.05
-    coulombFriction 0.9
-    forceDependentSlip 0.5
-  }
-}
-DEF BLOCK5 Solid {
-  translation 2.5 0.075 0.2
-  rotation 0 -1 0 1.6
-  children [
-    DEF BLOCK_SHAPE_5 Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0.8 0.8 0.2
-        }
-      }
-      geometry DEF BLOCK Box {
-        size 0.15 0.15 0.025
-      }
-    }
-  ]
-  boundingObject USE BLOCK_SHAPE_5
-  physics DEF BLOCK_PHYSICS Physics {
-    density -1
-    mass 1
-    bounce 0.05
-    coulombFriction 0.9
-    forceDependentSlip 0.5
-  }
+  controller "supervisor"
 }
 DEF MODULE_1 Robot {
-  translation 0.0049967 0.0299988 -0.037
-  rotation 0.707107 0.707107 0 3.1416
+  translation 0.00501692 0.0305504 -0.0369977
+  rotation 0.707107 0.707107 1.33164e-06 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -449,10 +329,11 @@ DEF MODULE_1 Robot {
       }
       maxVelocity 3.9667
       maxForce 1.1
+      position 4.21468e-08
       minPosition -1.5708
       maxPosition 1.5708
     }
-    DEF BUMPER TouchSensor {
+    DEF BUMPER_1 TouchSensor {
       name "bumper"
       boundingObject USE BODY_GROUP
     }
@@ -464,11 +345,11 @@ DEF MODULE_1 Robot {
     mass 0.17
     coulombFriction 0.5
   }
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_2 Robot {
-  translation 0.00499718 0.0299995 0.06
-  rotation 0.707104 0.707109 -6.13286e-06 3.14159
+  translation 0.00501502 0.0305531 0.0600023
+  rotation 0.707107 0.707107 3.99897e-06 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -492,16 +373,19 @@ DEF MODULE_2 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_2 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_2"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_3 Robot {
-  translation 0.00499901 0.03 0.194
-  rotation 0 0 1 3.1416
+  translation 0.00501214 0.0305564 0.194003
+  rotation -6.04091e-06 1.02169e-08 1 3.14159
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -525,17 +409,24 @@ DEF MODULE_3 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_3 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_3"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_4 Robot {
-  translation 0.0049999 0.03 0.251
-  rotation -3.6732e-06 1 3.67316e-06 1.57081
+  translation 0.00501065 0.0305568 0.251004
+  rotation 7.96136e-07 1 -7.37957e-07 1.57078
   children [
+    DEF PHYSICS_DATA Receiver {
+      name "receiver_physics"
+      channel 20
+    }
     DEF RECEIVER Receiver {
       name "receiver_front"
       channel 13
@@ -564,16 +455,19 @@ DEF MODULE_4 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_4 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_4"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_5 Robot {
-  translation 0.0050014 0.03 0.308
-  rotation 0 1 0 3.1416
+  translation 0.00501035 0.0305564 0.308004
+  rotation 4.60476e-08 1 8.79019e-08 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -597,16 +491,19 @@ DEF MODULE_5 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_5 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_5"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_6 Robot {
-  translation 0.00500091 0.0299995 0.442
-  rotation 3.67321e-06 -3.6732e-06 1 1.5708
+  translation 0.00500902 0.0305531 0.442005
+  rotation 1.89853e-06 1.00374e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -630,16 +527,19 @@ DEF MODULE_6 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_6 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_6"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_7 Robot {
-  translation 0.0050014 0.0299988 0.539
-  rotation 0 0 1 1.5708
+  translation 0.00500787 0.0305504 0.539005
+  rotation -1.77938e-06 1.37821e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -659,16 +559,19 @@ DEF MODULE_7 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_7 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_7"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_10 Robot {
-  translation -0.129005 0.0299973 -0.0369982
-  rotation 0.707107 0.707107 -1.21792e-05 3.1416
+  translation -0.128991 0.0305504 -0.0369997
+  rotation 0.707107 0.707107 -1.30001e-06 3.14157
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -688,16 +591,19 @@ DEF MODULE_10 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_10 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_10"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_11 Robot {
-  translation -0.129003 0.0299985 0.0600018
-  rotation 0.707107 0.707107 -9.58173e-06 3.1416
+  translation -0.128992 0.0305531 0.0600003
+  rotation 0.707107 0.707107 1.31944e-06 3.14158
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -721,16 +627,19 @@ DEF MODULE_11 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_11 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_11"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_12 Robot {
-  translation -0.129001 0.029999 0.194002
-  rotation 0 1 0 1.24084e-05
+  translation -0.128994 0.0305564 0.194001
+  rotation 0.0045689 0.999982 0.00399521 -1.92777e-05
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -754,16 +663,19 @@ DEF MODULE_12 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_12 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_12"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_13 Robot {
-  translation -0.129 0.029999 0.251002
-  rotation 3.67326e-06 -1 3.67319e-06 1.57078
+  translation -0.128994 0.0305568 0.251002
+  rotation -7.09779e-07 1 -6.54043e-07 -1.57081
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -791,16 +703,19 @@ DEF MODULE_13 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_13 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_13"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_14 Robot {
-  translation -0.128999 0.029999 0.308002
-  rotation 1 3.67319e-06 -8.67322e-06 3.14159
+  translation -0.128995 0.0305564 0.308002
+  rotation -1 3.83053e-08 -6.02184e-06 3.14159
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -824,16 +739,19 @@ DEF MODULE_14 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_14 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_14"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_15 Robot {
-  translation -0.128997 0.0299985 0.442002
-  rotation 8.67322e-06 1.32678e-06 1 1.5708
+  translation -0.128998 0.0305531 0.442003
+  rotation 5.6527e-06 1.37925e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -857,16 +775,19 @@ DEF MODULE_15 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_15 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_15"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }
 DEF MODULE_16 Robot {
-  translation -0.128996 0.0299973 0.539002
-  rotation 1.23464e-05 -2.34639e-06 1 1.5708
+  translation -0.129 0.0305504 0.539003
+  rotation 1.90649e-06 1.74719e-05 -1 -1.5708
   children [
     DEF RECEIVER Receiver {
       name "receiver_front"
@@ -886,10 +807,13 @@ DEF MODULE_16 Robot {
     USE SONAR2
     USE SONAR3
     USE SONAR4
-    USE BUMPER
+    DEF BUMPER_16 TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
   ]
   name "module_16"
   boundingObject USE BODY_GROUP
   physics USE BODY_PHYSICS
-  controller "mod_ctrler7_1"
+  controller "controller_1"
 }

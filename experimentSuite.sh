@@ -172,7 +172,9 @@ function analyseResults {
 }
 
 
-# define experiment variables (callable functions)
+
+# DEFINE EXPERIMENTS
+
 experiment_moddif () {
   EXPERIMENT_NAME="experiment moddif"
   # hyperneat CLI required flags
@@ -183,6 +185,10 @@ experiment_moddif () {
   EXPERIMENT_DEF_HPP="${PWD}/experiment/ExperimentDefinition/ExperimentDefinition.h"
   EXPERIMENT_DEF_CPP="${PWD}/experiment/ExperimentDefinition/ExperimentDefinition.cpp"
 }
+
+
+
+# MINE
 
 experiment_arena () {
   EXPERIMENT_NAME="experiment arena"
@@ -232,10 +238,12 @@ experiment_arena_noinputs () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
+
+
 # VERIFICATION EXPERIMENTS START HERE
 
 experiment_arena_substrate_evasion () {
-  EXPERIMENT_NAME="experiment arena larger substrate"
+  EXPERIMENT_NAME="experiment arena larger substrate evasion"
   # hyperneat CLI required flags
   EXPERIMENT_LOCATION="${PWD}/experiment_arena_substrate_evasion/ExperimentDefinition/ExperimentDefinitionParams.dat"
   EXPERIMENT_FOLDER="${PWD}/experiment_arena_substrate_evasion/"
@@ -245,6 +253,20 @@ experiment_arena_substrate_evasion () {
   EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_substrate_evasion/ExperimentDefinition/ExperimentDefinition.h"
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_substrate_evasion/ExperimentDefinition/ExperimentDefinition.cpp"
 }
+
+experiment_arena_noinputs_evasion () {
+  EXPERIMENT_NAME="experiment arena no inputs evasion"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_noinputs_evasion/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_noinputs_evasion/"
+  EXPERIMENT_SEED="32"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_noinputs_evasion/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_noinputs_evasion/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_noinputs_evasion/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
+
 
 # TEST EXPERIMENTS
 
@@ -278,7 +300,8 @@ checkRequirements ${1}
 # experiment_arena_offspringtest
 
 # BETTER EVASION VALIDATION
-experiment_arena_substrate_evasion
+# experiment_arena_substrate_evasion
+experiment_arena_noinputs_evasion
 
 # list of functions to go through
 verifyExperimentFolders ${1}
