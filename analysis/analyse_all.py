@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 from analyse_one import *
+from mpl_toolkits.axes_grid1 import host_subplot
+import mpl_toolkits.axisartist as AA
+import itertools
 
 # config
 folder_paths = []
@@ -11,7 +14,7 @@ plots_folder = 'plots/'
 
 # structures for merging all experiment results
 all_experiment_names = []
-all_experiments_best_individuals_fitness = []
+all_exp_type_champ_data = []
 all_experiments_best_individuals_distance = []
 all_experiments_best_individuals_collisions = []
 
@@ -48,6 +51,32 @@ def get_cppn_experiment_folders(current_exp):
     sys.exit()
 
 
+#set boxplot styles in general
+def set_bp_style(bp, basecolor):
+  for box in bp['boxes']:
+    # change outline color 
+    box.set( color='#ffffff', linewidth=0.5) #7570b3, 0.5
+    # change fill color
+    box.set( facecolor = basecolor )
+
+  # change color and linewidth of the whiskers
+  for whisker in bp['whiskers']:
+    whisker.set(color='#7570b3', linewidth=0.5)
+
+  # change color and linewidth of the caps
+  for cap in bp['caps']:
+    cap.set(color='#7570b3', linewidth=0.5)
+
+  # change color and linewidth of the medians
+  for median in bp['medians']:
+    median.set(color='#000000', linewidth=1.5) #b2df8a
+
+  # change the style of fliers and their fill
+  for flier in bp['fliers']:
+    flier.set(color='#e7298a', alpha=0.5)
+    # marker='o',
+
+
 # sets boxplot styles for average fitness boxplots
 def set_bp_style_fitness(bp):
   for box in bp['boxes']:
@@ -78,25 +107,51 @@ def set_bp_style_fitness(bp):
 def set_bp_style_distance(bp):
   for box in bp['boxes']:
     # change outline color 
-    box.set( color='#7570b3', linewidth=2)
+    box.set( color='#ffffff', linewidth=0.5) #7570b3, 0.5
     # change fill color
-    box.set( facecolor = '#1b9e77' )
+    box.set( facecolor = '#E82E66' )
 
   # change color and linewidth of the whiskers
   for whisker in bp['whiskers']:
-    whisker.set(color='#7570b3', linewidth=1)
+    whisker.set(color='#7570b3', linewidth=0.5)
 
   # change color and linewidth of the caps
   for cap in bp['caps']:
-    cap.set(color='#7570b3', linewidth=2)
+    cap.set(color='#7570b3', linewidth=0.5)
 
   # change color and linewidth of the medians
   for median in bp['medians']:
-    median.set(color='#b2df8a', linewidth=2)
+    median.set(color='#000000', linewidth=1.5) #b2df8a
 
   # change the style of fliers and their fill
   for flier in bp['fliers']:
-    flier.set(marker='o', color='#e7298a', alpha=0.5)
+    flier.set(color='#e7298a', alpha=0.5)
+    # marker='o', 
+
+
+def set_bp_style_collisions(bp):
+  for box in bp['boxes']:
+    # change outline color 
+    box.set( color='#ffffff', linewidth=0.5) #7570b3, 0.5
+    # change fill color
+    box.set( facecolor = '#32AAFA' )
+
+  # change color and linewidth of the whiskers
+  for whisker in bp['whiskers']:
+    whisker.set(color='#7570b3', linewidth=0.5)
+
+  # change color and linewidth of the caps
+  for cap in bp['caps']:
+    cap.set(color='#7570b3', linewidth=0.5)
+
+  # change color and linewidth of the medians
+  for median in bp['medians']:
+    median.set(color='#000000', linewidth=1.5) #b2df8a
+
+  # change the style of fliers and their fill
+  for flier in bp['fliers']:
+    flier.set(color='#e7298a', alpha=0.5)
+    # marker='o', 
 
 
 # sets boxplot styles for average distance boxplots
@@ -306,74 +361,198 @@ def plot_all_collision_touchtimes_divided_by_distance():
   fig.savefig(fig_folder + '__boxplot_exp_all_collision_touchtimes_div_distance', bbox_inches='tight')
 
 
-def plot_and_gather_mean_best_fitness():
-  global all_experiments_best_individuals_fitness, all_experiments_best_individuals_distance, all_experiments_best_individuals_collisions
+def plot_and_gather_mean_best_fitness2():
+  global all_exp_type_champ_data, all_experiments_best_individuals_distance, all_experiments_best_individuals_collisions
   print notify('plotting and gathering champion fitness...')
+  experiment_all_champion_data = np.zeros((4, len(all_experiment_data)))
   experiment_all_champion_fitness = np.zeros(len(all_experiment_data))
-  # experiment_all_champion_distance = np.zeros(len(all_experiment_data))
-  # experiment_all_champion_collisions = np.zeros(len(all_experiment_data))
+  experiment_all_champion_distance = np.zeros(len(all_experiment_data))
+  experiment_all_champion_collisions = np.zeros(len(all_experiment_data))
+  experiment_all_champion_collision_touchtimes = np.zeros(len(all_experiment_data))
 
   # append all champion fitnesses
   for num_experiment, dict in enumerate(all_experiment_data):
     print 'integrating experiment : ' + dict['experiment_name']
     experiment_all_champion_fitness[num_experiment] = dict['np_experiment_champion'][0]
-    # experiment_all_champion_distance[num_experiment] = dict['np_experiment_champion'][1]
-    # experiment_all_champion_collisions[num_experiment] = dict['np_experiment_champion'][2]
+    experiment_all_champion_distance[num_experiment] = dict['np_experiment_champion'][1]
+    experiment_all_champion_collisions[num_experiment] = dict['np_experiment_champion'][2]
+    experiment_all_champion_collision_touchtimes[num_experiment] = dict['np_experiment_champion'][3]
 
-  # print warning('champion distance\':' + str(experiment_all_champion_distance))
+  # append champion fitness, distance, collisions, touchtimes to one single np array
+  experiment_all_champion_data[0] = experiment_all_champion_fitness
+  experiment_all_champion_data[1] = experiment_all_champion_distance
+  experiment_all_champion_data[2] = experiment_all_champion_collisions
+  experiment_all_champion_data[3] = experiment_all_champion_collision_touchtimes
 
-  # save champion fitnesses in dict
-  all_experiments_best_individuals_fitness.append(experiment_all_champion_fitness)
+  # save champions in dict
+  all_exp_type_champ_data.append(experiment_all_champion_data)
 
+  # print warning(str(experiment_all_champion_data))
+
+  # initialize the three axis:
   fig = plt.figure()
-  plt.xlabel(experiment_folder)
-  plt.ylabel('champion fitness')
-  plt.title(str(len(all_experiment_data)) + ' generations champion fitness', fontsize=12)
-  # plot
-  bp = plt.boxplot(experiment_all_champion_fitness, patch_artist=True, widths=0.3) 
-  # # change outline color, fill color and linewidth of the boxes
-  set_bp_style_fitness(bp)
-  fig.savefig(fig_folder + '__boxplot_exp_champion_fitness', bbox_inches='tight')
+  host = host_subplot(111, axes_class=AA.Axes)
+  plt.subplots_adjust(right=0.7)
+
+  # titles
+  plt.suptitle(experiment_folder, y=1.02, fontsize=14)
+  plt.title(str(len(experiment_all_champion_data[0])) + ' generations champion fitness, distance, collisions and touchtimes', x=0.66, y=1.03, fontsize=11)
+
+  # clone y-axis? (using twinx()...yeah...super...clear...great!)
+  par1 = host.twinx()
+  par2 = host.twinx()
+  par3 = host.twinx()
+
+  offset = 50
+  par2_new_fixed_axis = par2.get_grid_helper().new_fixed_axis
+  par2.axis["right"] = par2_new_fixed_axis(loc="right", axes=par2, offset=(offset, 0))
+  par2.axis["right"].toggle(all=True)
+
+  par3_new_fixed_axis = par3.get_grid_helper().new_fixed_axis
+  par3.axis["right"] = par3_new_fixed_axis(loc="right", axes=par3, offset=(offset * 2, 0))
+  par3.axis["right"].toggle(all=True)
+
+  # axis limits
+  host.set_xlim(0, 2.5)
+  host.set_ylim(5, 30)
+  host.set_yticks(np.arange(5, 30, 2))
+
+  par1.set_ylim(0, 6)
+  par2.set_ylim(0, 12)
+  par3.set_ylim(0, 2000)
+
+  # x and y labels for all y axes
+  host.set_ylabel("fitness")
+  par1.set_ylabel("distance in m.")
+  par2.set_ylabel("unique collisions #")
+  par3.set_ylabel("touchtime")
+  host.set_xticklabels(['', 'fitness', 'distance', 'collisions', 'touchtimes'])
+
+  # boxplot fitness
+  boxplot1 = host.boxplot(experiment_all_champion_data[0], positions = [0.5], patch_artist=True, widths=0.4, manage_xticks=False)
+  set_bp_style(boxplot1, '#1B9E77');
+
+  # boxplot distance
+  boxplot2 = par1.boxplot(experiment_all_champion_data[1], positions = [1], patch_artist=True, widths=0.4, manage_xticks=False)
+  set_bp_style(boxplot2, '#E82E66');
+
+  # boxplot collisions
+  boxplot3 = par2.boxplot(experiment_all_champion_data[2], positions = [1.5], patch_artist=True, widths=0.4, manage_xticks=False)
+  set_bp_style(boxplot3, '#32AAFA');
+
+  # boxplot touchtimes
+  boxplot4 = par3.boxplot(experiment_all_champion_data[3], positions = [2], patch_artist=True, widths=0.4, manage_xticks=False)
+  set_bp_style(boxplot4, '#1A7ABA');
+
+  # axis colors
+  host.axis["left"].label.set_color('#1B9E77')
+  par1.axis["right"].label.set_color('#E82E66')
+  par2.axis["right"].label.set_color('#32AAFA')
+  par3.axis["right"].label.set_color('#1A7ABA')
+
+  plt.draw()
+
+  fig.savefig(fig_folder + '__boxplot_exp_champion_components', bbox_inches='tight')
 
 
-def plot_comparison_mean_best_fitness():
+def experiment_comparison_mbf_components():
   comparison_experiments_string = ', '.join(all_experiment_names)
   print warning('all experiments analyzed: ' + comparison_experiments_string)
   
+  num_experiments = len(all_exp_type_champ_data)
+  print notify('integrating ' + str(num_experiments) + ' experiments.')
   most_experiments = 0
-  for exp_champions in all_experiments_best_individuals_fitness:
-    most_experiments = max(most_experiments, len(exp_champions))
 
-  # fig = plt.figure()
-  fig, ax1 = plt.subplots(figsize=(10,6))
+  for exp_type_champ_data in all_exp_type_champ_data:
+    most_experiments = max(most_experiments, len(exp_type_champ_data))
 
-  # Add a horizontal grid to the plot, but make it very light in color
-  # so we can use it for reading data values but not be distracting
-  ax1.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
+  # initialize the three axis:
+  fig = plt.figure()
+  host = host_subplot(111, axes_class=AA.Axes)
+  plt.subplots_adjust(right=0.7)
 
-  plt.xlabel('Experiment variations')
-  plt.ylabel('champion fitness')
-  plt.title('no inputs, baseline, substrate, freeze output experiments.', fontsize=12)
-  plt.suptitle(str(most_experiments) + ' generations champion fitness', y=1.00, fontsize=14)
-  
-  # get some fake data
-  fake_data = []
-  for experiment in all_experiments_best_individuals_fitness:
-    fake_data.append([champFitness + 3 for champFitness in experiment]);
+  # titles
+  plt.suptitle('comparison of ' + str(num_experiments) + ' experiment types', y=1.02, fontsize=14)
+  plt.title(str(len(exp_type_champ_data[0])) + ' generations of champion fitness, distance, collisions and touchtimes', x=0.66, y=1.03, fontsize=11)
 
-  # plot
-  bp = plt.boxplot(all_experiments_best_individuals_fitness, patch_artist=True, widths=0.8)
-  set_bp_style_fitness(bp) # change outline color, fill color and linewidth of the boxes
-  
-  # plot distance data
-  # bp = plt.boxplot(fake_data, patch_artist=True, widths=0.5)
-  # set_bp_style_comparison_distance(bp) # change outline color, fill color and linewidth of the boxes
+  # clone y-axis? (using twinx()...yeah...super...clear...great!)
+  par1 = host.twinx()
+  par2 = host.twinx()
+  par3 = host.twinx()
 
-  # set x axes and xticks
-  xtickNames = plt.setp(ax1, xticklabels=all_experiment_names)
-  plt.setp(xtickNames, rotation=45, fontsize=12)
+  offset = 50
+  par2_new_fixed_axis = par2.get_grid_helper().new_fixed_axis
+  par2.axis["right"] = par2_new_fixed_axis(loc="right", axes=par2, offset=(offset, 0))
+  par2.axis["right"].toggle(all=True)
 
-  
+  par3_new_fixed_axis = par3.get_grid_helper().new_fixed_axis
+  par3.axis["right"] = par3_new_fixed_axis(loc="right", axes=par3, offset=(offset * 2, 0))
+  par3.axis["right"].toggle(all=True)
+
+  # axis limits
+  host.set_xlim(0, 10)
+  host.set_ylim(5, 30)
+  host.set_yticks(np.arange(5, 30, 2))
+
+  par1.set_ylim(0, 6)
+  par2.set_ylim(0, 12)
+  par3.set_ylim(0, 2000)
+
+  # x and y labels for all y axes
+  host.set_xlabel('Experiment variations')
+  # plt.title('no inputs, baseline, substrate, freeze output experiments.', fontsize=12)
+  host.set_ylabel("fitness")
+  par1.set_ylabel("distance in m.")
+  par2.set_ylabel("unique collisions #")
+  par3.set_ylabel("touchtime")
+
+  # host.set_xticklabels(['fitness', 'distance', 'collisions', 'touchtimes'], rotation=45)
+  # plt.xticks(range(0, 10), all_experiment_names, rotation='vertical')
+  # host.set_xticklabels(all_experiment_names, rotation=45)
+  # , ha='right'
+
+  # color y axes
+  # host.tick_params(axis='y', colors='#1B9E77')
+  # par1.tick_params(axis='y', colors='#E82E66')
+
+  # for tl_host in host.get_yticklabels():
+  #   tl_host.set_color('#1B9E77')
+  # for tl_par1 in par1.get_yticklabels():
+  #   tl_par1.set_color('#E82E66')
+  # for tl_par2 in par2.get_yticklabels():
+  #   tl_par2.set_color('#32AAFA')
+  # for tl_par3 in par3.get_yticklabels():
+  #   tl_par3.set_color('#1A7ABA')
+
+  offset = 0
+  for exp_type_champ_data in all_exp_type_champ_data:
+
+    # boxplot fitness
+    boxplot1 = host.boxplot(exp_type_champ_data[0], positions = map(lambda x: x + offset, [0.5]), patch_artist=True, widths=0.4, manage_xticks=False)
+    set_bp_style(boxplot1, '#1B9E77');
+
+    # boxplot distance
+    boxplot2 = par1.boxplot(exp_type_champ_data[1], positions = map(lambda x: x + offset, [1.0]), patch_artist=True, widths=0.4, manage_xticks=False)
+    set_bp_style(boxplot2, '#E82E66');
+
+    # boxplot collisions
+    boxplot3 = par2.boxplot(exp_type_champ_data[2], positions = map(lambda x: x + offset, [1.5]), patch_artist=True, widths=0.4, manage_xticks=False)
+    set_bp_style(boxplot3, '#32AAFA');
+
+    # boxplot touchtimes
+    boxplot4 = par3.boxplot(exp_type_champ_data[3], positions = map(lambda x: x + offset, [2.0]), patch_artist=True, widths=0.4, manage_xticks=False)
+    set_bp_style(boxplot4, '#1A7ABA');
+
+    offset = offset + 2
+
+  # axis colors
+  host.axis["left"].label.set_color('#1B9E77')
+  par1.axis["right"].label.set_color('#E82E66')
+  par2.axis["right"].label.set_color('#32AAFA')
+  par3.axis["right"].label.set_color('#1A7ABA')
+
+  plt.draw()
+
   fig.savefig(plots_folder + 'experiments__boxplot_comparison_champion_fitness', bbox_inches='tight')
 
 
@@ -426,13 +605,13 @@ def run_experiment_analysis():
   # plot_all_collision_touchtimes()
 
   # collision touchtimes divided by distance travelled
-  plot_all_collision_touchtimes_divided_by_distance()
+  # plot_all_collision_touchtimes_divided_by_distance()
 
   # collisions divided by distance travelled
-  plot_all_collisions_divided_by_distance()
+  # plot_all_collisions_divided_by_distance()
 
   # gather mean best fitness
-  plot_and_gather_mean_best_fitness()
+  plot_and_gather_mean_best_fitness2()
 
   print notify('plotted all results, experiment analysis done.')
 
@@ -440,7 +619,7 @@ def run_experiment_analysis():
 def run_comparison_analysis():
 
   # mean best fitness comparison
-  plot_comparison_mean_best_fitness()
+  experiment_comparison_mbf_components()
 
 
 if __name__ == "__main__":

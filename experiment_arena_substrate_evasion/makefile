@@ -11,7 +11,7 @@
 #  -lstdc++							link the C++11 library...
 #  libstdc++						GNU/Linux standard C++ lib
 
-CFLAGS = -ggdb -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
+CFLAGS = -g -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
 
 PLATFORM_CFLAG = -DMACOS
 EXTRA_CFLAGS = -mmacosx-version-min=10.5 -arch i386 -arch x86_64
@@ -139,14 +139,15 @@ make-controllers:
 	@echo ' '
 	@echo 'CREATING CONTROLLER DIRS IN WEBOTS FOLDER...'
 	@echo ' '
-	@cd /Applications/$(WEBOTS_VERSION)/resources/controllers && mkdir -p controller_1 && mkdir -p controller_2
+	@cd /Applications/$(WEBOTS_VERSION)/resources/controllers && mkdir -p controller_1 && mkdir -p controller_2 
+	# &&mkdir -p controller_3 && mkdir -p controller_4 && mkdir -p controller_5
 
 
 	@echo ' '
 	@echo 'MOVING CONTROLLERS TO WEBOTS FOLDER...'
 	@echo ' '
-	# mv controllers/controller_1.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/controller_1
-	# mv controllers/controller_2.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/controller_2
+	mv controllers/controller_1.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_1/controller_1
+	mv controllers/controller_2.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_2/controller_2
 	# mv controllers/controller_3.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/controller_3
 	# mv controllers/controller_4.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/controller_4
 	# mv controllers/controller_5.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/controller_5
@@ -186,6 +187,5 @@ make-plugins:
 
 
 # All Target
-all: cleanFirst make-controllers make-supervisor 
-	#cleanAfter
+all: cleanFirst make-controllers make-supervisor cleanAfter
 # all: make-plugins

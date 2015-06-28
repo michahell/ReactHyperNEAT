@@ -130,12 +130,17 @@ def generate_raw_stat_matrices():
       print error('XMLSyntaxError: ' + str(e));
   
   # get champ
+  index = np.where( np_fitness == np.amax(np_fitness) )
   np_experiment_champ[0] = np.amax(np_fitness)
-  # np_experiment_champ[0] = np_fitness.argmax()
-  # index = np.where( np_fitness == np_fitness.argmax() )
-  # print np_experiment_champ[0], np_fitness.argmax(), str(index)
-  # np_experiment_champ[1] =  np_fitness[index[0], index[1]]
-  # np_experiment_champ[1] = np_distance[index[0], index[1]]
+  np_experiment_champ[1] = np.amax(np_distance[index[0][0]][index[1][0]])
+  np_experiment_champ[2] = np.amax(np_collisions[index[0][0]][index[1][0]])
+  np_experiment_champ[3] = np.amax(np_collisions_time[index[0][0]][index[1][0]])
+  
+  # print 'fitness champion is at index: ' + str(index[0][0])
+  # print 'champ fitness: ' + str(np_experiment_champ[0]) + ', np_fitness at same loc: ' + str(np_fitness[index[0][0]][index[1][0]])
+  # print 'np_distance at same loc: ' + str(np_distance[index[0][0]][index[1][0]])
+  # print 'np_collisions at same loc: ' + str(np_collisions[index[0][0]][index[1][0]])
+  # print 'np_collisions_time at same loc: ' + str(np_collisions_time[index[0][0]][index[1][0]])
 
 
 def generate_gen_best():

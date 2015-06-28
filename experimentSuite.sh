@@ -138,7 +138,7 @@ function prepareExperimentFolder () {
 
 function runSimulations {
   # experiment suite configuration
-  SIMULATIONS=15
+  SIMULATIONS=5
   PROGRESS=0
 
   # replace with echo, notifySingleLine is just colored output.
@@ -232,6 +232,22 @@ experiment_arena_noinputs () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_noinputs/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
+# VERIFICATION EXPERIMENTS START HERE
+
+experiment_arena_substrate_evasion () {
+  EXPERIMENT_NAME="experiment arena larger substrate"
+  # hyperneat CLI required flags
+  EXPERIMENT_LOCATION="${PWD}/experiment_arena_substrate_evasion/ExperimentDefinition/ExperimentDefinitionParams.dat"
+  EXPERIMENT_FOLDER="${PWD}/experiment_arena_substrate_evasion/"
+  EXPERIMENT_SEED="34"
+  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_substrate_evasion/CPPNarchive/"
+  # experiment definition for symlinking into HyperNEAT
+  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_substrate_evasion/ExperimentDefinition/ExperimentDefinition.h"
+  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_substrate_evasion/ExperimentDefinition/ExperimentDefinition.cpp"
+}
+
+# TEST EXPERIMENTS
+
 experiment_arena_offspringtest () {
   EXPERIMENT_NAME="experiment arena offspringtest"
   # hyperneat CLI required flags
@@ -249,14 +265,20 @@ experiment_arena_offspringtest () {
 checkRequirements ${1}
 
 # which experiment do we want to run?
+
 # experiment_moddif
 
-# mine
+# OBSTACLE STEPPING
 # experiment_arena
 # experiment_arena_noinputs
 # experiment_arena_substrate
 # experiment_arena_freezeoutput
-experiment_arena_offspringtest
+
+# TESTING
+# experiment_arena_offspringtest
+
+# BETTER EVASION VALIDATION
+experiment_arena_substrate_evasion
 
 # list of functions to go through
 verifyExperimentFolders ${1}
