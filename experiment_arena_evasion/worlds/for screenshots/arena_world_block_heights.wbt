@@ -1,0 +1,895 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Simulation of a modular robot consisting of 14 individual YAMOR robots."
+  ]
+  title "Modular Robot"
+  basicTimeStep 8
+  displayRefresh 4
+  runRealTime TRUE
+}
+Viewpoint {
+  orientation 0.282061 0.918134 0.278338 4.64302
+  position -1.06843 0.779135 0.260496
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+DirectionalLight {
+  direction 1.2 -0.7 -0.5
+  intensity 1.31
+  castShadows TRUE
+}
+DirectionalLight {
+  ambientIntensity 0.7
+  direction -1.2 0.7 0.5
+  intensity 0.2
+}
+Supervisor {
+  children [
+    DEF RECEIVER Receiver {
+    }
+  ]
+  name "mod_supervisor7"
+  controller "mod_supervisor7"
+}
+DEF GROUND Solid {
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.301961 0.301961 0.301961
+        }
+        texture ImageTexture {
+          url [
+            "textures/texture_grid.png"
+          ]
+        }
+      }
+      geometry DEF GROUND_FACE_SET IndexedFaceSet {
+        coord Coordinate {
+          point [
+            50 0 50
+            -50 0 50
+            -50 0 -50
+            50 0 -50
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            12 12
+            12 -12
+            -12 -12
+            -12 12
+          ]
+        }
+        coordIndex [
+          3, 2, 1, 0
+        ]
+        texCoordIndex [
+          0, 1, 2, 3
+        ]
+      }
+    }
+  ]
+  boundingObject Transform {
+    translation 0 -1 0
+    children [
+      Box {
+        size 100 2 100
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF BLOCK1 Solid {
+  translation 0.205 0.025 0.1
+  rotation 0 -1 0 1.6
+  children [
+    DEF BLOCK_SHAPE_1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.0705882 0.403922
+          shininess 0.1
+          specularColor 0.329412 0.25098 0.278431
+        }
+      }
+      geometry DEF BOX Box {
+        size 0.15 0.05 0.025
+      }
+    }
+  ]
+  boundingObject USE BLOCK_SHAPE_1
+  physics DEF BALL_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF BLOCK2 Solid {
+  translation 0.245 0.038 0.17
+  rotation 0 -1 0 1.6
+  children [
+    DEF BLOCK_SHAPE_2 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.0705882 0.403922
+          shininess 0.1
+        }
+      }
+      geometry DEF BLOCK Box {
+        size 0.15 0.075 0.025
+      }
+    }
+  ]
+  boundingObject USE BLOCK_SHAPE_2
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF BLOCK3 Solid {
+  translation 0.285 0.05 0.25
+  rotation 0 -1 0 1.6
+  children [
+    DEF BLOCK_SHAPE_3 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.6 0.270588 0.403922
+          shininess 0.1
+        }
+      }
+      geometry DEF BLOCK Box {
+        size 0.15 0.1 0.025
+      }
+    }
+  ]
+  boundingObject USE BLOCK_SHAPE_3
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF BLOCK4 Solid {
+  translation 0.325 0.0625 0.32
+  rotation 0 -1 0 1.6
+  children [
+    DEF BLOCK_SHAPE_4 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.6 0.170588 0.903922
+          shininess 0.1
+        }
+      }
+      geometry DEF BLOCK Box {
+        size 0.15 0.125 0.025
+      }
+    }
+  ]
+  boundingObject USE BLOCK_SHAPE_4
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF BLOCK5 Solid {
+  translation 0.37 0.075 0.4
+  rotation 0 -1 0 1.6
+  children [
+    DEF BLOCK_SHAPE_5 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0.8 0.2
+        }
+      }
+      geometry DEF BLOCK Box {
+        size 0.15 0.15 0.025
+      }
+    }
+  ]
+  boundingObject USE BLOCK_SHAPE_5
+  physics DEF BLOCK_PHYSICS Physics {
+    density -1
+    mass 1
+    bounce 0.05
+    coulombFriction 0.9
+    forceDependentSlip 0.5
+  }
+}
+DEF MODULE_1 Robot {
+  translation 0.0049967 0.0299988 -0.037
+  rotation 0.707107 0.707107 0 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 2
+    }
+    DEF GYRO Gyro {
+    }
+    DEF EMITTER Emitter {
+      channel 1
+    }
+    DEF SONAR0 DistanceSensor {
+      translation 0.027 0 0
+      children [
+        DEF SONAR Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.975691 0.981481 0.0252992
+                }
+              }
+              geometry Cylinder {
+                height 0.005
+                radius 0.003
+              }
+            }
+          ]
+        }
+      ]
+      name "sonar0"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR1 DistanceSensor {
+      translation 0 0 0.03
+      rotation 0 -1 0 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar1"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR2 DistanceSensor {
+      translation 0 -0.024 0
+      rotation 0 0 -1 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar2"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR3 DistanceSensor {
+      translation 0 0.024 0
+      rotation 0 0 1 1.5708
+      children [
+        USE SONAR
+      ]
+      name "sonar3"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF SONAR4 DistanceSensor {
+      translation -0.027 0 0
+      rotation 0 1 0 3.1416
+      children [
+        USE SONAR
+      ]
+      name "sonar4"
+      lookupTable [
+        0 1 0
+        0.005 1 0.1
+        0.08 0 0.1
+      ]
+      type "sonar"
+      aperture 0.001
+    }
+    DEF BODY_GROUP Group {
+      children [
+        DEF BOX_SHAPE Shape {
+          appearance DEF PLASTIC Appearance {
+            material Material {
+              diffuseColor 0 1 0
+            }
+          }
+          geometry Box {
+            size 0.054 0.0482 0.06
+          }
+        }
+        DEF CYLINDER_TRANS Transform {
+          translation 0 0 -0.03
+          children [
+            Shape {
+              appearance USE PLASTIC
+              geometry Cylinder {
+                height 0.0482
+                radius 0.027
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF BACK_CONNECTOR Connector {
+      translation 0 0 0.03
+      children [
+        DEF ROUND_SHAPE Transform {
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 1 1 1
+                }
+              }
+              geometry Cylinder {
+                height 0.003
+                radius 0.0075
+              }
+            }
+          ]
+        }
+      ]
+      name "back_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF TOP_CONNECTOR Connector {
+      translation 0.027 0 0
+      rotation 0 1 0 1.5708
+      children [
+        USE ROUND_SHAPE
+      ]
+      name "top_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF BOTTOM_CONNECTOR Connector {
+      translation -0.027 0 0
+      rotation 0 1 0 -1.5708
+      children [
+        USE ROUND_SHAPE
+      ]
+      name "bottom_connector"
+      model "conn_model"
+      isLocked TRUE
+      autoLock TRUE
+      distanceTolerance 0.05
+      axisTolerance 0.75
+      rotationTolerance 0.75
+    }
+    DEF SERVO Servo {
+      translation 0 0 -0.03
+      children [
+        DEF GREY_BOX_TRANS Transform {
+          translation 0 0 -0.0135
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.752941 0.752941 0.752941
+                }
+              }
+              geometry Box {
+                size 0.015 0.0612 0.047
+              }
+            }
+          ]
+        }
+        DEF FRONT_CONNECTOR Connector {
+          translation 0 0 -0.037
+          rotation 0 1 0 3.1416
+          children [
+            USE ROUND_SHAPE
+          ]
+          name "front_connector"
+          model "conn_model"
+          isLocked TRUE
+          autoLock TRUE
+          distanceTolerance 0.05
+          axisTolerance 0.75
+          rotationTolerance 0.75
+        }
+        DistanceSensor {
+          translation 0 0 -0.037
+          rotation 0 1 0 1.5708
+          children [
+            USE SONAR
+          ]
+          name "sonar5"
+          lookupTable [
+            0 1 0
+            0.005 1 0.1
+            0.08 0 0.1
+          ]
+          type "sonar"
+          aperture 0.001
+        }
+      ]
+      boundingObject USE GREY_BOX_TRANS
+      physics Physics {
+        density -1
+        mass 0.016
+        coulombFriction 0.5
+      }
+      maxVelocity 3.9667
+      maxForce 1.1
+      minPosition -1.5708
+      maxPosition 1.5708
+    }
+    DEF BUMPER TouchSensor {
+      name "bumper"
+      boundingObject USE BODY_GROUP
+    }
+  ]
+  name "module_1"
+  boundingObject USE BODY_GROUP
+  physics DEF BODY_PHYSICS Physics {
+    density -1
+    mass 0.17
+    coulombFriction 0.5
+  }
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_2 Robot {
+  translation 0.00499718 0.0299995 0.06
+  rotation 0.707104 0.707109 -6.13286e-06 3.14159
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 3
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 1
+    }
+    DEF EMITTER Emitter {
+      channel 2
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_2"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_3 Robot {
+  translation 0.00499901 0.03 0.194
+  rotation 0 0 1 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 2
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 4
+    }
+    DEF EMITTER Emitter {
+      channel 3
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_3"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_4 Robot {
+  translation 0.0049999 0.03 0.251
+  rotation -3.6732e-06 1 3.67316e-06 1.57081
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 13
+    }
+    GPS {
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
+      channel 3
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 5
+    }
+    DEF EMITTER Emitter {
+      channel 4
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_4"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_5 Robot {
+  translation 0.0050014 0.03 0.308
+  rotation 0 1 0 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 6
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 4
+    }
+    DEF EMITTER Emitter {
+      channel 5
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_5"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_6 Robot {
+  translation 0.00500091 0.0299995 0.442
+  rotation 3.67321e-06 -3.6732e-06 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 5
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 7
+    }
+    DEF EMITTER Emitter {
+      channel 6
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_6"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_7 Robot {
+  translation 0.0050014 0.0299988 0.539
+  rotation 0 0 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 6
+    }
+    DEF EMITTER Emitter {
+      channel 7
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_7"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_10 Robot {
+  translation -0.129005 0.0299973 -0.0369982
+  rotation 0.707107 0.707107 -1.21792e-05 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 11
+    }
+    DEF EMITTER Emitter {
+      channel 10
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_10"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_11 Robot {
+  translation -0.129003 0.0299985 0.0600018
+  rotation 0.707107 0.707107 -9.58173e-06 3.1416
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 12
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 10
+    }
+    DEF EMITTER Emitter {
+      channel 11
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_11"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_12 Robot {
+  translation -0.129001 0.029999 0.194002
+  rotation 0 1 0 1.24084e-05
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 11
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 13
+    }
+    DEF EMITTER Emitter {
+      channel 12
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_12"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_13 Robot {
+  translation -0.129 0.029999 0.251002
+  rotation 3.67326e-06 -1 3.67319e-06 1.57078
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 4
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_top"
+      channel 12
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_bottom"
+      channel 14
+    }
+    DEF EMITTER Emitter {
+      channel 13
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_13"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_14 Robot {
+  translation -0.128999 0.029999 0.308002
+  rotation 1 3.67319e-06 -8.67322e-06 3.14159
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 15
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 13
+    }
+    DEF EMITTER Emitter {
+      channel 14
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_14"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_15 Robot {
+  translation -0.128997 0.0299985 0.442002
+  rotation 8.67322e-06 1.32678e-06 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 14
+    }
+    DEF RECEIVER Receiver {
+      name "receiver_back"
+      channel 16
+    }
+    DEF EMITTER Emitter {
+      channel 15
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_15"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
+DEF MODULE_16 Robot {
+  translation -0.128996 0.0299973 0.539002
+  rotation 1.23464e-05 -2.34639e-06 1 1.5708
+  children [
+    DEF RECEIVER Receiver {
+      name "receiver_front"
+      channel 15
+    }
+    DEF EMITTER Emitter {
+      channel 16
+    }
+    USE BODY_GROUP
+    USE BACK_CONNECTOR
+    USE TOP_CONNECTOR
+    USE BOTTOM_CONNECTOR
+    USE SERVO
+    USE GYRO
+    USE SONAR0
+    USE SONAR1
+    USE SONAR2
+    USE SONAR3
+    USE SONAR4
+    USE BUMPER
+  ]
+  name "module_16"
+  boundingObject USE BODY_GROUP
+  physics USE BODY_PHYSICS
+  controller "mod_ctrler7_1"
+}
