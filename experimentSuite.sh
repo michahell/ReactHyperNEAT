@@ -266,30 +266,6 @@ experiment_arena_noinputs_evasion () {
   EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_noinputs_evasion/ExperimentDefinition/ExperimentDefinition.cpp"
 }
 
-experiment_arena_freezeoutput_evasion () {
-  EXPERIMENT_NAME="experiment arena freeze output evasion"
-  # hyperneat CLI required flags
-  EXPERIMENT_LOCATION="${PWD}/experiment_arena_freezeoutput_evasion/ExperimentDefinition/ExperimentDefinitionParams.dat"
-  EXPERIMENT_FOLDER="${PWD}/experiment_arena_freezeoutput_evasion/"
-  EXPERIMENT_SEED="38"
-  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_freezeoutput_evasion/CPPNarchive/"
-  # experiment definition for symlinking into HyperNEAT
-  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_freezeoutput_evasion/ExperimentDefinition/ExperimentDefinition.h"
-  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_freezeoutput_evasion/ExperimentDefinition/ExperimentDefinition.cpp"
-}
-
-experiment_arena_evasion () {
-  EXPERIMENT_NAME="experiment arena evasion"
-  # hyperneat CLI required flags
-  EXPERIMENT_LOCATION="${PWD}/experiment_arena_evasion/ExperimentDefinition/ExperimentDefinitionParams.dat"
-  EXPERIMENT_FOLDER="${PWD}/experiment_arena_evasion/"
-  EXPERIMENT_SEED="40"
-  EXPERIMENT_OUTPUTLOCATION="${PWD}/experiment_arena_evasion/CPPNarchive/"
-  # experiment definition for symlinking into HyperNEAT
-  EXPERIMENT_DEF_HPP="${PWD}/experiment_arena_evasion/ExperimentDefinition/ExperimentDefinition.h"
-  EXPERIMENT_DEF_CPP="${PWD}/experiment_arena_evasion/ExperimentDefinition/ExperimentDefinition.cpp"
-}
-
 
 
 # TEST EXPERIMENTS
@@ -312,11 +288,7 @@ checkRequirements ${1}
 
 # which experiment do we want to run?
 
-# ORIGINAL EXPERIMENT
 # experiment_moddif
-
-# FOR TESTING
-# experiment_arena_offspringtest
 
 # OBSTACLE STEPPING
 # experiment_arena
@@ -324,15 +296,16 @@ checkRequirements ${1}
 # experiment_arena_substrate
 # experiment_arena_freezeoutput
 
-# EVASION VALIDATION?
-# experiment_arena_substrate_evasion
+# TESTING
+# experiment_arena_offspringtest
+
+# BETTER EVASION VALIDATION
+experiment_arena_substrate_evasion
 # experiment_arena_noinputs_evasion
-# experiment_arena_freezeoutput_evasion
-experiment_arena_evasion
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-rebuildExperimentDefinition
+# rebuildExperimentDefinition
 rebuildExperimentControllers ${1}
 rebuildExperimentPlugins ${1}
 prepareExperimentFolder ${1}
