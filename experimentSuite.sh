@@ -327,7 +327,7 @@ checkRequirements ${1}
 # EVASION VALIDATION?
 # experiment_arena_substrate_evasion
 # experiment_arena_noinputs_evasion
-# experiment_arena_freezeoutput_evasion 
+# experiment_arena_freezeoutput_evasion
 experiment_arena_evasion
 
 # list of functions to go through

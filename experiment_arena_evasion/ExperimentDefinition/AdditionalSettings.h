@@ -8,7 +8,7 @@
 #ifdef VIEWSIMULATION
   float deadline = 60;
 #else
-  float deadline = 10;
+  float deadline = 15;
 #endif
 
 // HyperNEAT params location
@@ -18,7 +18,7 @@ const char * datfile = "ExperimentDefinitionParams.dat";
 const char * physics_logfile = "/plugins/physics/collision_detector/collision_log.txt";
 
 // experiment name
-const char * experimentName = "experiment_arena";
+const char * experimentName = "experiment_arena_evasion";
 
 // physics sender / receiver communication channel
 float physics_channel = 20;
