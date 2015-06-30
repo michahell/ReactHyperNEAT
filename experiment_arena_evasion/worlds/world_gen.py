@@ -31,33 +31,20 @@ else:
 
 
 # config
-circle_increments = 0.5
+circle_increments = 0.75
 arena_start = 0.75
-arena_end = 2.75
-base_blocks_per_circle_area = 10
+arena_end = 3.75
+base_blocks_per_circle_area = 5
 base_block_size = 0.05
 ring_offset_x = (-0.129 / 2)
 ring_offset_z = 0.25
 arena_range = pl.frange(arena_start, arena_end, circle_increments)
 
 # vars for generating webots worldfiles
-template_name = 'arena_world_template.wbt'
-final_name = 'arena_world_' # plus core number
+template_name = 'arena_world_evasion_template.wbt'
+final_name = 'arena_world_evasion_' # plus core number
 
 # webots worldfile text being replaced
-
-# pedestal_template_VRML = '''
-# DEF PEDESTAL_TEMPLATE Shape {
-#   appearance Appearance {
-#     material Material {
-#       diffuseColor 0.960784 0.984314 1
-#     }
-#   }
-#   geometry DEF PEDESTAL_SHAPE Box {
-#     size 0.16 0.002 0.035
-#   }
-# }
-
 obstacle_VRML = '''
 DEF OBSTACLE_%(obstacle_number)s Solid {
   translation %(trans_x)s %(trans_y)s %(trans_z)s 
@@ -84,53 +71,6 @@ DEF OBSTACLE_%(obstacle_number)s Solid {
     forceDependentSlip 0.5
   }
 }'''
-
-# pedestal
-# pedestal_VRML = '''
-# DEF PEDESTAL_%(obstacle_number)s Solid {
-#   translation %(trans_x)s 0.001 %(trans_z)s
-#   rotation 0 1 0 %(rot_alpha)s
-#   children [
-#     Shape {
-#       appearance Appearance {
-#         material Material {
-#           diffuseColor 0.960784 0.984314 1
-#         }
-#       }
-#       geometry DEF PEDESTAL_SHAPE_%(obstacle_number)s Box {
-#         size 0.16 0.002 0.035
-#       }
-#     }
-#   ]
-# }'''
-
-# obstacle_VRML = '''
-# TouchSensor {
-#   translation %(trans_x)s %(trans_y)s %(trans_z)s
-#   rotation 0 1 0 %(rot_alpha)s
-#   children [
-#     Shape {
-#       appearance Appearance {
-#         material Material {
-#           diffuseColor %(red)s %(green)s %(blue)s
-#         }
-#       }
-#       geometry DEF BLOCK_SHAPE_%(obstacle_number)s Box {
-#         size %(width)s %(height)s %(depth)s
-#       }
-#     }
-#   ]
-#   name "%(block_name)s"
-#   boundingObject USE BLOCK_SHAPE_%(obstacle_number)s
-#   physics Physics {
-#     density -1
-#     mass 1
-#     bounce 0.05
-#     coulombFriction 0.9
-#     forceDependentSlip 0.5
-#   }
-# }
-# '''
 
 
 def copy_shape_and_substitute_for_each(index, arena_area, block_number, trans_x, trans_z):

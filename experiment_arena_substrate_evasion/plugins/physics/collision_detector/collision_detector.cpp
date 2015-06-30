@@ -186,9 +186,9 @@ int webots_physics_collide(dGeomID g1, dGeomID g2) {
 
           // notify console
           if(g1 == collVector[i].id) {
-            std::cout << "physics plugin :: collision with block : " << collVector[i].defNameString << " and : " << getGeomClassName(dGeomGetClass(g2)) << std::endl;
+            // std::cout << "physics plugin :: collision with block : " << collVector[i].defNameString << " and : " << getGeomClassName(dGeomGetClass(g2)) << std::endl;
           } else {
-            std::cout << "physics plugin :: collision with block : " << collVector[i].defNameString << " and : " << getGeomClassName(dGeomGetClass(g1)) << std::endl;
+            // std::cout << "physics plugin :: collision with block : " << collVector[i].defNameString << " and : " << getGeomClassName(dGeomGetClass(g1)) << std::endl;
           }
         }
 
