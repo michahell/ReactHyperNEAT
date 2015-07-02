@@ -466,13 +466,6 @@ void setupNetwork() {
 	//////// 			CREATE NETWORK OBJECT
 	// Initialize NEAT
   
-  // stringstream ss;
-  // char const * homedir = getenv("HOME");
-  // ss << homedir << "/" << datfile << endl;
-  // const char * paramsDat = ss.str().c_str();
-
-	// NEAT::Globals::init(paramsDat);
-  // NEAT::Globals::init("/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
   // hardcoded path, uses symlink to point to the correct directory..
   NEAT::Globals::init("/Users/mtw800/experimentSuite/experiment_arena/ExperimentDefinition/ExperimentDefinitionParams.dat");
 
@@ -1036,6 +1029,8 @@ int main()
 	// 	average_height /= (control_loop_iteration + 1);
 	// }
 
+#ifdef VIEWSIMULATION
+
 	if (id == FITNESS_RECORDER_ID) {
     
     screen << "fitness / collision recorder adding results to cppn... " << endl;
@@ -1071,8 +1066,8 @@ int main()
 
 		///////////       COMPUTES THE FITNESS FUNCTION   ///////////
 		// const double fitness = exp(distance_from_origin // how far the robot got
-  //       * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
-  //       + (average_height)); // how high did it keep the body on average (less than 1.0m)
+    //  * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+    //  + (average_height)); // how high did it keep the body on average (less than 1.0m)
 
     // the following need to be minimized
     unsigned int maxTouchTime = 1000;
@@ -1145,6 +1140,8 @@ int main()
 		writeFitnessToXml(xmlFileName, fitness, distance_from_origin, average_height);
 
 	}
+  
+#endif 
 
 #ifdef CTRLER_DEBUG
 	//close debug log file
