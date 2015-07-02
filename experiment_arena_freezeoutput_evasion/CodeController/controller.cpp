@@ -50,7 +50,6 @@ using namespace HCUBE;
 // comment to speed up controller
 #define CTRLER_DEBUG
 //#define CTRLER_DEBUG_WRITE_NETWORK
-//
 
 #define CPPN_BIAS 0.3
 

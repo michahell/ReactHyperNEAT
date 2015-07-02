@@ -6,7 +6,7 @@
 
 // Number of seconds until shutdown
 #ifdef VIEWSIMULATION
-  float deadline = 60;
+  float deadline = 30;
 #else
   float deadline = 15;
 #endif
