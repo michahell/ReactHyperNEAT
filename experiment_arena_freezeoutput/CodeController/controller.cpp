@@ -1026,10 +1026,7 @@ int main()
 	} // end control's while loop
 
 
-	// if (id == FITNESS_RECORDER_ID) {
-	// 	// take the average in average_height (recordings start from iteration -1)
-	// 	average_height /= (control_loop_iteration + 1);
-	// }
+#ifndef VIEWSIMULATION
 
 	if (id == FITNESS_RECORDER_ID) {
     
@@ -1066,8 +1063,8 @@ int main()
 
 		///////////       COMPUTES THE FITNESS FUNCTION   ///////////
 		// const double fitness = exp(distance_from_origin // how far the robot got
-  //       * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
-  //       + (average_height)); // how high did it keep the body on average (less than 1.0m)
+    //     * pow(W, (distance_travelled / distance_from_origin) - 1) // how much it spend getting there
+    //     + (average_height)); // how high did it keep the body on average (less than 1.0m)
 
     // the following need to be minimized
     unsigned int maxTouchTime = 1000;
@@ -1141,6 +1138,8 @@ int main()
 
 	}
 
+#endif
+  
 #ifdef CTRLER_DEBUG
 	//close debug log file
 	file.close();

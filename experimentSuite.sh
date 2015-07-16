@@ -315,25 +315,25 @@ checkRequirements ${1}
 # experiment_moddif
 
 # OBSTACLE STEPPING
-experiment_arena
+# experiment_arena
 # experiment_arena_noinputs
 # experiment_arena_substrate
 # experiment_arena_freezeoutput
 
 # TESTING
-# experiment_arena_offspringtest
+experiment_arena_offspringtest
 
 # BETTER EVASION VALIDATION
 # experiment_arena_substrate_evasion
 # experiment_arena_noinputs_evasion
-experiment_arena_freezeoutput_evasion
+# experiment_arena_freezeoutput_evasion
 # experiment_arena_evasion
 
 # list of functions to go through
 verifyExperimentFolders ${1}
-rebuildExperimentDefinition
+# rebuildExperimentDefinition
 rebuildExperimentControllers ${1}
-rebuildExperimentPlugins ${1}
-prepareExperimentFolder ${1}
-runSimulations ${1}
+# rebuildExperimentPlugins ${1}
+# prepareExperimentFolder ${1}
+# runSimulations ${1}
 # analyseResults ${1}

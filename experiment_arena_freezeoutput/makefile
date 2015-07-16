@@ -11,7 +11,7 @@
 #  -lstdc++							link the C++11 library...
 #  libstdc++						GNU/Linux standard C++ lib
 
-CFLAGS = -g -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
+CFLAGS = -ggdb -stdlib=libstdc++ -Wall -Wno-error -ferror-limit=1000 -fmessage-length=0
 
 PLATFORM_CFLAG = -DMACOS
 EXTRA_CFLAGS = -mmacosx-version-min=10.5 -arch i386 -arch x86_64
@@ -97,6 +97,7 @@ cleanFirst:
 	rm -rf controllers/controller_3
 	rm -rf controllers/controller_4
 	rm -rf controllers/controller_5
+	rm -rf controllers/controller_view
 	rm -rf controllers/supervisor
 
 
@@ -113,7 +114,7 @@ make-controllers:
 	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/
 	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/
 	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/
-	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/viewer/
+	rm -rf /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_view/
 	
 
 	@echo ' '
@@ -124,6 +125,7 @@ make-controllers:
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML3 -c CodeController/controller.cpp  -o controllers/controller_3.o
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML4 -c CodeController/controller.cpp  -o controllers/controller_4.o
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML5 -c CodeController/controller.cpp  -o controllers/controller_5.o
+	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(HEADERPATH) -DXML1 -DVIEWSIMULATION -c CodeController/controller.cpp  -o controllers/controller_view.o
 
 
 	@echo ' '
@@ -134,12 +136,13 @@ make-controllers:
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML3 controllers/controller_3.o $(LIBFLAGS) -o controllers/controller_3.out
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML4 controllers/controller_4.o $(LIBFLAGS) -o controllers/controller_4.out
 	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML5 controllers/controller_5.o $(LIBFLAGS) -o controllers/controller_5.out
+	$(CC) $(FLAGS) $(EXTRA_CFLAGS) $(LIBS) -DXML1 -DVIEWSIMULATION controllers/controller_view.o $(LIBFLAGS) -o controllers/controller_view.out
 
 
 	@echo ' '
 	@echo 'CREATING CONTROLLER DIRS IN WEBOTS FOLDER...'
 	@echo ' '
-	@cd /Applications/$(WEBOTS_VERSION)/resources/controllers && mkdir -p controller_1 && mkdir -p controller_2 &&mkdir -p controller_3 && mkdir -p controller_4 && mkdir -p controller_5
+	@cd /Applications/$(WEBOTS_VERSION)/resources/controllers && mkdir -p controller_1 && mkdir -p controller_2 &&mkdir -p controller_3 && mkdir -p controller_4 && mkdir -p controller_5 && mkdir -p controller_view
 
 
 	@echo ' '
@@ -150,6 +153,7 @@ make-controllers:
 	mv controllers/controller_3.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_3/controller_3
 	mv controllers/controller_4.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_4/controller_4
 	mv controllers/controller_5.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_5/controller_5
+	mv controllers/controller_view.out /Applications/$(WEBOTS_VERSION)/resources/controllers/controller_view/controller_view
 
 
 

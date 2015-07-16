@@ -1024,12 +1024,7 @@ int main()
 	} // end control's while loop
 
 
-	// if (id == FITNESS_RECORDER_ID) {
-	// 	// take the average in average_height (recordings start from iteration -1)
-	// 	average_height /= (control_loop_iteration + 1);
-	// }
-
-#ifdef VIEWSIMULATION
+#ifndef VIEWSIMULATION
 
 	if (id == FITNESS_RECORDER_ID) {
     

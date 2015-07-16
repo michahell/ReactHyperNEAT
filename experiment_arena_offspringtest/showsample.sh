@@ -8,15 +8,13 @@ function notifyMsg () {
   echo '\033[0;34m'"$1"'\033[0m'
 }
 
-EXPERIMENT_DIR="/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena_freezeoutput"
+EXPERIMENT_DIR="/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena_offspringtest"
 SAMPLE=${EXPERIMENT_DIR}/${1}
 
-
-# WEBOTS 6.x original worldfile
-# WORLD="/Users/michahell/Documents/projects_c++/experiment_arena/worlds/exp7_world.wbt"
-
 # WEBOTS 6.x original worldfile, controller names modified
-WORLD="/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena_freezeoutput/worlds/arena_world_freezeoutput_1.wbt"
+# create a new world using world_gen.py from the template, and replace all controller names with _view:
+./worlds/world_gen.py `pwd`/worlds/ view
+WORLD="/Users/michahell/Documents/projects_c++/experimentSuite/experiment_arena_offspringtest/worlds/arena_world_offspringtest_view.wbt"
 
 notifyMsg "launching ${1} into webots..."
 notifyMsg "world: ${WORLD}"

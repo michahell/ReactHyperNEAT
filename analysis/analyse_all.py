@@ -361,6 +361,18 @@ def plot_all_collision_touchtimes_divided_by_distance():
   fig.savefig(fig_folder + '__boxplot_exp_all_collision_touchtimes_div_distance', bbox_inches='tight')
 
 
+def set_combined_components_axis(host, par1, par2, par3):
+  host.set_xlim(0, 2.5)
+
+  host.set_ylim(0, 150)
+  host.set_yticks(np.arange(0, 150, 10))
+
+  par1.set_ylim(0, 6)
+  par1.set_yticks(np.arange(0, 6, 0.5))
+
+  par2.set_ylim(0, 12)
+  par3.set_ylim(0, 2000)
+
 def plot_and_gather_mean_best_fitness2():
   global all_exp_type_champ_data, all_experiments_best_individuals_distance, all_experiments_best_individuals_collisions
   print notify('plotting and gathering champion fitness...')
@@ -413,13 +425,7 @@ def plot_and_gather_mean_best_fitness2():
   par3.axis["right"].toggle(all=True)
 
   # axis limits
-  host.set_xlim(0, 2.5)
-  host.set_ylim(5, 30)
-  host.set_yticks(np.arange(5, 30, 2))
-
-  par1.set_ylim(0, 6)
-  par2.set_ylim(0, 12)
-  par3.set_ylim(0, 2000)
+  set_combined_components_axis(host, par1, par2, par3)
 
   # x and y labels for all y axes
   host.set_ylabel("fitness")
@@ -467,7 +473,7 @@ def experiment_comparison_mbf_components():
     most_experiments = max(most_experiments, len(exp_type_champ_data))
 
   # initialize the three axis:
-  fig = plt.figure()
+  fig = plt.figure() 
   host = host_subplot(111, axes_class=AA.Axes)
   plt.subplots_adjust(right=0.7)
 
@@ -490,13 +496,8 @@ def experiment_comparison_mbf_components():
   par3.axis["right"].toggle(all=True)
 
   # axis limits
-  host.set_xlim(0, 10)
-  host.set_ylim(5, 30)
-  host.set_yticks(np.arange(5, 30, 2))
-
-  par1.set_ylim(0, 6)
-  par2.set_ylim(0, 12)
-  par3.set_ylim(0, 2000)
+  set_combined_components_axis(host, par1, par2, par3)
+  host.set_xlim(0, 10.5)
 
   # x and y labels for all y axes
   host.set_xlabel('Experiment variations')
